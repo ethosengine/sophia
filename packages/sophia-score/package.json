@@ -1,0 +1,49 @@
+{
+    "name": "@ethosengine/sophia-score",
+    "description": "Tamed mastery assessment - recognizing what learners demonstrate",
+    "author": "Ethos Engine",
+    "license": "MIT",
+    "version": "0.1.0",
+    "publishConfig": {
+        "access": "public"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ethosengine/sophia.git",
+        "directory": "packages/sophia-score"
+    },
+    "bugs": {
+        "url": "https://github.com/ethosengine/sophia/issues"
+    },
+    "module": "dist/es/index.js",
+    "main": "dist/index.js",
+    "source": "src/index.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/es/index.js",
+            "require": "./dist/index.js",
+            "types": "./dist/index.d.ts",
+            "source": "./src/index.ts"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "prepublishOnly": "../../utils/package-pre-publish-check.sh"
+    },
+    "dependencies": {
+        "@ethosengine/sophia-core": "workspace:*",
+        "@khanacademy/perseus-core": "workspace:*",
+        "@khanacademy/perseus-score": "workspace:*"
+    },
+    "devDependencies": {
+        "perseus-build-settings": "workspace:*"
+    },
+    "keywords": [
+        "assessment",
+        "mastery",
+        "scoring",
+        "sophia"
+    ]
+}

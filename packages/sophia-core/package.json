@@ -1,0 +1,48 @@
+{
+    "name": "@ethosengine/sophia-core",
+    "description": "Person-centered assessment foundation - common types for mastery and discovery",
+    "author": "Ethos Engine",
+    "license": "MIT",
+    "version": "0.1.0",
+    "publishConfig": {
+        "access": "public"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ethosengine/sophia.git",
+        "directory": "packages/sophia-core"
+    },
+    "bugs": {
+        "url": "https://github.com/ethosengine/sophia/issues"
+    },
+    "module": "dist/es/index.js",
+    "main": "dist/index.js",
+    "source": "src/index.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/es/index.js",
+            "require": "./dist/index.js",
+            "types": "./dist/index.d.ts",
+            "source": "./src/index.ts"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "prepublishOnly": "../../utils/package-pre-publish-check.sh"
+    },
+    "dependencies": {
+        "@khanacademy/perseus-core": "workspace:*"
+    },
+    "devDependencies": {
+        "perseus-build-settings": "workspace:*"
+    },
+    "keywords": [
+        "assessment",
+        "wisdom",
+        "mastery",
+        "discovery",
+        "sophia"
+    ]
+}
