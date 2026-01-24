@@ -25,4 +25,4 @@ runs:
 
         - name: pnpm install
           shell: sh
-          run: pnpm install ---frozen-lockfile
+          run: pnpm install --frozen-lockfile
