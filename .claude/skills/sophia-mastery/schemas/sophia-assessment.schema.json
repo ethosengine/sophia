@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://elohim.protocol/schemas/sophia-assessment.schema.json",
+  "title": "SophiaAssessment",
+  "description": "A Sophia assessment file containing multiple moments",
+  "type": "object",
+  "required": ["id", "contentType", "title", "description", "content", "contentFormat", "tags", "metadata"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique assessment identifier",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "contentType": {
+      "type": "string",
+      "const": "assessment"
+    },
+    "title": {
+      "type": "string",
+      "description": "Human-readable assessment title",
+      "minLength": 3,
+      "maxLength": 200
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief description of the assessment",
+      "minLength": 10,
+      "maxLength": 500
+    },
+    "content": {
+      "type": "array",
+      "description": "Array of Sophia moments",
+      "items": {
+        "$ref": "sophia-moment.schema.json"
+      },
+      "minItems": 1
+    },
+    "contentFormat": {
+      "type": "string",
+      "const": "sophia-moment-json"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9-]+$"
+      },
+      "minItems": 1
+    },
+    "sourcePath": {
+      "type": "string",
+      "description": "Original source file path"
+    },
+    "relatedNodeIds": {
+      "type": "array",
+      "description": "Related content node IDs",
+      "items": {
+        "type": "string"
+      }
+    },
+    "metadata": {
+      "$ref": "#/$defs/AssessmentMetadata"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "$defs": {
+    "AssessmentMetadata": {
+      "type": "object",
+      "required": ["assessmentType", "questionCount"],
+      "properties": {
+        "assessmentType": {
+          "type": "string",
+          "description": "Primary assessment mode",
+          "enum": ["mastery", "discovery", "reflection", "mixed"]
+        },
+        "category": {
+          "type": "string",
+          "description": "Content category"
+        },
+        "questionCount": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "attestationId": {
+          "type": "string",
+          "description": "Attestation earned upon completion (mastery)"
+        },
+        "instrumentId": {
+          "type": "string",
+          "description": "Psychometric instrument ID (discovery)"
+        },
+        "difficulty": {
+          "type": "string",
+          "enum": ["easy", "medium", "hard", "intermediate", "mixed"]
+        },
+        "recommendsEpics": {
+          "type": "boolean",
+          "description": "Whether results recommend epic domains (discovery)"
+        },
+        "quizType": {
+          "type": "string",
+          "description": "Specific quiz type for UI handling"
+        },
+        "migratedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,427 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://elohim.protocol/schemas/sophia-moment.schema.json",
+  "title": "SophiaMoment",
+  "description": "A Sophia assessment moment supporting mastery, discovery, and reflection modes",
+  "type": "object",
+  "required": ["id", "purpose", "content", "metadata"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique moment identifier",
+      "pattern": "^[a-z0-9-]+$",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "purpose": {
+      "type": "string",
+      "description": "Assessment mode",
+      "enum": ["mastery", "discovery", "reflection"]
+    },
+    "content": {
+      "$ref": "#/$defs/PerseusRenderer"
+    },
+    "hints": {
+      "type": "array",
+      "description": "Progressive hints (primarily for mastery mode)",
+      "items": {
+        "$ref": "#/$defs/Hint"
+      }
+    },
+    "subscaleContributions": {
+      "$ref": "#/$defs/SubscaleMappings",
+      "description": "Maps widget choices to subscale contributions (required for discovery)"
+    },
+    "metadata": {
+      "$ref": "#/$defs/MomentMetadata"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "purpose": { "const": "discovery" } }
+      },
+      "then": {
+        "required": ["subscaleContributions"],
+        "properties": {
+          "content": {
+            "properties": {
+              "widgets": {
+                "additionalProperties": {
+                  "properties": {
+                    "graded": { "const": false }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "purpose": { "const": "mastery" } }
+      },
+      "then": {
+        "properties": {
+          "content": {
+            "properties": {
+              "widgets": {
+                "additionalProperties": {
+                  "properties": {
+                    "graded": { "const": true }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "PerseusRenderer": {
+      "type": "object",
+      "description": "Perseus rendering content with widgets",
+      "required": ["content", "widgets"],
+      "properties": {
+        "content": {
+          "type": "string",
+          "description": "Markdown content with widget placeholders [[☃ widget-type index]]",
+          "minLength": 1
+        },
+        "images": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/ImageDetail"
+          }
+        },
+        "widgets": {
+          "type": "object",
+          "description": "Map of widget IDs to widget definitions",
+          "additionalProperties": {
+            "$ref": "#/$defs/Widget"
+          },
+          "minProperties": 1
+        }
+      }
+    },
+    "Widget": {
+      "type": "object",
+      "required": ["type", "options", "version"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Widget type identifier",
+          "enum": [
+            "radio",
+            "numeric-input",
+            "expression",
+            "input-number",
+            "interactive-graph",
+            "image",
+            "transformer",
+            "number-line",
+            "sorter",
+            "categorizer",
+            "matcher",
+            "orderer",
+            "graded-group",
+            "graded-group-set",
+            "iframe",
+            "definition",
+            "dropdown",
+            "explanation",
+            "passage",
+            "passage-ref",
+            "phet-simulation",
+            "plotter",
+            "table",
+            "grapher",
+            "measurer",
+            "matrix",
+            "cs-program",
+            "video",
+            "label-image",
+            "free-response"
+          ]
+        },
+        "options": {
+          "type": "object",
+          "description": "Widget-specific options"
+        },
+        "graded": {
+          "type": "boolean",
+          "description": "Whether this widget is scored"
+        },
+        "alignment": {
+          "type": "string",
+          "description": "Widget alignment"
+        },
+        "static": {
+          "type": "boolean",
+          "description": "Whether widget is display-only"
+        },
+        "version": {
+          "$ref": "#/$defs/Version"
+        }
+      }
+    },
+    "RadioWidgetOptions": {
+      "type": "object",
+      "required": ["choices"],
+      "properties": {
+        "choices": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RadioChoice"
+          },
+          "minItems": 2,
+          "maxItems": 10
+        },
+        "randomize": {
+          "type": "boolean",
+          "default": false
+        },
+        "multipleSelect": {
+          "type": "boolean",
+          "default": false
+        },
+        "displayCount": {
+          "type": ["integer", "null"]
+        },
+        "hasNoneOfTheAbove": {
+          "type": "boolean",
+          "default": false
+        },
+        "deselectEnabled": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "RadioChoice": {
+      "type": "object",
+      "required": ["content", "id"],
+      "properties": {
+        "content": {
+          "type": "string",
+          "description": "Choice text (supports markdown)"
+        },
+        "id": {
+          "type": "string",
+          "description": "Unique choice identifier"
+        },
+        "correct": {
+          "type": "boolean",
+          "description": "Whether this is the correct answer (mastery only)"
+        },
+        "clue": {
+          "type": "string",
+          "description": "Feedback shown when this choice is selected"
+        },
+        "isNoneOfTheAbove": {
+          "type": "boolean"
+        }
+      }
+    },
+    "NumericInputWidgetOptions": {
+      "type": "object",
+      "required": ["answers"],
+      "properties": {
+        "answers": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/NumericAnswer"
+          },
+          "minItems": 1
+        },
+        "size": {
+          "type": "string",
+          "enum": ["normal", "small"],
+          "default": "normal"
+        },
+        "labelText": {
+          "type": "string"
+        },
+        "coefficient": {
+          "type": "boolean"
+        },
+        "rightAlign": {
+          "type": "boolean"
+        }
+      }
+    },
+    "NumericAnswer": {
+      "type": "object",
+      "required": ["value", "status"],
+      "properties": {
+        "value": {
+          "type": "number"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["correct", "wrong", "ungraded"]
+        },
+        "message": {
+          "type": "string"
+        },
+        "maxError": {
+          "type": "number"
+        },
+        "simplify": {
+          "type": "string",
+          "enum": ["required", "optional", "enforced"]
+        },
+        "strict": {
+          "type": "boolean"
+        },
+        "answerForms": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["integer", "decimal", "proper", "improper", "mixed", "percent", "pi"]
+          }
+        }
+      }
+    },
+    "FreeResponseWidgetOptions": {
+      "type": "object",
+      "properties": {
+        "placeholder": {
+          "type": "string"
+        },
+        "allowUnlimitedCharacters": {
+          "type": "boolean",
+          "default": false
+        },
+        "characterLimit": {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 10000,
+          "default": 500
+        },
+        "question": {
+          "type": "string"
+        }
+      }
+    },
+    "Hint": {
+      "type": "object",
+      "required": ["content"],
+      "properties": {
+        "content": {
+          "type": "string",
+          "description": "Hint text (supports markdown)"
+        },
+        "images": {
+          "type": "object"
+        },
+        "widgets": {
+          "type": "object"
+        },
+        "replace": {
+          "type": "boolean",
+          "description": "Whether to replace the previous hint"
+        }
+      }
+    },
+    "SubscaleMappings": {
+      "type": "object",
+      "description": "Maps widget IDs to choice-subscale contribution mappings",
+      "additionalProperties": {
+        "$ref": "#/$defs/ChoiceSubscaleMap"
+      }
+    },
+    "ChoiceSubscaleMap": {
+      "type": "object",
+      "description": "Maps choice indices (as strings) to subscale contributions",
+      "additionalProperties": {
+        "$ref": "#/$defs/SubscaleContribution"
+      }
+    },
+    "SubscaleContribution": {
+      "type": "object",
+      "description": "Maps subscale names to contribution values (0-1)",
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      }
+    },
+    "MomentMetadata": {
+      "type": "object",
+      "required": ["sourceContentId", "bloomsLevel", "difficulty", "estimatedTimeSeconds", "questionType", "tags"],
+      "properties": {
+        "sourceContentId": {
+          "type": "string",
+          "description": "Source assessment ID"
+        },
+        "assessesContentId": {
+          "type": "string",
+          "description": "Content node ID this moment assesses (mastery)"
+        },
+        "instrumentId": {
+          "type": "string",
+          "description": "Psychometric instrument ID (discovery)"
+        },
+        "bloomsLevel": {
+          "type": "string",
+          "enum": ["remember", "understand", "apply", "analyze", "evaluate", "create"]
+        },
+        "difficulty": {
+          "type": "string",
+          "enum": ["easy", "medium", "hard", "intermediate"]
+        },
+        "estimatedTimeSeconds": {
+          "type": "integer",
+          "minimum": 5,
+          "maximum": 600
+        },
+        "questionType": {
+          "type": "string",
+          "enum": ["core", "applied", "synthesis"]
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "minItems": 1
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "ImageDetail": {
+      "type": "object",
+      "properties": {
+        "width": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "Version": {
+      "type": "object",
+      "required": ["major", "minor"],
+      "properties": {
+        "major": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "minor": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}
