@@ -81,9 +81,9 @@ const config: StorybookConfig = {
         // Docs for Sophia editor
         "../packages/sophia-editor/src/**/__docs__/**/*.@(stories.ts|stories.tsx|mdx)",
 
-        // Docs for Perseus widgets, components, and renderers
-        "../packages/perseus/src/**/__docs__/**/*.@(stories.ts|stories.tsx|mdx)",
-        "../packages/perseus/src/widgets/**/**/*.@(stories.ts|stories.tsx|mdx)",
+        // Docs for Sophia widgets, components, and renderers
+        "../packages/sophia/src/**/__docs__/**/*.@(stories.ts|stories.tsx|mdx)",
+        "../packages/sophia/src/widgets/**/**/*.@(stories.ts|stories.tsx|mdx)",
 
         // Docs for Math Input
         "../packages/math-input/src/**/*.stories.tsx",
