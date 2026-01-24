@@ -11,7 +11,10 @@ const packageAliases = {};
 glob.sync(join(__dirname, "/packages/*/package.json")).forEach(
     (packageJsonPath) => {
         const pkg = JSON.parse(readFileSync(packageJsonPath, "utf-8"));
-        packageAliases[pkg.name] = join(dirname(packageJsonPath), pkg.source);
+        const pkgDir = dirname(packageJsonPath);
+        // Point to src directory for packages with subpath exports (e.g. @ethosengine/sophia/strings)
+        // Fall back to source entry for packages without subpaths
+        packageAliases[pkg.name] = join(pkgDir, "src");
     },
 );
 
