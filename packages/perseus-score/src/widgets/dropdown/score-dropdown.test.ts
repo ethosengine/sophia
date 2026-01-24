@@ -3,7 +3,7 @@ import scoreDropdown from "./score-dropdown";
 import type {
     PerseusDropdownRubric,
     PerseusDropdownUserInput,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 describe("scoreDropdown", () => {
     it("returns a score of 'invalid' when the user input is undefined", () => {

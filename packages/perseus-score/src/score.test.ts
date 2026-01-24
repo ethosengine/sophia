@@ -1,10 +1,14 @@
+// Import from index to trigger score accessor initialization
+// eslint-disable-next-line import/no-unassigned-import
+import "./index";
+
 import {
     generateDropdownOptions,
     generateDropdownWidget,
     type DropdownWidget,
     type PerseusWidgetsMap,
     type UserInputMap,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 import {scorePerseusItem, scoreWidgetsFunctional} from "./score";
 import {getExpressionWidget, getTestDropdownWidget} from "./util/test-helpers";

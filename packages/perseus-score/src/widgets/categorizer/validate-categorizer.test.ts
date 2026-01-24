@@ -1,6 +1,6 @@
 import validateCategorizer from "./validate-categorizer";
 
-import type {PerseusCategorizerValidationData} from "@khanacademy/perseus-core";
+import type {PerseusCategorizerValidationData} from "@ethosengine/perseus-core";
 
 describe("validateCategorizer", () => {
     it("returns a score of 'invalid' when the user input is undefined", () => {

@@ -7,7 +7,7 @@ import * as React from "react";
 import ButtonAsset from "./button-assets";
 
 import type {KeyConfig, ClickKeyCallback} from "../../types";
-import type {KeypadKey} from "@khanacademy/perseus-core";
+import type {KeypadKey} from "@ethosengine/perseus-core";
 
 type KeypadButtonProps = {
     // 0 indexed [x, y] position in keypad CSS grid

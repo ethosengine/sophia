@@ -1,9 +1,9 @@
-import {ErrorCodes, getMatrixSize} from "@khanacademy/perseus-core";
+import {ErrorCodes, getMatrixSize} from "@ethosengine/perseus-core";
 
 import type {
     PerseusMatrixUserInput,
     ValidationResult,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 /**
  * Checks user input from the matrix widget to see if it is scorable.

@@ -7,9 +7,9 @@ import type {PerseusSorterWidgetOptions} from "../../data-schema";
  * PerseusSorterWidgetOptions type
  */
 export type SorterPublicWidgetOptions = {
-    // TODO(benchristel): rename to `cards`; the whole point of public widget
-    // options is that this isn't the correct order!
-    correct: PerseusSorterWidgetOptions["correct"];
+    // Named `cards` (not `correct`) because these are shuffled/sorted,
+    // not in the correct order. The original options.correct is obscured.
+    cards: PerseusSorterWidgetOptions["correct"];
     padding: PerseusSorterWidgetOptions["padding"];
     layout: PerseusSorterWidgetOptions["layout"];
 };
@@ -22,24 +22,25 @@ function getSorterPublicWidgetOptions(
     options: PerseusSorterWidgetOptions,
 ): SorterPublicWidgetOptions {
     return {
-        ...options,
+        padding: options.padding,
+        layout: options.layout,
         // To remove information about the correct answer, we sort the cards.
         // However, we leave the first card in place so the client can avoid
         // showing the correct answer to the learner in the initial state of
         // the widget (since that could be confusing).
-        correct: sortAllButFirst(options.correct),
+        cards: sortAllButFirst(options.correct),
     };
 }
 
 export function shuffleSorter(
-    options: Pick<SorterPublicWidgetOptions, "correct">,
+    options: Pick<SorterPublicWidgetOptions, "cards">,
     problemNum: number,
 ): string[] {
-    const {correct} = options;
+    const {cards} = options;
     const rng = seededRNG(problemNum ?? 0);
     // See getSorterPublicWidgetOptions for an explanation of why we need to
     // displace the first card.
-    return shuffleDisplacingFirst(correct, rng);
+    return shuffleDisplacingFirst(cards, rng);
 }
 
 function sortAllButFirst([first, ...rest]: readonly string[]): string[] {

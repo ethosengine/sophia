@@ -1,7 +1,7 @@
 import type {
     PerseusLabelImageUserInput,
     ValidationResult,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 function validateLabelImage(
     // NOTE(benchristel): userInput can be undefined if the widget has never

@@ -5,14 +5,15 @@
  * Transforms the "correct/incorrect" paradigm into "demonstrated/not yet".
  */
 
-import {scorePerseusItem} from "@khanacademy/perseus-score";
-import type {PerseusScore, UserInputMap} from "@khanacademy/perseus-core";
+import {scorePerseusItem} from "@ethosengine/perseus-score";
+import {createRecognition} from "@ethosengine/sophia-core";
+
+import type {PerseusScore, UserInputMap} from "@ethosengine/perseus-core";
 import type {
     Moment,
     Recognition,
     MasteryResult,
 } from "@ethosengine/sophia-core";
-import {createRecognition} from "@ethosengine/sophia-core";
 
 /**
  * Recognize mastery from a Moment interaction.
@@ -78,8 +79,12 @@ export function hasDemonstrated(recognition: Recognition): boolean {
  * Returns a value between 0 and 100.
  */
 export function getMasteryPercentage(recognition: Recognition): number {
-    if (!recognition.mastery) return 0;
+    if (!recognition.mastery) {
+        return 0;
+    }
     const {score, total} = recognition.mastery;
-    if (total === 0) return 0;
+    if (total === 0) {
+        return 0;
+    }
     return Math.round((score / total) * 100);
 }

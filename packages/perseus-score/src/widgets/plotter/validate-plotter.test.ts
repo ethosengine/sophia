@@ -3,7 +3,7 @@ import validatePlotter from "./validate-plotter";
 import type {
     PerseusPlotterUserInput,
     PerseusPlotterValidationData,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 describe("validatePlotter", () => {
     it("is invalid if the user input is undefined", () => {

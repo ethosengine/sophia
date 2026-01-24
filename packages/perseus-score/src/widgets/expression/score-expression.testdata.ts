@@ -1,4 +1,4 @@
-import type {PerseusExpressionWidgetOptions} from "@khanacademy/perseus-core";
+import type {PerseusExpressionWidgetOptions} from "@ethosengine/perseus-core";
 
 export const expressionItem3Options: PerseusExpressionWidgetOptions = {
     answerForms: [

@@ -3,7 +3,7 @@ import getLabelImagePublicWidgetOptions, {
 } from "./label-image-util";
 
 import type {PerseusLabelImageWidgetOptions} from "../../data-schema";
-import type {WidgetLogic} from "../logic-export.types";
+import type {WidgetLogicWithDefaults} from "../logic-export.types";
 
 export type LabelImageDefaultWidgetOptions = Pick<
     PerseusLabelImageWidgetOptions,
@@ -28,13 +28,14 @@ const defaultWidgetOptions: LabelImageDefaultWidgetOptions = {
     hideChoicesFromInstructions: false,
 };
 
-const labelImageWidgetLogic: WidgetLogic = {
-    name: "label-image",
-    defaultWidgetOptions,
-    getPublicWidgetOptions: getLabelImagePublicWidgetOptions,
-    // Function determining if a label image is accessible.
-    // Label Images is inaccessible if it does not have alt text for the image.
-    accessible: isLabelImageAccessible,
-};
+const labelImageWidgetLogic: WidgetLogicWithDefaults<LabelImageDefaultWidgetOptions> =
+    {
+        name: "label-image",
+        defaultWidgetOptions,
+        getPublicWidgetOptions: getLabelImagePublicWidgetOptions,
+        // Function determining if a label image is accessible.
+        // Label Images is inaccessible if it does not have alt text for the image.
+        accessible: isLabelImageAccessible,
+    };
 
 export default labelImageWidgetLogic;

@@ -11283,7 +11283,7 @@ exports[`parseAndMigratePerseusItem given label-image-missing-static.ts returns 
         "alignment": "default",
         "graded": true,
         "options": {
-          "correct": [
+          "cards": [
             "$x$",
             "$y$",
             "$z$",
@@ -17339,7 +17339,7 @@ A free body diagram of the **box** is shown below.
         "alignment": "default",
         "graded": true,
         "options": {
-          "correct": [
+          "cards": [
             "$x$",
             "$y$",
             "$z$",
@@ -20911,7 +20911,7 @@ exports[`parseAndMigratePerseusItem given simulator-widget.ts returns the same r
         "alignment": "default",
         "graded": true,
         "options": {
-          "correct": [
+          "cards": [
             "$x$",
             "$y$",
             "$z$",

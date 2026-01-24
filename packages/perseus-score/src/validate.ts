@@ -10,7 +10,7 @@ import type {
     PerseusWidgetsMap,
     UserInput,
     UserInputMap,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 /**
  * validate, meant for client-side validation using answerless Perseus data

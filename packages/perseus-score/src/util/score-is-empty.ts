@@ -1,4 +1,4 @@
-import type {PerseusScore} from "@khanacademy/perseus-core";
+import type {PerseusScore} from "@ethosengine/perseus-core";
 
 /**
  * If a widget says that it is empty once it is graded.

@@ -4,9 +4,9 @@ export default create({
     base: "light",
 
     // Brand
-    brandTitle: "Perseus",
+    brandTitle: "Sophia",
     brandUrl: "/",
-    brandImage: "./perseus-logo.svg",
+    brandImage: "/sophia-logo.svg",
     brandTarget: "_self",
 
     // Note can't use WonderBlocks semantic colors here.

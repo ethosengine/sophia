@@ -1,11 +1,11 @@
-import {approximateDeepEqual} from "@khanacademy/perseus-core";
+import {approximateDeepEqual} from "@ethosengine/perseus-core";
 import _ from "underscore";
 
 import type {
     PerseusPlotterUserInput,
     PerseusPlotterValidationData,
     ValidationResult,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 /**
  * Checks user input to confirm it is not the same as the starting values for the graph.

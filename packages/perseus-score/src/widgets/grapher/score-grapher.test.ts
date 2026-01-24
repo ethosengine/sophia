@@ -4,7 +4,7 @@ import type {
     PerseusGrapherRubric,
     PerseusGrapherUserInput,
     Coord,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 describe("scoreGrapher", () => {
     it("is invalid when user input is undefined", () => {

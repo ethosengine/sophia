@@ -21,8 +21,7 @@ const objectifyCSS = (cssPathname, objectName) => {
     const fileNameParts = path.basename(cssPathname).split(".");
     const aphroditeFileName = `${fileNameParts[0]}_legacy-styles.js`;
     const aphroditeFilePath = path.join(fileDirectory, aphroditeFileName);
-    const fileContent = `// TODO (LEMS-3815): Remove this file
-const ${objectName} = ${objectified};
+    const fileContent = `const ${objectName} = ${objectified};
 
 export default ${objectName};`;
     fs.writeFileSync(aphroditeFilePath, fileContent);

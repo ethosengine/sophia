@@ -3,7 +3,7 @@ import scorePlotter from "./score-plotter";
 import type {
     PerseusPlotterRubric,
     PerseusPlotterUserInput,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 describe("scorePlotter", () => {
     it("returns incorrect when the user input is undefined", () => {

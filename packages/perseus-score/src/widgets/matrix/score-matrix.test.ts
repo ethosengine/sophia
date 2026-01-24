@@ -3,7 +3,7 @@ import scoreMatrix from "./score-matrix";
 import type {
     PerseusMatrixRubric,
     PerseusMatrixUserInput,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 describe("scoreMatrix", () => {
     it("returns invalid for undefined user input", () => {

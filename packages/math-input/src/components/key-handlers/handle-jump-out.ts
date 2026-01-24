@@ -8,7 +8,7 @@ import {
 import {mathQuillInstance} from "../input/mathquill-instance";
 
 import type {MathFieldInterface} from "../input/mathquill-types";
-import type {KeypadKey} from "@khanacademy/perseus-core";
+import type {KeypadKey} from "@ethosengine/perseus-core";
 
 const KeysForJumpContext = {
     [CursorContext.IN_PARENS]: "JUMP_OUT_PARENTHESES",

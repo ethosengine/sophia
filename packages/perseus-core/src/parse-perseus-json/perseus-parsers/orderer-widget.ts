@@ -7,17 +7,10 @@ import {
 } from "../general-purpose-parsers";
 import {defaulted} from "../general-purpose-parsers/defaulted";
 
-import {parsePerseusRenderer} from "./perseus-renderer";
+import {parsePerseusRendererLazy} from "./parser-accessors";
 import {parseWidget} from "./widget";
 
 import type {PartialParser} from "../parser-types";
-
-// There is an import cycle between orderer-widget.ts and perseus-renderer.ts.
-// This wrapper ensures that we don't refer to parsePerseusRenderer before
-// it's defined.
-function parseRenderer(rawValue, ctx) {
-    return parsePerseusRenderer(rawValue, ctx);
-}
 
 const largeToAuto: PartialParser<
     "normal" | "auto" | "large",
@@ -32,9 +25,9 @@ const largeToAuto: PartialParser<
 export const parseOrdererWidget = parseWidget(
     constant("orderer"),
     object({
-        options: defaulted(array(parseRenderer), () => []),
-        correctOptions: defaulted(array(parseRenderer), () => []),
-        otherOptions: defaulted(array(parseRenderer), () => []),
+        options: defaulted(array(parsePerseusRendererLazy), () => []),
+        correctOptions: defaulted(array(parsePerseusRendererLazy), () => []),
+        otherOptions: defaulted(array(parsePerseusRendererLazy), () => []),
         height: pipeParsers(enumeration("normal", "auto", "large")).then(
             largeToAuto,
         ).parser,

@@ -1,12 +1,12 @@
-import {getWidgetIdsFromContent} from "@khanacademy/perseus-core";
+import {getWidgetIdsFromContent} from "@ethosengine/perseus-core";
 
-import {emptyWidgetsFunctional} from "../../validate";
+import {getEmptyWidgetsFunctional} from "../../score-accessors";
 
 import type {
     PerseusGroupUserInput,
     PerseusGroupValidationData,
     ValidationResult,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 function validateGroup(
     userInput: PerseusGroupUserInput | undefined,
@@ -18,7 +18,7 @@ function validateGroup(
     }
 
     const widgetIds = getWidgetIdsFromContent(validationData.content);
-    const emptyWidgets = emptyWidgetsFunctional(
+    const emptyWidgets = getEmptyWidgetsFunctional()(
         validationData.widgets,
         widgetIds,
         userInput,

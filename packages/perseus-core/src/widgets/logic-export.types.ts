@@ -1,67 +1,57 @@
-import type getCategorizerPublicWidgetOptions from "./categorizer/categorizer-util";
-import type getCSProgramPublicWidgetOptions from "./cs-program/cs-program-util";
-import type getDropdownPublicWidgetOptions from "./dropdown/dropdown-util";
-import type getExpressionPublicWidgetOptions from "./expression/expression-util";
-import type getFreeResponsePublicWidgetOptions from "./free-response/free-response-util";
-import type getGrapherPublicWidgetOptions from "./grapher/grapher-util";
-import type getGroupPublicWidgetOptions from "./group/group-util";
-import type getIFramePublicWidgetOptions from "./iframe/iframe-util";
-import type getInputNumberPublicWidgetOptions from "./input-number/input-number-util";
-import type getInteractiveGraphPublicWidgetOptions from "./interactive-graph/interactive-graph-util";
-import type getLabelImagePublicWidgetOptions from "./label-image/label-image-util";
-import type getMatcherPublicWidgetOptions from "./matcher/matcher-util";
-import type getMatrixPublicWidgetOptions from "./matrix/matrix-util";
-import type getNumberLinePublicWidgetOptions from "./number-line/number-line-util";
-import type getNumericInputPublicWidgetOptions from "./numeric-input/numeric-input-util";
-import type getOrdererPublicWidgetOptions from "./orderer/orderer-util";
-import type getPlotterPublicWidgetOptions from "./plotter/plotter-util";
-import type getRadioPublicWidgetOptions from "./radio/radio-util";
-import type getSorterPublicWidgetOptions from "./sorter/sorter-util";
-import type getTablePublicWidgetOptions from "./table/table-util";
 import type {PerseusWidgetOptions, Version} from "../data-schema";
 import type {Alignment} from "../types";
 
 export type WidgetOptionsUpgradeMap = {
     // OldProps => NewProps,
-    [targetMajorVersion: string]: (arg1: any) => any;
+    [targetMajorVersion: string]: (
+        arg1: Record<string, unknown>,
+    ) => Record<string, unknown>;
 };
 
 /**
- * A union type of all the functions that provide public widget options.
+ * A function that transforms widget options into their public form
+ * (with answer data / rubrics removed).
  *
- * TODO(LEMS-2870): figure out how to make this generic so we don't need to be
- * so reliant on a set group of widgets
+ * Note: This is now a generic type instead of a union of specific widget
+ * util types to avoid circular dependencies. Each widget's
+ * getPublicWidgetOptions function should satisfy this interface.
  */
-export type PublicWidgetOptionsFunction =
-    | typeof getCategorizerPublicWidgetOptions
-    | typeof getCSProgramPublicWidgetOptions
-    | typeof getDropdownPublicWidgetOptions
-    | typeof getExpressionPublicWidgetOptions
-    | typeof getFreeResponsePublicWidgetOptions
-    | typeof getGrapherPublicWidgetOptions
-    | typeof getGroupPublicWidgetOptions
-    | typeof getIFramePublicWidgetOptions
-    | typeof getInputNumberPublicWidgetOptions
-    | typeof getInteractiveGraphPublicWidgetOptions
-    | typeof getLabelImagePublicWidgetOptions
-    | typeof getMatcherPublicWidgetOptions
-    | typeof getMatrixPublicWidgetOptions
-    | typeof getNumberLinePublicWidgetOptions
-    | typeof getNumericInputPublicWidgetOptions
-    | typeof getOrdererPublicWidgetOptions
-    | typeof getPlotterPublicWidgetOptions
-    | typeof getRadioPublicWidgetOptions
-    | typeof getSorterPublicWidgetOptions
-    | typeof getTablePublicWidgetOptions;
+export type PublicWidgetOptionsFunction<
+    TInput = PerseusWidgetOptions,
+    TOutput = unknown,
+> = (options: TInput) => TOutput;
 
-export type WidgetLogic = {
+/**
+ * Callback function used to traverse nested renderers within widget options.
+ * Used for operations like tree traversal when processing widget content.
+ */
+export type TraverseRendererCallback = (renderer: unknown) => unknown;
+
+/**
+ * Generic widget logic interface with proper typing for defaultWidgetOptions.
+ *
+ * @template TOptions - The specific type for this widget's default options.
+ *                      Defaults to Record<string, unknown> for backwards compatibility.
+ */
+export type WidgetLogic<
+    TOptions extends Record<string, unknown> = Record<string, unknown>,
+> = {
     name: string;
     version?: Version;
-    defaultWidgetOptions?: any;
+    /** Default options for the widget. May be partial since some fields have implicit defaults. */
+    defaultWidgetOptions?: TOptions;
     supportedAlignments?: ReadonlyArray<Alignment>;
     defaultAlignment?: Alignment;
     accessible?: boolean | ((options: PerseusWidgetOptions) => boolean);
-    traverseChildWidgets?: (props: any, traverseRenderer: any) => any;
+    /**
+     * Traverses child widgets within the widget's options.
+     * Used for operations like tree traversal when processing widget content.
+     * The props parameter accepts any widget options (including deprecated widgets with object type).
+     */
+    traverseChildWidgets?: (
+        props: PerseusWidgetOptions | object,
+        traverseRenderer: TraverseRendererCallback,
+    ) => PerseusWidgetOptions | object;
 
     /**
      * A function that provides a public version of the widget options that can
@@ -69,3 +59,15 @@ export type WidgetLogic = {
      */
     getPublicWidgetOptions?: PublicWidgetOptionsFunction;
 };
+
+/**
+ * Widget logic with required defaultWidgetOptions.
+ * Use this type for widgets that always provide default options.
+ *
+ * @template TOptions - The specific type for this widget's default options.
+ */
+export type WidgetLogicWithDefaults<TOptions extends Record<string, unknown>> =
+    Omit<WidgetLogic<TOptions>, "defaultWidgetOptions"> & {
+        /** Default options for the widget (required). */
+        defaultWidgetOptions: TOptions;
+    };

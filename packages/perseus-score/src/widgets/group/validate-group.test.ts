@@ -2,7 +2,7 @@ import {getTestDropdownWidget} from "../../util/test-helpers";
 
 import validateGroup from "./validate-group";
 
-import type {PerseusGroupValidationData} from "@khanacademy/perseus-core";
+import type {PerseusGroupValidationData} from "@ethosengine/perseus-core";
 
 describe("validateGroup", () => {
     it("returns invalid when the user input is undefined", () => {

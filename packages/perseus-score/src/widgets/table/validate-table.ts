@@ -3,7 +3,7 @@ import {filterNonEmpty} from "./utils";
 import type {
     PerseusTableUserInput,
     ValidationResult,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 function validateTable(userInput: PerseusTableUserInput): ValidationResult {
     const supplied = filterNonEmpty(userInput);

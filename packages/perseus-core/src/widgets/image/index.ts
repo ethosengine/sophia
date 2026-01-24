@@ -2,7 +2,7 @@ import type {
     PerseusImageWidgetOptions,
     PerseusWidgetOptions,
 } from "../../data-schema";
-import type {WidgetLogic} from "../logic-export.types";
+import type {WidgetLogicWithDefaults} from "../logic-export.types";
 
 export type ImageDefaultWidgetOptions = Pick<
     PerseusImageWidgetOptions,
@@ -26,7 +26,7 @@ const defaultWidgetOptions: ImageDefaultWidgetOptions = {
     caption: "",
 };
 
-const imageWidgetLogic: WidgetLogic = {
+const imageWidgetLogic: WidgetLogicWithDefaults<ImageDefaultWidgetOptions> = {
     name: "image",
     defaultWidgetOptions,
     // The float alignments will be set to inline-block floated left or right.

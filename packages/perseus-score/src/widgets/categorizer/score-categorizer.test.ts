@@ -1,6 +1,6 @@
 import scoreCategorizer from "./score-categorizer";
 
-import type {PerseusCategorizerRubric} from "@khanacademy/perseus-core";
+import type {PerseusCategorizerRubric} from "@ethosengine/perseus-core";
 
 describe("scoreCategorizer", () => {
     it("returns a score of 'invalid' when the user input is undefined", () => {

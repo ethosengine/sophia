@@ -10,7 +10,7 @@ export const DEFAULT_TOLERANCE = 1e-9;
 // TODO: Should this just be Number.Epsilon
 export const EPSILON: number = Math.pow(2, -42);
 
-export function is(x: any): boolean {
+export function is(x: unknown): x is number {
     return _.isNumber(x) && !_.isNaN(x);
 }
 

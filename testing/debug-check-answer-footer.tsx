@@ -13,9 +13,9 @@ import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import checkCircle from "@phosphor-icons/core/regular/check-circle.svg";
 import * as React from "react";
 
-import {mapErrorToString, mockStrings} from "../packages/perseus/src/strings";
+import {mapErrorToString, mockStrings} from "../packages/sophia/src/strings";
 
-import type {KEScore, ShowSolutions} from "@khanacademy/perseus-core";
+import type {KEScore, ShowSolutions} from "@ethosengine/perseus-core";
 
 type DebugCheckAnswerFooterProps = {
     state: KEScore | null | undefined;

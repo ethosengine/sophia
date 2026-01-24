@@ -1,7 +1,7 @@
 import type {
     PerseusCSProgramUserInput,
     PerseusScore,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 function scoreCSProgram(
     // NOTE(benchristel): userInput can be undefined if the widget has never

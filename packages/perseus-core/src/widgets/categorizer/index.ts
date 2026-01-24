@@ -1,7 +1,7 @@
 import getCategorizerPublicWidgetOptions from "./categorizer-util";
 
 import type {PerseusCategorizerWidgetOptions} from "../../data-schema";
-import type {WidgetLogic} from "../logic-export.types";
+import type {WidgetLogicWithDefaults} from "../logic-export.types";
 
 export type CategorizerDefaultWidgetOptions = Pick<
     PerseusCategorizerWidgetOptions,
@@ -15,11 +15,12 @@ const defaultWidgetOptions: CategorizerDefaultWidgetOptions = {
     randomizeItems: false,
 };
 
-const categorizerWidgetLogic: WidgetLogic = {
-    name: "categorizer",
-    defaultWidgetOptions,
-    getPublicWidgetOptions: getCategorizerPublicWidgetOptions,
-    accessible: false,
-};
+const categorizerWidgetLogic: WidgetLogicWithDefaults<CategorizerDefaultWidgetOptions> =
+    {
+        name: "categorizer",
+        defaultWidgetOptions,
+        getPublicWidgetOptions: getCategorizerPublicWidgetOptions,
+        accessible: false,
+    };
 
 export default categorizerWidgetLogic;

@@ -1,7 +1,7 @@
 import getNumberLinePublicWidgetOptions from "./number-line-util";
 
 import type {PerseusNumberLineWidgetOptions} from "../../data-schema";
-import type {WidgetLogic} from "../logic-export.types";
+import type {WidgetLogicWithDefaults} from "../logic-export.types";
 
 export type NumberLineDefaultWidgetOptions = Pick<
     PerseusNumberLineWidgetOptions,
@@ -38,11 +38,12 @@ const defaultWidgetOptions: NumberLineDefaultWidgetOptions = {
     showTooltips: false,
 };
 
-const numberLineWidgetLogic: WidgetLogic = {
-    name: "number-line",
-    defaultWidgetOptions,
-    getPublicWidgetOptions: getNumberLinePublicWidgetOptions,
-    accessible: false,
-};
+const numberLineWidgetLogic: WidgetLogicWithDefaults<NumberLineDefaultWidgetOptions> =
+    {
+        name: "number-line",
+        defaultWidgetOptions,
+        getPublicWidgetOptions: getNumberLinePublicWidgetOptions,
+        accessible: false,
+    };
 
 export default numberLineWidgetLogic;

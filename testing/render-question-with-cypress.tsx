@@ -4,16 +4,16 @@ import React from "react";
 
 import {MathInputI18nContextProvider} from "../packages/math-input/src/components/i18n-context";
 import {mockStrings as mathInputMockStrings} from "../packages/math-input/src/strings";
-import AssetContext from "../packages/perseus/src/asset-context";
-import {DependenciesContext} from "../packages/perseus/src/dependencies";
-import * as Perseus from "../packages/perseus/src/index";
-import {mockStrings} from "../packages/perseus/src/strings";
-import UserInputManager from "../packages/perseus/src/user-input-manager";
+import AssetContext from "../packages/sophia/src/asset-context";
+import {DependenciesContext} from "../packages/sophia/src/dependencies";
+import * as Perseus from "../packages/sophia/src/index";
+import {mockStrings} from "../packages/sophia/src/strings";
+import UserInputManager from "../packages/sophia/src/user-input-manager";
 
 import {cypressDependenciesV2} from "./test-dependencies";
 
-import type {APIOptions} from "../packages/perseus/src/types";
-import type {PerseusRenderer} from "@khanacademy/perseus-core";
+import type {APIOptions} from "../packages/sophia/src/types";
+import type {PerseusRenderer} from "@ethosengine/perseus-core";
 
 /**
  * Renders the given question using Cypress. Waits until all assets have been

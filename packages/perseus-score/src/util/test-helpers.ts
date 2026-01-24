@@ -6,7 +6,7 @@ import {
     generateExpressionWidget,
     type DropdownWidget,
     type ExpressionWidget,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 export function getTestDropdownWidget(): DropdownWidget {
     return generateDropdownWidget({

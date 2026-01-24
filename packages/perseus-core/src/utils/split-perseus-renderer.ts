@@ -1,7 +1,9 @@
 import _ from "underscore";
 
-import {applyDefaultsToWidgets} from "../widgets/apply-defaults";
-import {getPublicWidgetOptionsFunction} from "../widgets/core-widget-registry";
+import {
+    applyDefaultsToWidgets,
+    getPublicWidgetOptionsFunction,
+} from "../widgets/registry-accessors";
 
 import deepClone from "./deep-clone";
 

@@ -1,88 +1,224 @@
-# Perseus
+# Sophia
 
-![npm Version](https://img.shields.io/npm/v/@khanacademy/perseus)
-![License](https://img.shields.io/github/license/Khan/perseus)
+**Person-Centered Assessment Rendering Infrastructure**
 
-<p align="center"><img src="logo.png" alt="perseus logo" width="150px"/></p>
+Sophia (Wisdom) is a TypeScript monorepo for rendering interactive educational content. It transforms Khan Academy's Perseus exercise system with a decoupled assessment paradigm supporting:
 
-<p align="center"><strong>Perseus Exercise Renderer</strong></p>
+- **Mastery** (graded exercises with correct/incorrect)
+- **Discovery** (resonance mapping to reveal affinities)
+- **Reflection** (open-ended capture without grading)
 
-Perseus is Khan Academy's exercise system. This repo contains the code needed to take a problem in the Perseus format and present it, allow interaction, and grade the result of a learner's work.
+The library seeks to enable learning management systems to implement cooperative Socratic methods—architecturally necessary for the distributed agentic AI dialogue envisioned by the [Elohim Protocol](https://github.com/ethosengine/elohim), which aims to scale wisdom for human flourishing.
 
-<p align="center"><img src="sample.png" alt="sample of Perseus in use" height="150px"/></p>
+## Quick Start
+
+```bash
+npm install @ethosengine/sophia-element
+```
+
+```typescript
+import { Sophia, registerSophiaElement } from "@ethosengine/sophia-element";
+import type { Moment, Recognition } from "@ethosengine/sophia-element";
+
+// Configure once at app startup
+Sophia.configure({
+    theme: "auto",
+    detectThemeFrom: "class",
+});
+
+// Register the custom element
+await registerSophiaElement();
+
+// Use in HTML
+const el = document.querySelector("sophia-question");
+el.moment = myMoment;
+el.onRecognition = (recognition: Recognition) => {
+    if (recognition.mastery?.demonstrated) {
+        console.log("Correct!");
+    } else if (recognition.resonance) {
+        console.log("Primary affinity:", recognition.resonance.subscaleContributions);
+    }
+};
+```
+
+## Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    sophia-core (foundation)                      │
+│                                                                  │
+│  Types: Moment, Recognition, AssessmentPurpose                  │
+│  Scoring Strategy Registry                                       │
+│  Factory Functions: createMoment, createRecognition             │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+          ┌───────────────────┼───────────────────┐
+          │                   │                   │
+┌─────────┴─────────┐ ┌───────┴───────┐ ┌────────┴────────┐
+│   perseus-score   │ │ psyche-survey │ │   psyche-core   │
+│   (Mastery)       │ │  (Discovery)  │ │  (Reflection)   │
+│                   │ │               │ │                 │
+│  Graded scoring   │ │  Resonance    │ │  Psychometric   │
+│  Correct/Wrong    │ │  Subscales    │ │  Instruments    │
+└─────────┬─────────┘ └───────┬───────┘ └────────┬────────┘
+          │                   │                   │
+          └───────────────────┼───────────────────┘
+                              │
+┌─────────────────────────────┴───────────────────────────────────┐
+│                          sophia                                  │
+│                    (Main Rendering)                              │
+│                                                                  │
+│  Widget components, React rendering, Renderer infrastructure    │
+└─────────────────────────────────────────────────────────────────┘
+                              │
+              ┌───────────────┴───────────────┐
+              │       sophia-element          │
+              │   (Web Component + Theming)   │
+              │                               │
+              │  <sophia-question> element    │
+              │  Sophia.configure() API       │
+              │  Shadow DOM encapsulation     │
+              │  UMD/ESM/CJS bundles          │
+              └───────────────────────────────┘
+```
+
+### Design Principles
+
+- **Rendering infrastructure only** - No application orchestration, no specific content
+- **Clean separation** - sophia-core has no mastery logic; psyche-core has no Perseus dependencies
+- **Extension via registry** - Widgets and strategies register themselves
+- **Backwards compatible** - Perseus packages re-export from sophia-core
+
+## Packages
+
+### Distribution
+
+| Package | Description | Documentation |
+|---------|-------------|---------------|
+| [@ethosengine/sophia-element](packages/sophia-element) | Web Component for rendering questions | [README](packages/sophia-element/README.md) |
+
+### Foundation
+
+| Package | Description | Documentation |
+|---------|-------------|---------------|
+| [@ethosengine/sophia-core](packages/sophia-core) | Core types and utilities | [README](packages/sophia-core/README.md) |
+| [@ethosengine/sophia](packages/sophia) | Main rendering (widgets, components) | - |
+
+### Assessment Modes
+
+| Package | Description | Documentation |
+|---------|-------------|---------------|
+| [@ethosengine/perseus-score](packages/perseus-score) | Mastery scoring (graded) | - |
+| [@ethosengine/psyche-survey](packages/psyche-survey) | Discovery & reflection scoring | [README](packages/psyche-survey/README.md) |
+| @ethosengine/psyche-core | Psychometric instruments | - |
+
+### Authoring
+
+| Package | Description | Documentation |
+|---------|-------------|---------------|
+| [@ethosengine/sophia-editor](packages/sophia-editor) | Content authoring UI | [Architecture](packages/sophia-editor/docs/ARCHITECTURE.md) |
+| [@ethosengine/sophia-linter](packages/sophia-linter) | Content linting | - |
+
+### Internal/Utilities
+
+| Package | Description |
+|---------|-------------|
+| @ethosengine/perseus-core | Widget types, data schema |
+| @khanacademy/math-input | Math keypad and input |
+| @khanacademy/kas | Computer algebra system |
+| @khanacademy/kmath | Math utilities |
+
+## Key Concepts
+
+### Moment
+
+A unit of assessment content. Named "Moment" because not all are questions—some are invitations or reflections.
+
+```typescript
+interface Moment {
+    id: string;
+    purpose: "mastery" | "discovery" | "reflection" | "invitation";
+    content: PerseusRenderer;
+    hints?: Hint[];
+    subscaleContributions?: SubscaleMappings;  // For discovery/reflection
+}
+```
+
+### Recognition
+
+The result of processing a learner's response. Named "Recognition" because it acknowledges what the learner demonstrated.
+
+```typescript
+interface Recognition {
+    momentId: string;
+    purpose: AssessmentPurpose;
+    userInput: UserInputMap;
+    mastery?: MasteryResult;      // For graded assessment
+    resonance?: ResonanceResult;  // For discovery assessment
+    reflection?: ReflectionResult; // For reflection assessment
+    timestamp?: number;
+}
+```
+
+### Assessment Modes
+
+| Mode | Package | Purpose | Has "Correct" Answer |
+|------|---------|---------|---------------------|
+| Mastery | perseus-score | Graded exercises | Yes |
+| Discovery | psyche-survey | Resonance/affinity mapping | No |
+| Reflection | psyche-survey | Open-ended capture | No |
 
 ## Development
 
-Perseus is a monorepo - a single repository that ships multiple npm packages. Generally you can treat Perseus as a single code base; things should generally just work as you expect them to during the development process. We use scripts and a tool called changesets to keep package inter-dependencies organized, release the one repo to multiple npm packages, and version changes appropriately.
-
-For a slightly more detailed overview, see the ["Shipping a Change to Perseus"] document in Confluence.
-
-["Shipping a Change to Perseus"]: https://khanacademy.atlassian.net/wiki/spaces/LC/pages/2384887922/Shipping+a+Change+to+Perseus
-
 ### Prerequisites
 
-- [Node.js v20](https://nodejs.org/en/blog/announcements/v20-release-announce)
-- [pnpm](https://pnpm.io/)
+- Node.js v20
+- npm (pnpm commands work via npm scripts)
 
-### Getting started
-
-```bash
-ka-clone git@github.com:Khan/perseus
-pnpm install
-```
-
-### Branching strategy
-
-Our shared development branch is `main`. **`main` should always be releasable**. Don't land changes to `main` that you're not ready to ship!
-
-To make changes to Perseus, create a new branch based on `main`, commit your changes, and open a pull request on GitHub.
-
-### Everyday commands
+### Commands
 
 ```bash
-pnpm tsc -w                  # run the typechecker in watch mode
-pnpm test                    # run all tests
-pnpm lint                    # find problems
-pnpm lint --fix              # fix problems
-pnpm storybook               # open component gallery
-pnpm changeset               # create a changeset file (see below)
-pnpm update-catalog-hashes   # update catalog dependency hashes (see below)
+npm run build          # Build all packages
+npm run test           # Run tests
+npm run lint           # Run ESLint
+npm run storybook      # Open component gallery
+npx tsc --noEmit       # Type-check all packages
 ```
 
-Additionally, we use Khan Academy's Git extensions (OLC) to manage pull requests.
+### Package Development
 
 ```bash
-git pr    # open a pull request for the current branch
-git land  # land the pull request for the current branch
+# Build specific package
+pnpm build --filter=sophia-element
+
+# Type-check specific package
+cd packages/sophia-core && npx tsc --noEmit
+
+# Run tests for specific package
+npm test -- --filter sophia-core
 ```
 
-### Using Storybook
+## Bundle Formats
 
-The components and widgets of Perseus are developed using [Storybook](https://github.com/storybookjs/storybook). After you clone the project and get dependencies installed, the next step is to start storybook by running `pnpm storybook`. This will start a server and give you a playground to use each component.
+| Format | Entry Point | Use Case |
+|--------|-------------|----------|
+| ESM | `dist/es/index.js` | Bundlers (Vite, Webpack, Angular CLI) |
+| CJS | `dist/index.js` | Node/CommonJS |
+| UMD | `dist/sophia-element.umd.js` | Script tag, CDN (React bundled) |
 
-### Using Changesets
+## Heritage
 
-We use [changesets](https://github.com/changesets/changesets) to help manage our versioning/releases. Each pull request must include a changeset file stating which packages changed and how their versions should be incremented. Run `pnpm changeset` to generate and commit a changeset file.
+Sophia builds on [Khan Academy's Perseus](https://github.com/Khan/perseus), the exercise rendering system powering millions of learners. The Sophia layer adds:
 
-### Catalog Hashes
+- Unified assessment vocabulary (Moment, Recognition)
+- Non-graded assessment modes (discovery, reflection)
+- Psychometric instrument infrastructure
+- Mode-aware content authoring
+- Clean package separation
 
-Catalog hashes ensure packages are republished when their catalog dependencies (Wonder Blocks, React, etc.) are updated. When a catalog dependency version changes, the hash changes, signaling that affected packages should be version-bumped and republished even if their source code hasn't changed. These hashes are automatically updated when running `utils/sync-dependencies.ts`. If you manually add catalog dependencies to a package.json, run `pnpm update-catalog-hashes` to update the hashes. The pre-publish check will verify all hashes are current before releasing.
+## AI Assistant Guide
 
-### Releasing Perseus to npm
-
-1. Landing changes to `main` creates/updates a “Version Packages” PR
-2. To cut a Perseus release, approve and land the “Version Packages” PR
-   (typically with `git land`)
-3. ☢️ If the CI/CD checks aren’t running, you might need to close and reopen the PR
-4. After the release script runs, you should see the new releases on the [release page](https://github.com/Khan/perseus/releases)
-
-### Random notes
-
-- We use `v8` to track Jest coverage. There's some old legacy code that we don't want coverage for, so we ignore that with `c8 ignore`. It might look like `c8` isn't be used, but it's used by the `v8` `coverageProvider` (defined in config/test/test.config.js).
-
-## Contributing
-
-The Perseus project is not accepting external contributions. We’re releasing the code for others to refer to and learn from, but we are not open to pull requests or issues at this time.
+For AI assistants working on this codebase, see [CLAUDE.md](CLAUDE.md).
 
 ## License
 

@@ -6,7 +6,7 @@ import {
     approximateDeepEqual,
     approximateEqual,
     type Coord,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 import _ from "underscore";
 
 import {sum} from "./math";

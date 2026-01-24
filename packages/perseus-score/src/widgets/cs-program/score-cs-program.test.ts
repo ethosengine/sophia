@@ -1,6 +1,6 @@
 import scoreCSProgram from "./score-cs-program";
 
-import type {PerseusCSProgramUserInput} from "@khanacademy/perseus-core";
+import type {PerseusCSProgramUserInput} from "@ethosengine/perseus-core";
 
 describe("scoreCSProgram", () => {
     it("is 'invalid' when the state is undefined", () => {

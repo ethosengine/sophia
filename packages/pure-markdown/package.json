@@ -25,7 +25,7 @@
         "prepublishOnly": "../../utils/package-pre-publish-check.sh"
     },
     "dependencies": {
-        "@khanacademy/perseus-utils": "workspace:*",
+        "@ethosengine/sophia-utils": "workspace:*",
         "@khanacademy/simple-markdown": "workspace:*"
     },
     "devDependencies": {

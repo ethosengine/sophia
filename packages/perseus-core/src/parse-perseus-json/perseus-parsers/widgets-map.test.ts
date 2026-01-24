@@ -1,3 +1,7 @@
+// Import from index to trigger parser accessor initialization
+// eslint-disable-next-line import/no-unassigned-import
+import "../index";
+
 import {
     generateDefinitionOptions,
     generateDefinitionWidget,

@@ -1,6 +1,6 @@
 import scoreIframe from "./score-iframe";
 
-import type {PerseusIFrameUserInput} from "@khanacademy/perseus-core";
+import type {PerseusIFrameUserInput} from "@ethosengine/perseus-core";
 
 describe("scoreIframe", () => {
     it("is invalid when the state is undefined", () => {

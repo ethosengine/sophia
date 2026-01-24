@@ -7,6 +7,9 @@ import * as knumber from "./number";
 
 type Vector = ReadonlyArray<number>;
 
+/** 2D point/vector represented as [x, y] */
+type Point2D = [number, number];
+
 function arraySum(array: ReadonlyArray<number>): number {
     return array.reduce((memo, arg) => memo + arg, 0);
 }
@@ -131,12 +134,13 @@ export function collinear(v1: Vector, v2: Vector, tolerance?: number): boolean {
     );
 }
 
-// TODO(jeremy) These coordinate conversion functions really only handle 2D points (ie. [number, number])
+// These coordinate conversion functions handle 2D points [x, y]
 
-// Convert a cartesian coordinate into a radian polar coordinate
-export function polarRadFromCart(
-    v: ReadonlyArray<number>,
-): ReadonlyArray<number> {
+/**
+ * Convert a cartesian coordinate into a radian polar coordinate.
+ * Returns [radius, theta] where theta is in range [0, 2pi].
+ */
+export function polarRadFromCart(v: ReadonlyArray<number>): Point2D {
     const radius = length(v);
     let theta = Math.atan2(v[1], v[0]);
 
@@ -148,52 +152,54 @@ export function polarRadFromCart(
     return [radius, theta];
 }
 
-// Converts a cartesian coordinate into a degree polar coordinate
-export function polarDegFromCart(
-    v: ReadonlyArray<number>,
-): ReadonlyArray<number> /* TODO: convert to tuple/Point */ {
+/**
+ * Converts a cartesian coordinate into a degree polar coordinate.
+ * Returns [radius, theta] where theta is in degrees.
+ */
+export function polarDegFromCart(v: ReadonlyArray<number>): Point2D {
     const polar = polarRadFromCart(v);
     return [polar[0], (polar[1] * 180) / Math.PI];
 }
 
-/* Convert a polar coordinate into a cartesian coordinate
+/**
+ * Convert a polar coordinate into a cartesian coordinate.
  *
- * Examples:
- * cartFromPolarRad(5, Math.PI)
+ * @param radius - the distance from origin
+ * @param theta - the angle in radians (default: 0)
+ * @returns [x, y] cartesian coordinates
+ *
+ * @example cartFromPolarRad(5, Math.PI) // returns [-5, 0]
  */
-export function cartFromPolarRad(
-    radius: number,
-    theta = 0,
-): ReadonlyArray<number> /* TODO: convert to tuple/Point */ {
+export function cartFromPolarRad(radius: number, theta = 0): Point2D {
     return [radius * Math.cos(theta), radius * Math.sin(theta)];
 }
 
-/* Convert a polar coordinate into a cartesian coordinate
+/**
+ * Convert a polar coordinate (in degrees) into a cartesian coordinate.
  *
- * Examples:
- * cartFromPolarDeg(5, 30)
+ * @param radius - the distance from origin
+ * @param theta - the angle in degrees (default: 0)
+ * @returns [x, y] cartesian coordinates
+ *
+ * @example cartFromPolarDeg(5, 30)
  */
-export function cartFromPolarDeg(
-    radius: number,
-    theta = 0,
-): ReadonlyArray<number> {
+export function cartFromPolarDeg(radius: number, theta = 0): Point2D {
     return cartFromPolarRad(radius, (theta * Math.PI) / 180);
 }
 
-// Rotate vector
-export function rotateRad(
-    v: ReadonlyArray<number>,
-    theta: number,
-): ReadonlyArray<number> {
+/**
+ * Rotate a 2D vector by theta radians.
+ */
+export function rotateRad(v: ReadonlyArray<number>, theta: number): Point2D {
     const polar = polarRadFromCart(v);
     const angle = polar[1] + theta;
     return cartFromPolarRad(polar[0], angle);
 }
 
-export function rotateDeg(
-    v: ReadonlyArray<number>,
-    theta: number,
-): ReadonlyArray<number> {
+/**
+ * Rotate a 2D vector by theta degrees.
+ */
+export function rotateDeg(v: ReadonlyArray<number>, theta: number): Point2D {
     const polar = polarDegFromCart(v);
     const angle = polar[1] + theta;
     return cartFromPolarDeg(polar[0], angle);

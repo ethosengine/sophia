@@ -11,20 +11,24 @@ import * as React from "react";
 import {useState, useMemo} from "react";
 
 import type {KeypadContextType} from "./types";
-import type {KeypadContextRendererInterface} from "@khanacademy/perseus-core";
+import type {
+    KeypadContextRendererInterface,
+    KeypadAPI,
+} from "@ethosengine/perseus-core";
 
-// @ts-expect-error - TS2322 - Type 'Context<{ setKeypadElement: (keypadElement: HTMLElement | null | undefined) => void; keypadElement: null; setRenderer: (renderer: RendererInterface | null | undefined) => void; renderer: null; setScrollableElement: (scrollableElement: HTMLElement | ... 1 more ... | undefined) => void; scrollableElement: null; }>' is not assignable to type 'Context<KeypadContext>'.
+const defaultContextValue: KeypadContextType = {
+    setKeypadActive: () => {},
+    keypadActive: false,
+    setKeypadElement: () => {},
+    keypadElement: null,
+    setRenderer: () => {},
+    renderer: null,
+    setScrollableElement: () => {},
+    scrollableElement: null,
+};
+
 export const KeypadContext: React.Context<KeypadContextType> =
-    React.createContext({
-        setKeypadActive: (keypadActive) => {},
-        keypadActive: false,
-        setKeypadElement: (keypadElement) => {},
-        keypadElement: null,
-        setRenderer: (renderer) => {},
-        renderer: null,
-        setScrollableElement: (scrollableElement) => {},
-        scrollableElement: null,
-    });
+    React.createContext(defaultContextValue);
 
 type Props = React.PropsWithChildren<unknown>;
 
@@ -32,7 +36,7 @@ export function StatefulKeypadContextProvider(props: Props) {
     // whether or not to display the keypad
     const [keypadActive, setKeypadActive] = useState<boolean>(false);
     // used to communicate between the keypad and the Renderer
-    const [keypadElement, setKeypadElement] = useState<any>();
+    const [keypadElement, setKeypadElement] = useState<KeypadAPI | null>();
     // this is a KeypadContextRendererInterface from Perseus
     const [renderer, setRenderer] =
         useState<KeypadContextRendererInterface | null>();

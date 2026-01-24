@@ -4,7 +4,7 @@ import type {
     PerseusOrdererRubric,
     PerseusOrdererUserInput,
     PerseusScore,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 function scoreOrderer(
     // NOTE(benchristel): userInput can be undefined if the widget has never

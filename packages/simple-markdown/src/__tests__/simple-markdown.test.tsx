@@ -27,11 +27,6 @@ var defaultHtmlOutput = SimpleMarkdown.defaultHtmlOutput;
  */
 var prettyPrintAST = function (ast: any) {
     return JSON.stringify(ast, null, 4);
-    //    // FIXME(aria): For debugging in more depth? This used to work?
-    //    return nodeUtil.inspect(ast, {
-    //        depth: null,
-    //        colors: false
-    //    });
 };
 
 /**

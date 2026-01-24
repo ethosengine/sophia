@@ -2,15 +2,15 @@
 // It should not make network requests, for example.
 import * as React from "react";
 
-import {registerAllWidgetsForTesting} from "../packages/perseus/src/util/register-all-widgets-for-testing";
+import {registerAllWidgetsForTesting} from "../packages/sophia/src/util/register-all-widgets-for-testing";
 
 import {TestMathjax} from "./test-mathjax";
 
-import type {ILogger} from "../packages/perseus/src/logging/log";
+import type {ILogger} from "../packages/sophia/src/logging/log";
 import type {
     PerseusDependencies,
     PerseusDependenciesV2,
-} from "../packages/perseus/src/types";
+} from "../packages/sophia/src/types";
 
 registerAllWidgetsForTesting();
 

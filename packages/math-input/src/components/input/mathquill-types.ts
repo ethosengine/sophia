@@ -1,4 +1,4 @@
-import type {KeypadKey} from "@khanacademy/perseus-core";
+import type {KeypadKey} from "@ethosengine/perseus-core";
 import type MathQuill from "mathquill";
 
 export type MathQuillInterface = MathQuill.v3.API;

@@ -1,6 +1,6 @@
 import validateLabelImage from "./validate-label-image";
 
-import type {PerseusLabelImageUserInput} from "@khanacademy/perseus-core";
+import type {PerseusLabelImageUserInput} from "@ethosengine/perseus-core";
 
 describe("validateLabelImage", () => {
     it("returns invalid for undefined user input", function () {

@@ -1,0 +1,50 @@
+{
+    "name": "@ethosengine/psyche",
+    "description": "Psychometric assessment - recognizing what resonates with learners",
+    "author": "Ethos Engine",
+    "license": "MIT",
+    "version": "0.1.0",
+    "publishConfig": {
+        "access": "public"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ethosengine/sophia.git",
+        "directory": "packages/psyche-survey"
+    },
+    "bugs": {
+        "url": "https://github.com/ethosengine/sophia/issues"
+    },
+    "module": "dist/es/index.js",
+    "main": "dist/index.js",
+    "source": "src/index.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/es/index.js",
+            "require": "./dist/index.js",
+            "types": "./dist/index.d.ts",
+            "source": "./src/index.ts"
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "prepublishOnly": "../../utils/package-pre-publish-check.sh"
+    },
+    "dependencies": {
+        "@ethosengine/sophia-core": "workspace:*",
+        "@ethosengine/perseus-core": "workspace:*"
+    },
+    "devDependencies": {
+        "perseus-build-settings": "workspace:*"
+    },
+    "keywords": [
+        "assessment",
+        "survey",
+        "psychometric",
+        "discovery",
+        "sophia",
+        "psyche"
+    ]
+}

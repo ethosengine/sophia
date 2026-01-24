@@ -1,12 +1,23 @@
 import {parse} from "./parse";
+import {setParserAccessors} from "./perseus-parsers/parser-accessors";
 import {parsePerseusArticle as migrateAndTypecheckPerseusArticle} from "./perseus-parsers/perseus-article";
 import {parsePerseusItem as migrateAndTypecheckPerseusItem} from "./perseus-parsers/perseus-item";
+import {parsePerseusRenderer} from "./perseus-parsers/perseus-renderer";
 import {parseUserInputMap} from "./perseus-parsers/user-input-map";
+import {parseWidgetsMap} from "./perseus-parsers/widgets-map";
 import {failure, isFailure} from "./result";
 
 import type {Result} from "./result";
 import type {PerseusItem, PerseusArticle} from "../data-schema";
 import type {UserInputMap} from "../validation.types";
+
+// Initialize the parser accessors to break circular dependencies.
+// This must be called after all parser modules are loaded.
+setParserAccessors({
+    parsePerseusRenderer,
+    parseWidgetsMap,
+    parseUserInputMap,
+});
 
 export type ParseFailureDetail = {
     /**

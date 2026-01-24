@@ -1,6 +1,6 @@
 import validateRadio from "./validate-radio";
 
-import type {PerseusRadioUserInput} from "@khanacademy/perseus-core";
+import type {PerseusRadioUserInput} from "@ethosengine/perseus-core";
 
 describe("validateRadio", () => {
     it("is invalid when the user input is null", () => {

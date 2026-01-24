@@ -1,20 +1,20 @@
 import * as React from "react";
 import {useEffect, useReducer, useRef} from "react";
 
-import {splitPerseusItem} from "@khanacademy/perseus-core";
-import {scorePerseusItem} from "@khanacademy/perseus-score";
+import {splitPerseusItem} from "@ethosengine/perseus-core";
+import {scorePerseusItem} from "@ethosengine/perseus-score";
 
-import {keScoreFromPerseusScore} from "../packages/perseus/src/util/scoring";
+import {keScoreFromPerseusScore} from "../packages/sophia/src/util/scoring";
 
 import {itemRendererReducer, createInitialState} from "./item-renderer-reducer";
 
-import type {ServerItemRenderer} from "../packages/perseus/src/server-item-renderer";
-import type {APIOptions} from "../packages/perseus/src/types";
+import type {ServerItemRenderer} from "../packages/sophia/src/server-item-renderer";
+import type {APIOptions} from "../packages/sophia/src/types";
 import type {
     PerseusItem,
     KEScore,
     ShowSolutions,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 /**
  * Custom hook to manage the Server Item Renderer With Debug UI state
@@ -105,7 +105,7 @@ export const useItemRenderer = (
         const keScore = keScoreFromPerseusScore(
             score,
             maxCompatGuess,
-            renderer.getSerializedState().question,
+            userInput,
         );
 
         if (!keScore.empty) {

@@ -2,7 +2,7 @@ import {
     Registry,
     type WidgetScorerFunction,
     type WidgetValidatorFunction,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 import scoreCategorizer from "./categorizer/score-categorizer";
 import validateCategorizer from "./categorizer/validate-categorizer";

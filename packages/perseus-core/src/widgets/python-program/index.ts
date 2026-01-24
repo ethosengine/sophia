@@ -1,5 +1,5 @@
 import type {PerseusPythonProgramWidgetOptions} from "../../data-schema";
-import type {WidgetLogic} from "../logic-export.types";
+import type {WidgetLogicWithDefaults} from "../logic-export.types";
 
 export type PythonProgramDefaultWidgetOptions = Pick<
     PerseusPythonProgramWidgetOptions,
@@ -11,10 +11,11 @@ const defaultWidgetOptions: PythonProgramDefaultWidgetOptions = {
     height: 400,
 };
 
-const pythonProgramWidgetLogic: WidgetLogic = {
-    name: "python-program",
-    defaultWidgetOptions,
-    accessible: true,
-};
+const pythonProgramWidgetLogic: WidgetLogicWithDefaults<PythonProgramDefaultWidgetOptions> =
+    {
+        name: "python-program",
+        defaultWidgetOptions,
+        accessible: true,
+    };
 
 export default pythonProgramWidgetLogic;

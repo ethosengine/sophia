@@ -9,7 +9,7 @@ import {
     getDefaultWidgetOptions,
     getSupportedAlignments,
     isWidgetRegistered,
-} from "./core-widget-registry";
+} from "./registry-accessors";
 
 import type {PerseusWidget, PerseusWidgetsMap} from "../data-schema";
 

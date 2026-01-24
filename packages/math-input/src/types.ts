@@ -4,7 +4,7 @@ import type {
     KeypadConfiguration,
     KeypadContextRendererInterface,
     KeypadKey,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 import type * as React from "react";
 import type ReactDOM from "react-dom";
 

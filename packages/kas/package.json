@@ -26,7 +26,7 @@
         "gen:parsers": "node src/parser-generator.ts"
     },
     "dependencies": {
-        "@khanacademy/perseus-utils": "workspace:*"
+        "@ethosengine/sophia-utils": "workspace:*"
     },
     "devDependencies": {
         "jison": "0.4.15",

@@ -10,7 +10,7 @@ import * as React from "react";
 import styles from "./debug-accordion-ui.module.css";
 import KEScoreUI from "./ke-score-ui";
 
-import type {KEScore, PerseusItem} from "@khanacademy/perseus-core";
+import type {KEScore, PerseusItem} from "@ethosengine/perseus-core";
 
 type DebugAccordionUIProps = {
     state: KEScore | null | undefined;

@@ -1,4 +1,7 @@
-import {getDecimalSeparator} from "@khanacademy/perseus-core";
+import {
+    getDecimalSeparator,
+    inputNumberAnswerTypes,
+} from "@ethosengine/perseus-core";
 
 import KhanAnswerTypes from "../../util/answer-types";
 import {parseTex} from "../../util/tex-wrangler";
@@ -7,42 +10,10 @@ import type {
     PerseusInputNumberRubric,
     PerseusInputNumberUserInput,
     PerseusScore,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
-export const inputNumberAnswerTypes = {
-    number: {
-        name: "Numbers",
-        forms: "integer, decimal, proper, improper, mixed",
-    },
-    decimal: {
-        name: "Decimals",
-        forms: "decimal",
-    },
-    integer: {
-        name: "Integers",
-        forms: "integer",
-    },
-    rational: {
-        name: "Fractions and mixed numbers",
-        forms: "integer, proper, improper, mixed",
-    },
-    improper: {
-        name: "Improper numbers (no mixed)",
-        forms: "integer, proper, improper",
-    },
-    mixed: {
-        name: "Mixed numbers (no improper)",
-        forms: "integer, proper, mixed",
-    },
-    percent: {
-        name: "Numbers or percents",
-        forms: "integer, decimal, proper, improper, mixed, percent",
-    },
-    pi: {
-        name: "Numbers with pi",
-        forms: "pi",
-    },
-} as const;
+// Re-export for backwards compatibility
+export {inputNumberAnswerTypes} from "@ethosengine/perseus-core";
 
 function scoreInputNumber(
     // NOTE(benchristel): userInput can be undefined if the widget has never

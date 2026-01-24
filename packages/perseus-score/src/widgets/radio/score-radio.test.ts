@@ -3,7 +3,7 @@ import scoreRadio from "./score-radio";
 import type {
     PerseusRadioRubric,
     PerseusRadioUserInput,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 describe("scoreRadio", () => {
     it("is invalid when the user input is undefined", () => {

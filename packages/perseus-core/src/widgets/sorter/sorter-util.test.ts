@@ -5,7 +5,7 @@ import getSorterPublicWidgetOptions, {shuffleSorter} from "./sorter-util";
 import type {PerseusSorterWidgetOptions} from "../../data-schema";
 
 describe("getSorterPublicWidgetOptions", () => {
-    it("obscures answer data by sorting the correct field, leaving the first card in place", () => {
+    it("obscures answer data by sorting the cards field, leaving the first card in place", () => {
         // We need to leave the first card in place because it is used by
         // shuffleSorter (see below) to ensure that learners don't see the
         // correct answer as the initial state of the widget.
@@ -22,7 +22,7 @@ describe("getSorterPublicWidgetOptions", () => {
 
         // Assert
         expect(publicWidgetOptions).toEqual({
-            correct: ["$15$ grams", "$0.005$ kilograms", "$55$ grams"],
+            cards: ["$15$ grams", "$0.005$ kilograms", "$55$ grams"],
             layout: "horizontal",
             padding: true,
         });
@@ -31,7 +31,7 @@ describe("getSorterPublicWidgetOptions", () => {
 
 describe("shuffleSorter", () => {
     it("does nothing given no cards", () => {
-        expect(shuffleSorter({correct: []}, 0)).toEqual([]);
+        expect(shuffleSorter({cards: []}, 0)).toEqual([]);
     });
 
     describe.each(range(0, 10))("when problemNum is %d", (problemNum) => {
@@ -40,7 +40,7 @@ describe("shuffleSorter", () => {
         it("always moves the first card", () => {
             const shuffled = shuffleSorter(
                 {
-                    correct: ["1", "2", "3", "4"],
+                    cards: ["1", "2", "3", "4"],
                 },
                 problemNum,
             );
@@ -48,9 +48,9 @@ describe("shuffleSorter", () => {
         });
 
         it("preserves the set of cards", () => {
-            const correct = ["1", "2", "3", "4"];
-            const shuffled = shuffleSorter({correct}, problemNum);
-            expect(new Set(shuffled)).toEqual(new Set(correct));
+            const cards = ["1", "2", "3", "4"];
+            const shuffled = shuffleSorter({cards}, problemNum);
+            expect(new Set(shuffled)).toEqual(new Set(cards));
         });
     });
 });

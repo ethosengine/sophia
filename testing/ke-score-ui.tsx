@@ -4,7 +4,7 @@ import {HeadingSmall} from "@khanacademy/wonder-blocks-typography";
 import * as React from "react";
 import ReactJson from "react-json-view";
 
-import type {KEScore} from "@khanacademy/perseus-core";
+import type {KEScore} from "@ethosengine/perseus-core";
 
 type Props = {
     score: KEScore | null | undefined;

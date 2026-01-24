@@ -1,3 +1,7 @@
+// Import from index to trigger score accessor initialization
+// eslint-disable-next-line import/no-unassigned-import
+import "./index";
+
 import {
     getExpressionWidget,
     getLegacyExpressionWidget,
@@ -5,7 +9,7 @@ import {
 } from "./util/test-helpers";
 import {emptyWidgetsFunctional, validateUserInput} from "./validate";
 
-import type {PerseusWidgetsMap, UserInputMap} from "@khanacademy/perseus-core";
+import type {PerseusWidgetsMap, UserInputMap} from "@ethosengine/perseus-core";
 
 describe("validateUserInput", () => {
     it("should return null if no widgets are invalid", () => {

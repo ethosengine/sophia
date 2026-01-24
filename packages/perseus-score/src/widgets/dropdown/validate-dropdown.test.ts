@@ -1,6 +1,6 @@
 import validateDropdown from "./validate-dropdown";
 
-import type {PerseusDropdownUserInput} from "@khanacademy/perseus-core";
+import type {PerseusDropdownUserInput} from "@ethosengine/perseus-core";
 
 describe("validateDropdown", () => {
     it("returns invalid for undefined input", () => {

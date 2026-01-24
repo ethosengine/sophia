@@ -2,7 +2,7 @@
 
 import {clockwise} from "./geometry";
 
-import type {Coord} from "@khanacademy/perseus-core";
+import type {Coord} from "@ethosengine/perseus-core";
 
 export function convertDegreesToRadians(degrees: number): number {
     return (degrees / 180) * Math.PI;

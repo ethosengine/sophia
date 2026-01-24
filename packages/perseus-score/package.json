@@ -1,19 +1,19 @@
 {
-    "name": "@khanacademy/perseus-score",
-    "description": "Perseus score",
-    "author": "Khan Academy",
+    "name": "@ethosengine/perseus-score",
+    "description": "Perseus mastery scoring - produces Recognition results",
+    "author": "Ethos Engine",
     "license": "MIT",
-    "version": "8.2.4",
+    "version": "1.0.0",
     "publishConfig": {
         "access": "public"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/Khan/perseus.git",
+        "url": "https://github.com/ethosengine/sophia.git",
         "directory": "packages/perseus-score"
     },
     "bugs": {
-        "url": "https://github.com/Khan/perseus/issues"
+        "url": "https://github.com/ethosengine/sophia/issues"
     },
     "module": "dist/es/index.js",
     "main": "dist/index.js",
@@ -27,8 +27,9 @@
     "dependencies": {
         "@khanacademy/kas": "workspace:*",
         "@khanacademy/kmath": "workspace:*",
-        "@khanacademy/perseus-core": "workspace:*",
-        "@khanacademy/perseus-utils": "workspace:*"
+        "@ethosengine/perseus-core": "workspace:*",
+        "@ethosengine/sophia-core": "workspace:*",
+        "@ethosengine/sophia-utils": "workspace:*"
     },
     "devDependencies": {
         "perseus-build-settings": "workspace:*",

@@ -3,7 +3,7 @@
  * The Perseus "data schema" file.
  *
  * This file, and the types in it, represents the "data schema" that Perseus
- * uses. The @khanacademy/perseus-editor package edits and produces objects
+ * uses. The @ethosengine/perseus-editor package edits and produces objects
  * that conform to the types in this file. Similarly, the top-level renderers
  * in @khanacademy/perseus, consume objects that conform to these types.
  *
@@ -113,7 +113,7 @@ export type MakeWidgetMap<TRegistry> = {
  * `PerseusWidgets` with the one defined below.
  *
  * ```typescript
- * declare module "@khanacademy/perseus-core" {
+ * declare module "@ethosengine/perseus-core" {
  *     interface PerseusWidgetTypes {
  *         // A new widget
  *         "new-awesomeness": MyAwesomeNewWidget;

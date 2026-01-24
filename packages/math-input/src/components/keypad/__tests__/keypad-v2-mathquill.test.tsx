@@ -13,7 +13,7 @@ import type {MathFieldInterface} from "../../input/mathquill-types";
 import type {
     AnalyticsEventHandlerFn,
     KeypadKey,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 import type {UserEvent} from "@testing-library/user-event";
 
 type Props = {

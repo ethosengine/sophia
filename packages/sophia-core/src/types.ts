@@ -12,7 +12,7 @@ import type {
     PerseusRenderer,
     Hint,
     UserInputMap,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Assessment Purpose
@@ -113,6 +113,7 @@ export type SubscaleContribution = Record<string, number>;
  * Named "Recognition" rather than "Score" or "Result" because:
  * - We recognize what the learner demonstrated (mastery)
  * - We recognize what resonates with them (discovery)
+ * - We recognize what they share (reflection)
  * - Recognition honors the learner's dignity
  */
 export interface Recognition {
@@ -127,6 +128,9 @@ export interface Recognition {
 
     /** Resonance result (for discovery purpose) */
     resonance?: ResonanceResult;
+
+    /** Reflection result (for reflection purpose) */
+    reflection?: ReflectionResult;
 
     /** Raw user input for further processing */
     userInput: UserInputMap;
@@ -186,6 +190,29 @@ export interface ResonanceResult {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Reflection Result
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Result from a reflection assessment.
+ * Used for open-ended responses, journaling, and self-assessment.
+ * There is no "correct" answer - we capture what the learner shares.
+ */
+export interface ReflectionResult {
+    /** The raw user input captured */
+    userInput: UserInputMap;
+
+    /** Optional subscale contributions if moment defines them */
+    subscaleContributions?: Record<string, number>;
+
+    /** Timestamp of reflection capture */
+    timestamp: number;
+
+    /** Optional text summary extracted from input */
+    textContent?: string;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Aggregated Results
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -232,7 +259,36 @@ export interface AggregatedMastery {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Logging Configuration
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Log level for Sophia debug output.
+ *
+ * - 'none': No logging output
+ * - 'error': Only errors (default)
+ * - 'warn': Errors and warnings
+ * - 'debug': All logging including debug info
+ */
+export type LogLevel = "none" | "error" | "warn" | "debug";
+
+/**
+ * Priority values for log levels.
+ * Higher number = more verbose.
+ */
+export const LOG_PRIORITY: Record<LogLevel, number> = {
+    none: 0,
+    error: 1,
+    warn: 2,
+    debug: 3,
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Re-export Perseus types for convenience
 // ─────────────────────────────────────────────────────────────────────────────
 
-export type {PerseusRenderer, Hint, UserInputMap} from "@khanacademy/perseus-core";
+export type {
+    PerseusRenderer,
+    Hint,
+    UserInputMap,
+} from "@ethosengine/perseus-core";

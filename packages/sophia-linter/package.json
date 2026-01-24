@@ -1,0 +1,41 @@
+{
+    "name": "@ethosengine/sophia-linter",
+    "description": "Content linting engine for Sophia",
+    "author": "Ethos Engine",
+    "license": "MIT",
+    "version": "1.0.0",
+    "publishConfig": {
+        "access": "public"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ethosengine/sophia.git",
+        "directory": "packages/sophia-linter"
+    },
+    "bugs": {
+        "url": "https://github.com/ethosengine/sophia/issues"
+    },
+    "module": "dist/es/index.js",
+    "main": "dist/index.js",
+    "source": "src/index.ts",
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "prepublishOnly": "../../utils/package-pre-publish-check.sh"
+    },
+    "dependencies": {
+        "@khanacademy/kas": "workspace:*",
+        "@khanacademy/kmath": "workspace:*",
+        "@ethosengine/perseus-core": "workspace:*",
+        "@ethosengine/sophia-utils": "workspace:*"
+    },
+    "devDependencies": {
+        "@khanacademy/pure-markdown": "workspace:*",
+        "perseus-build-settings": "workspace:*"
+    },
+    "keywords": [],
+    "khan": {
+        "catalogHash": "e3b0c44298fc1c14"
+    }
+}

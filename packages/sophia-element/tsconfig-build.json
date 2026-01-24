@@ -1,0 +1,21 @@
+{
+    "extends": "../tsconfig-shared.json",
+    "compilerOptions": {
+        "outDir": "./dist",
+        "rootDir": "src",
+        "paths": {
+            "@khanacademy/*": [
+                "../*/src"
+            ],
+            "@ethosengine/*": [
+                "../*/src"
+            ]
+        }
+    },
+    "references": [
+        {"path": "../sophia/tsconfig-build.json"},
+        {"path": "../sophia-core/tsconfig-build.json"},
+        {"path": "../perseus-core/tsconfig-build.json"},
+        {"path": "../perseus-score/tsconfig-build.json"}
+    ]
+}

@@ -1,6 +1,6 @@
 import validateOrderer from "./validate-orderer";
 
-import type {PerseusOrdererUserInput} from "@khanacademy/perseus-core";
+import type {PerseusOrdererUserInput} from "@ethosengine/perseus-core";
 
 describe("validateOrderer", () => {
     it("is invalid when the user input is undefined", () => {

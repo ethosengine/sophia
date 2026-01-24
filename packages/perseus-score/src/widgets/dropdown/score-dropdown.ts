@@ -2,7 +2,7 @@ import type {
     PerseusDropdownRubric,
     PerseusDropdownUserInput,
     PerseusScore,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 function scoreDropdown(
     // NOTE(benchristel): userInput can be undefined if the widget has never

@@ -4,7 +4,7 @@ import type {
     PerseusMockWidgetRubric,
     PerseusMockWidgetUserInput,
 } from "./mock-widget-validation.types";
-import type {PerseusScore} from "@khanacademy/perseus-core";
+import type {PerseusScore} from "@ethosengine/perseus-core";
 
 function scoreMockWidget(
     // NOTE(benchristel): userInput can be undefined if the widget has never

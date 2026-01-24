@@ -12,7 +12,7 @@ import {
     generateTestPerseusRenderer,
     type PerseusRenderer,
     type UserInputMap,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 import hasEmptyDINERWidgets from "./has-empty-diner-widgets";
 

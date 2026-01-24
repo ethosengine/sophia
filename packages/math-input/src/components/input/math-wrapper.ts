@@ -25,7 +25,7 @@ import type {
     MathFieldUpdaterCallback,
 } from "./mathquill-types";
 import type {MathInputStrings} from "../../strings";
-import type {KeypadKey} from "@khanacademy/perseus-core";
+import type {KeypadKey} from "@ethosengine/perseus-core";
 
 /**
  * This file contains a wrapper around MathQuill so that we can provide a

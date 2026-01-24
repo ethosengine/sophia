@@ -13,17 +13,14 @@ import {
 } from "../general-purpose-parsers";
 import {defaulted} from "../general-purpose-parsers/defaulted";
 
+import {parseWidgetsMapLazy} from "./parser-accessors";
 import {versionedWidgetOptions} from "./versioned-widget-options";
 import {parseWidgetWithVersion} from "./widget";
-import {parseWidgetsMap} from "./widgets-map";
 
 import type {ParsedValue} from "../parser-types";
 
 const parseWidgetsMapOrUndefined = defaulted(
-    // There is an import cycle between radio-widget.ts and
-    // widgets-map.ts. The anonymous function below ensures that we
-    // don't refer to parseWidgetsMap before it's defined.
-    optional((rawVal, ctx) => parseWidgetsMap(rawVal, ctx)),
+    optional(parseWidgetsMapLazy),
     () => undefined,
 );
 

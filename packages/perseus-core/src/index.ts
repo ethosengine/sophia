@@ -12,6 +12,7 @@ export type {
     KeypadKey,
     KeypadConfiguration,
     KeypadContextRendererInterface,
+    KeypadAPI,
 } from "./keypad";
 export type {ErrorKind} from "./error/errors";
 export {default as ErrorCodes, type ErrorCode} from "./error-codes";
@@ -93,6 +94,8 @@ export {default as imageLogic} from "./widgets/image";
 export type {ImageDefaultWidgetOptions} from "./widgets/image";
 export {default as inputNumberLogic} from "./widgets/input-number";
 export type {InputNumberDefaultWidgetOptions} from "./widgets/input-number";
+export {inputNumberAnswerTypes} from "./widgets/input-number";
+export type {InputNumberAnswerType} from "./widgets/input-number";
 export {default as interactionLogic} from "./widgets/interaction";
 export type {InteractionDefaultWidgetOptions} from "./widgets/interaction";
 export {default as interactiveGraphLogic} from "./widgets/interactive-graph";

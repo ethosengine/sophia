@@ -124,3 +124,16 @@ export type KeypadConfiguration = {
 export interface KeypadContextRendererInterface {
     blur(): void;
 }
+
+/**
+ * The API exposed by the keypad component for controlling it programmatically.
+ * Used by keypad-context to communicate between the keypad and renderer.
+ */
+export interface KeypadAPI {
+    activate: () => void;
+    dismiss: () => void;
+    configure: (configuration: KeypadConfiguration, cb: () => void) => void;
+    setCursor: (cursor: unknown) => void;
+    setKeyHandler: (keyHandler: unknown) => void;
+    getDOMNode: () => Element | Text | null;
+}

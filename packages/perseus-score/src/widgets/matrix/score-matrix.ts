@@ -1,4 +1,4 @@
-import {getMatrixSize} from "@khanacademy/perseus-core";
+import {getMatrixSize} from "@ethosengine/perseus-core";
 import _ from "underscore";
 
 import KhanAnswerTypes from "../../util/answer-types";
@@ -7,7 +7,7 @@ import type {
     PerseusMatrixRubric,
     PerseusMatrixUserInput,
     PerseusScore,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 function scoreMatrix(
     // NOTE(benchristel): userInput can be undefined if the widget has never

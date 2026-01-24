@@ -4,7 +4,7 @@ import type {
     PerseusMatcherRubric,
     PerseusMatcherUserInput,
     PerseusScore,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 function scoreMatcher(
     // NOTE(benchristel): userInput can be undefined if the widget has never

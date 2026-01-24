@@ -1,11 +1,11 @@
-import {approximateDeepEqual} from "@khanacademy/perseus-core";
+import {approximateDeepEqual} from "@ethosengine/perseus-core";
 import _ from "underscore";
 
 import type {
     PerseusPlotterUserInput,
     PerseusPlotterRubric,
     PerseusScore,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 function scorePlotter(
     // NOTE(benchristel): userInput can be undefined if the widget has never

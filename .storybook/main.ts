@@ -2,6 +2,11 @@ import {mergeConfig} from "vite";
 import {configureSort} from "storybook-multilevel-sort";
 import type {StorybookConfig} from "@storybook/react-vite";
 
+// Force visible output during config load
+console.log("\n\n========================================");
+console.log("[main.ts] STORYBOOK CONFIG LOADING");
+console.log("========================================\n\n");
+
 const excludedCssFiles = ["lato.css", "protractor.css", "mafs-styles.css"];
 // This is a temporary plugin option to mimic what is in PROD in regard to cascade layers.
 // Perseus CSS files are wrapped in the 'shared' layer in khan/frontend.
@@ -73,8 +78,8 @@ const config: StorybookConfig = {
         // This will be used for the main documentation pages
         "../__docs__/**/*.@(stories.ts|stories.tsx|mdx)",
 
-        // Docs for Perseus editor
-        "../packages/perseus-editor/src/**/__docs__/**/*.@(stories.ts|stories.tsx|mdx)",
+        // Docs for Sophia editor
+        "../packages/sophia-editor/src/**/__docs__/**/*.@(stories.ts|stories.tsx|mdx)",
 
         // Docs for Perseus widgets, components, and renderers
         "../packages/perseus/src/**/__docs__/**/*.@(stories.ts|stories.tsx|mdx)",
@@ -116,11 +121,23 @@ const config: StorybookConfig = {
     `,
 
     viteFinal: async (config) => {
-        return mergeConfig(config, {
+        const merged = mergeConfig(config, {
             define: {
                 // This is used to determine if we are running in a
                 // Dev/Storybook environment.
                 "process.env.STORYBOOK": "true",
+            },
+            server: {
+                // Allow access from Eclipse Che and other remote environments
+                host: "0.0.0.0",
+                strictPort: false,
+                cors: true,
+                // Allow serving files from workspace
+                fs: {
+                    allow: [".."],
+                },
+                // Disable HMR for Eclipse Che proxy compatibility
+                hmr: false,
             },
             build: {
                 // Vite 5 has a bug with how it builds `url(data: )` urls when
@@ -135,6 +152,18 @@ const config: StorybookConfig = {
             },
             plugins: [cssWrapper],
         });
+
+        // CRITICAL: Set allowedHosts AFTER mergeConfig to ensure it's not overwritten
+        // This fixes the "hostname other than localhost" error in Eclipse Che
+        // See: https://github.com/storybookjs/storybook/issues/30338
+        merged.server ??= {};
+        // Allow ALL hosts - most permissive setting
+        merged.server.allowedHosts = true;
+
+        // Debug: verify allowedHosts is set
+        console.log("[viteFinal] server.allowedHosts:", merged.server.allowedHosts);
+
+        return merged;
     },
     staticDirs: ["../static"],
 };

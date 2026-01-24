@@ -1,7 +1,7 @@
 import type {
     PerseusIFrameUserInput,
     PerseusScore,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 // TODO: merge this with scoreCSProgram, it's the same code
 function scoreIframe(

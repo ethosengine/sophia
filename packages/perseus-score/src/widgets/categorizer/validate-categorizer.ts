@@ -3,7 +3,7 @@ import {
     type PerseusCategorizerUserInput,
     type PerseusCategorizerValidationData,
     type ValidationResult,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 /**
  * Checks userInput from the categorizer widget to see if the user has selected

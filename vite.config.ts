@@ -16,6 +16,12 @@ glob.sync(join(__dirname, "/packages/*/package.json")).forEach(
 );
 
 export default defineConfig({
+    // Allow access from Eclipse Che remote environment
+    server: {
+        host: "0.0.0.0",
+        // Allow ALL hosts - most permissive for Eclipse Che
+        allowedHosts: true,
+    },
     resolve: {
         alias: {
             ...packageAliases,

@@ -1,5 +1,5 @@
 import type {PerseusPassageWidgetOptions} from "../../data-schema";
-import type {WidgetLogic} from "../logic-export.types";
+import type {WidgetLogicWithDefaults} from "../logic-export.types";
 
 export type PassageDefaultWidgetOptions = Pick<
     PerseusPassageWidgetOptions,
@@ -13,10 +13,11 @@ const defaultWidgetOptions: PassageDefaultWidgetOptions = {
     showLineNumbers: true,
 };
 
-const passageWidgetLogic: WidgetLogic = {
-    name: "passage",
-    defaultWidgetOptions,
-    accessible: false,
-};
+const passageWidgetLogic: WidgetLogicWithDefaults<PassageDefaultWidgetOptions> =
+    {
+        name: "passage",
+        defaultWidgetOptions,
+        accessible: false,
+    };
 
 export default passageWidgetLogic;

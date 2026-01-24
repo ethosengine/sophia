@@ -1,6 +1,6 @@
 import {getWidgetScorer} from "../widgets/widget-registry";
 
-import type {PerseusWidget} from "@khanacademy/perseus-core";
+import type {PerseusWidget} from "@ethosengine/perseus-core";
 
 /**
  * Determines if a widget should be scored/validated.

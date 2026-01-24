@@ -1,5 +1,5 @@
 import type {PerseusInteractionWidgetOptions} from "../../data-schema";
-import type {WidgetLogic} from "../logic-export.types";
+import type {WidgetLogicWithDefaults} from "../logic-export.types";
 
 export type InteractionDefaultWidgetOptions = Pick<
     PerseusInteractionWidgetOptions,
@@ -21,10 +21,11 @@ const defaultWidgetOptions: InteractionDefaultWidgetOptions = {
     elements: [],
 };
 
-const interactionWidgetLogic: WidgetLogic = {
-    name: "interaction",
-    defaultWidgetOptions,
-    accessible: false,
-};
+const interactionWidgetLogic: WidgetLogicWithDefaults<InteractionDefaultWidgetOptions> =
+    {
+        name: "interaction",
+        defaultWidgetOptions,
+        accessible: false,
+    };
 
 export default interactionWidgetLogic;

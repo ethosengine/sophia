@@ -1,5 +1,5 @@
 import type {PerseusDefinitionWidgetOptions} from "../../data-schema";
-import type {WidgetLogic} from "../logic-export.types";
+import type {WidgetLogicWithDefaults} from "../logic-export.types";
 
 export type DefinitionDefaultWidgetOptions = Pick<
     PerseusDefinitionWidgetOptions,
@@ -11,11 +11,12 @@ const defaultWidgetOptions: DefinitionDefaultWidgetOptions = {
     definition: "",
 };
 
-const definitionWidgetLogic: WidgetLogic = {
-    name: "definition",
-    defaultWidgetOptions,
-    defaultAlignment: "inline",
-    accessible: true,
-};
+const definitionWidgetLogic: WidgetLogicWithDefaults<DefinitionDefaultWidgetOptions> =
+    {
+        name: "definition",
+        defaultWidgetOptions,
+        defaultAlignment: "inline",
+        accessible: true,
+    };
 
 export default definitionWidgetLogic;

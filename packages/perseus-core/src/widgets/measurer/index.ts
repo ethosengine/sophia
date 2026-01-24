@@ -1,5 +1,5 @@
 import type {PerseusMeasurerWidgetOptions} from "../../data-schema";
-import type {WidgetLogic} from "../logic-export.types";
+import type {WidgetLogicWithDefaults} from "../logic-export.types";
 
 const currentVersion = {major: 1, minor: 0};
 
@@ -26,11 +26,12 @@ const defaultWidgetOptions: MeasurerDefaultWidgetOptions = {
     rulerLength: 10,
 };
 
-const measurerWidgetLogic: WidgetLogic = {
-    name: "measurer",
-    version: currentVersion,
-    defaultWidgetOptions: defaultWidgetOptions,
-    accessible: false,
-};
+const measurerWidgetLogic: WidgetLogicWithDefaults<MeasurerDefaultWidgetOptions> =
+    {
+        name: "measurer",
+        version: currentVersion,
+        defaultWidgetOptions: defaultWidgetOptions,
+        accessible: false,
+    };
 
 export default measurerWidgetLogic;

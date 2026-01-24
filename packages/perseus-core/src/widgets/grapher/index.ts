@@ -1,7 +1,7 @@
 import getGrapherPublicWidgetOptions from "./grapher-util";
 
 import type {PerseusGrapherWidgetOptions} from "../../data-schema";
-import type {WidgetLogic} from "../logic-export.types";
+import type {WidgetLogicWithDefaults} from "../logic-export.types";
 
 export type GrapherDefaultWidgetOptions = Pick<
     PerseusGrapherWidgetOptions,
@@ -32,11 +32,12 @@ const defaultWidgetOptions: GrapherDefaultWidgetOptions = {
     availableTypes: ["linear"],
 };
 
-const grapherWidgetLogic: WidgetLogic = {
-    name: "grapher",
-    defaultWidgetOptions,
-    getPublicWidgetOptions: getGrapherPublicWidgetOptions,
-    accessible: false,
-};
+const grapherWidgetLogic: WidgetLogicWithDefaults<GrapherDefaultWidgetOptions> =
+    {
+        name: "grapher",
+        defaultWidgetOptions,
+        getPublicWidgetOptions: getGrapherPublicWidgetOptions,
+        accessible: false,
+    };
 
 export default grapherWidgetLogic;

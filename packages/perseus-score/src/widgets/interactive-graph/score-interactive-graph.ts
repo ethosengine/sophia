@@ -1,14 +1,14 @@
 import {
+    approximateDeepEqual,
+    approximateEqual,
+    deepClone,
+} from "@ethosengine/perseus-core";
+import {
     number as knumber,
     geometry,
     angles,
     coefficients,
 } from "@khanacademy/kmath";
-import {
-    approximateDeepEqual,
-    approximateEqual,
-    deepClone,
-} from "@khanacademy/perseus-core";
 import _ from "underscore";
 
 import type {
@@ -16,7 +16,7 @@ import type {
     PerseusInteractiveGraphRubric,
     PerseusScore,
     Coord,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 const {collinear, canonicalSineCoefficients, similar, clockwise} = geometry;
 const {getClockwiseAngle} = angles;
@@ -48,8 +48,8 @@ function scoreInteractiveGraph(
     const hasValue = Boolean(
         // @ts-expect-error - TS2339 - Property 'coords' does not exist on type 'PerseusGraphType'.
         userInput.coords ||
-            // @ts-expect-error - TS2339 - Property 'center' does not exist on type 'PerseusGraphType'. | TS2339 - Property 'radius' does not exist on type 'PerseusGraphType'.
-            (userInput.center && userInput.radius),
+        // @ts-expect-error - TS2339 - Property 'center' does not exist on type 'PerseusGraphType'. | TS2339 - Property 'radius' does not exist on type 'PerseusGraphType'.
+        (userInput.center && userInput.radius),
     );
 
     if (userInput.type === rubric.correct.type && hasValue) {
@@ -127,22 +127,27 @@ function scoreInteractiveGraph(
                 rubric.correct.coords,
             );
 
-            const canonicalGuessCoeffs = canonicalSineCoefficients(guessCoeffs);
-            const canonicalCorrectCoeffs =
-                canonicalSineCoefficients(correctCoeffs);
-            // If the canonical coefficients match, it's correct.
-            if (
-                approximateDeepEqual(
-                    canonicalGuessCoeffs,
-                    canonicalCorrectCoeffs,
-                )
-            ) {
-                return {
-                    type: "points",
-                    earned: 1,
-                    total: 1,
-                    message: null,
-                };
+            // If either coefficient calculation failed (undefined), they can't match
+            // unless both are undefined (both invalid curves)
+            if (guessCoeffs != null && correctCoeffs != null) {
+                const canonicalGuessCoeffs =
+                    canonicalSineCoefficients(guessCoeffs);
+                const canonicalCorrectCoeffs =
+                    canonicalSineCoefficients(correctCoeffs);
+                // If the canonical coefficients match, it's correct.
+                if (
+                    approximateDeepEqual(
+                        canonicalGuessCoeffs,
+                        canonicalCorrectCoeffs,
+                    )
+                ) {
+                    return {
+                        type: "points",
+                        earned: 1,
+                        total: 1,
+                        message: null,
+                    };
+                }
             }
         } else if (
             userInput.type === "circle" &&

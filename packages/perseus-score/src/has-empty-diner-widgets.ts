@@ -1,6 +1,6 @@
-import {getWidgetIdsFromContent} from "@khanacademy/perseus-core";
+import {getWidgetIdsFromContent} from "@ethosengine/perseus-core";
 
-import type {PerseusItem, UserInputMap} from "@khanacademy/perseus-core";
+import type {PerseusItem, UserInputMap} from "@ethosengine/perseus-core";
 
 /**
  * Check the emptiness of DINER widgets (for the AX team):

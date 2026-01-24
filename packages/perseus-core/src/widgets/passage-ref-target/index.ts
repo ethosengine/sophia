@@ -1,5 +1,5 @@
 import type {PerseusPassageRefTargetWidgetOptions} from "../../data-schema";
-import type {WidgetLogic} from "../logic-export.types";
+import type {WidgetLogicWithDefaults} from "../logic-export.types";
 
 export type PassageRefTargetDefaultWidgetOptions = Pick<
     PerseusPassageRefTargetWidgetOptions,
@@ -10,11 +10,12 @@ const defaultWidgetOptions: PassageRefTargetDefaultWidgetOptions = {
     content: "",
 };
 
-const passageRefTargetWidgetLogic: WidgetLogic = {
-    name: "passage-ref-target",
-    defaultWidgetOptions,
-    defaultAlignment: "inline",
-    accessible: false,
-};
+const passageRefTargetWidgetLogic: WidgetLogicWithDefaults<PassageRefTargetDefaultWidgetOptions> =
+    {
+        name: "passage-ref-target",
+        defaultWidgetOptions,
+        defaultAlignment: "inline",
+        accessible: false,
+    };
 
 export default passageRefTargetWidgetLogic;

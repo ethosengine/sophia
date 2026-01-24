@@ -5,7 +5,7 @@ import {useMathInputI18n} from "../../i18n-context";
 import {KeypadButton} from "../keypad-button";
 
 import type {ClickKeyCallback} from "../../../types";
-import type {KeypadKey} from "@khanacademy/perseus-core";
+import type {KeypadKey} from "@ethosengine/perseus-core";
 
 type Props = {
     extraKeys: ReadonlyArray<KeypadKey>;

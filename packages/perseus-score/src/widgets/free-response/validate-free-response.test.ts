@@ -1,6 +1,6 @@
 import validateFreeResponse from "./validate-free-response";
 
-import type {PerseusFreeResponseWidgetOptions} from "@khanacademy/perseus-core";
+import type {PerseusFreeResponseWidgetOptions} from "@ethosengine/perseus-core";
 
 const MOCK_STANDARD_OPTIONS: PerseusFreeResponseWidgetOptions = {
     allowUnlimitedCharacters: false,

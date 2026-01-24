@@ -1,7 +1,7 @@
 import isWidgetScoreable from "./is-widget-scoreable";
 import {getTestDropdownWidget} from "./test-helpers";
 
-import type {PhetSimulationWidget} from "@khanacademy/perseus-core";
+import type {PhetSimulationWidget} from "@ethosengine/perseus-core";
 
 describe("isWidgetScoreable", () => {
     it("returns false for undefined widget", () => {

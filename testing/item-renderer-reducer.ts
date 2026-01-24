@@ -2,7 +2,7 @@ import type {
     PerseusItem,
     KEScore,
     ShowSolutions,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 // Define state type
 export type ItemRendererState = {

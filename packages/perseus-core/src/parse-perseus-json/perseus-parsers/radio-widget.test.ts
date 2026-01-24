@@ -1,3 +1,7 @@
+// Import from index to trigger parser accessor initialization
+// eslint-disable-next-line import/no-unassigned-import
+import "../index";
+
 import {anySuccess} from "../general-purpose-parsers/test-helpers";
 import {parse} from "../parse";
 import {failure, success} from "../result";

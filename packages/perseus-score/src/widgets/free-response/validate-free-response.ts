@@ -3,7 +3,7 @@ import {
     type PerseusFreeResponseUserInput,
     type PerseusFreeResponseWidgetOptions,
     type ValidationResult,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 /**
  * Checks user input from the free response widget to see if it is scorable.

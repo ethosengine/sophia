@@ -1,6 +1,6 @@
-import {Errors, PerseusError} from "@khanacademy/perseus-core";
+import {Errors, PerseusError} from "@ethosengine/perseus-core";
 
-import type {PerseusScore} from "@khanacademy/perseus-core";
+import type {PerseusScore} from "@ethosengine/perseus-core";
 
 const noScore: PerseusScore = {
     type: "points",

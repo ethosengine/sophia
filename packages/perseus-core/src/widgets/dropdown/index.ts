@@ -1,7 +1,7 @@
 import getDropdownPublicWidgetOptions from "./dropdown-util";
 
 import type {PerseusDropdownWidgetOptions} from "../../data-schema";
-import type {WidgetLogic} from "../logic-export.types";
+import type {WidgetLogicWithDefaults} from "../logic-export.types";
 
 export type DropdownDefaultWidgetOptions = Pick<
     PerseusDropdownWidgetOptions,
@@ -18,12 +18,13 @@ const defaultWidgetOptions: DropdownDefaultWidgetOptions = {
     ],
 };
 
-const dropdownWidgetLogic: WidgetLogic = {
-    name: "dropdown",
-    defaultWidgetOptions,
-    defaultAlignment: "inline-block",
-    getPublicWidgetOptions: getDropdownPublicWidgetOptions,
-    accessible: true,
-};
+const dropdownWidgetLogic: WidgetLogicWithDefaults<DropdownDefaultWidgetOptions> =
+    {
+        name: "dropdown",
+        defaultWidgetOptions,
+        defaultAlignment: "inline-block",
+        getPublicWidgetOptions: getDropdownPublicWidgetOptions,
+        accessible: true,
+    };
 
 export default dropdownWidgetLogic;

@@ -1,4 +1,4 @@
-import type {PerseusScore} from "@khanacademy/perseus-core";
+import type {PerseusScore} from "@ethosengine/perseus-core";
 
 /**
  * Scoring function for deprecated-standin widget.
@@ -8,8 +8,8 @@ import type {PerseusScore} from "@khanacademy/perseus-core";
  * so that content using deprecated widgets doesn't experience any regressions.
  */
 function scoreDeprecatedStandin(
-    userInput: any,
-    rubric: any,
+    userInput: Record<string, unknown>,
+    rubric: Record<string, unknown>,
     locale: string,
 ): PerseusScore {
     return {

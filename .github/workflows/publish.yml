@@ -253,7 +253,7 @@ jobs:
 
                       Example:
                       ```sh
-                      pnpm add @khanacademy/perseus@${{
+                      pnpm add @ethosengine/perseus@${{
                       steps.publish-snapshot.outputs.npm_snapshot_tag }}
                       ```
 

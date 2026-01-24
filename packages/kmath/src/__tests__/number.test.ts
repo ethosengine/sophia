@@ -3,11 +3,14 @@ import {describe, it} from "@jest/globals";
 import * as number from "../number";
 
 describe("knumber", function () {
-    it.each([3, Math.PI, 6.28, 5e10, 1 / 0])("is a number: %s", (num: any) => {
-        expect(number.is(num)).toBe(true);
-    });
+    it.each([3, Math.PI, 6.28, 5e10, 1 / 0])(
+        "is a number: %s",
+        (num: number) => {
+            expect(number.is(num)).toBe(true);
+        },
+    );
 
-    it.each(["10", 0 / 0, NaN])("is not a number:%s", (num: any) => {
+    it.each(["10", 0 / 0, NaN])("is not a number:%s", (num: unknown) => {
         expect(number.is(num)).toBe(false);
     });
 

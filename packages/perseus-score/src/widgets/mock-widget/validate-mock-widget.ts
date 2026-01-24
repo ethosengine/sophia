@@ -1,5 +1,5 @@
 import type {PerseusMockWidgetUserInput} from "./mock-widget-validation.types";
-import type {ValidationResult} from "@khanacademy/perseus-core";
+import type {ValidationResult} from "@ethosengine/perseus-core";
 
 function validateMockWidget(
     // NOTE(benchristel): userInput can be undefined if the widget has never

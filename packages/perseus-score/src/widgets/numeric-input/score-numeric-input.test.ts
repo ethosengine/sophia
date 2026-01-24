@@ -1,6 +1,6 @@
 import scoreNumericInput, {maybeParsePercentInput} from "./score-numeric-input";
 
-import type {PerseusNumericInputRubric} from "@khanacademy/perseus-core";
+import type {PerseusNumericInputRubric} from "@ethosengine/perseus-core";
 
 describe("scoreNumericInput", () => {
     it("is invalid when input is undefined", () => {

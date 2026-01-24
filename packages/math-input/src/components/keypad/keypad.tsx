@@ -12,7 +12,7 @@ import {getAvailableTabs} from "./utils/get-available-tabs";
 
 import type {ClickKeyCallback, KeypadPageType} from "../../types";
 import type {CursorContext} from "../input/cursor-contexts";
-import type {PerseusAnalyticsEvent, KeypadKey} from "@khanacademy/perseus-core";
+import type {PerseusAnalyticsEvent, KeypadKey} from "@ethosengine/perseus-core";
 
 export interface KeypadProps {
     extraKeys?: ReadonlyArray<KeypadKey>;

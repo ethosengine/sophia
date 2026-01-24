@@ -1,6 +1,6 @@
 import scoreGroup from "./score-group";
 
-import type {PerseusGroupRubric} from "@khanacademy/perseus-core";
+import type {PerseusGroupRubric} from "@ethosengine/perseus-core";
 
 describe("scoreGroup", () => {
     it("returns a score of 'invalid' when the user input is undefined", () => {

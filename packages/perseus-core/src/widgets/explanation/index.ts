@@ -1,5 +1,5 @@
 import type {PerseusExplanationWidgetOptions} from "../../data-schema";
-import type {WidgetLogic} from "../logic-export.types";
+import type {WidgetLogicWithDefaults} from "../logic-export.types";
 
 export type ExplanationDefaultWidgetOptions = Pick<
     PerseusExplanationWidgetOptions,
@@ -13,11 +13,12 @@ const defaultWidgetOptions: ExplanationDefaultWidgetOptions = {
     widgets: {},
 };
 
-const explanationWidgetLogic: WidgetLogic = {
-    name: "explanation",
-    defaultWidgetOptions,
-    defaultAlignment: "inline",
-    accessible: true,
-};
+const explanationWidgetLogic: WidgetLogicWithDefaults<ExplanationDefaultWidgetOptions> =
+    {
+        name: "explanation",
+        defaultWidgetOptions,
+        defaultAlignment: "inline",
+        accessible: true,
+    };
 
 export default explanationWidgetLogic;

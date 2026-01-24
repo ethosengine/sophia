@@ -1,5 +1,5 @@
 import type {PerseusGradedGroupWidgetOptions} from "../../data-schema";
-import type {WidgetLogic} from "../logic-export.types";
+import type {WidgetLogicWithDefaults} from "../logic-export.types";
 
 export type GradedGroupDefaultWidgetOptions = Pick<
     PerseusGradedGroupWidgetOptions,
@@ -18,11 +18,12 @@ const traverseChildWidgets = function (props: any, traverseRenderer: any): any {
     return {...props, ...traverseRenderer(props)};
 };
 
-const gradedGroupWidgetLogic: WidgetLogic = {
-    name: "graded-group",
-    defaultWidgetOptions,
-    accessible: true,
-    traverseChildWidgets: traverseChildWidgets,
-};
+const gradedGroupWidgetLogic: WidgetLogicWithDefaults<GradedGroupDefaultWidgetOptions> =
+    {
+        name: "graded-group",
+        defaultWidgetOptions,
+        accessible: true,
+        traverseChildWidgets: traverseChildWidgets,
+    };
 
 export default gradedGroupWidgetLogic;

@@ -34,8 +34,8 @@
     },
     "dependencies": {
         "@ethosengine/sophia-core": "workspace:*",
-        "@khanacademy/perseus-core": "workspace:*",
-        "@khanacademy/perseus-score": "workspace:*"
+        "@ethosengine/perseus-core": "workspace:*",
+        "@ethosengine/perseus-score": "workspace:*"
     },
     "devDependencies": {
         "perseus-build-settings": "workspace:*"

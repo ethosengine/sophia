@@ -1,6 +1,6 @@
 import validateSorter from "./validate-sorter";
 
-import type {PerseusSorterUserInput} from "@khanacademy/perseus-core";
+import type {PerseusSorterUserInput} from "@ethosengine/perseus-core";
 
 describe("validateSorter", () => {
     it("is invalid when the user has not made any changes", () => {

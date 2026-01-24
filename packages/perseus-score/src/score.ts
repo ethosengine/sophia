@@ -1,4 +1,4 @@
-import {applyDefaultsToWidgets} from "@khanacademy/perseus-core";
+import {applyDefaultsToWidgets} from "@ethosengine/perseus-core";
 
 import flattenScores from "./util/flatten-scores";
 import getScoreableWidgets from "./util/get-scoreable-widgets";
@@ -11,7 +11,7 @@ import type {
     PerseusWidgetsMap,
     UserInputMap,
     UserInput,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 /**
  * score a Perseus item

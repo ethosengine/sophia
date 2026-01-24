@@ -1,0 +1,83 @@
+{
+    "name": "@ethosengine/sophia-element",
+    "description": "Web Component distribution for sophia rendering engine",
+    "author": "Ethos Engine",
+    "license": "MIT",
+    "version": "1.0.0",
+    "publishConfig": {
+        "access": "public"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ethosengine/sophia.git",
+        "directory": "packages/sophia-element"
+    },
+    "bugs": {
+        "url": "https://github.com/ethosengine/sophia/issues"
+    },
+    "module": "dist/es/index.js",
+    "main": "dist/index.js",
+    "source": "src/index.ts",
+    "exports": {
+        ".": {
+            "import": "./dist/es/index.js",
+            "require": "./dist/index.js",
+            "types": "./dist/index.d.ts",
+            "source": "./src/index.ts"
+        },
+        "./register": {
+            "import": "./dist/es/register.js",
+            "require": "./dist/register.js",
+            "types": "./dist/register.d.ts",
+            "source": "./src/register.ts"
+        },
+        "./umd": {
+            "import": "./dist/sophia-element.umd.js",
+            "require": "./dist/sophia-element.umd.js"
+        },
+        "./styles.css": "./dist/index.css",
+        "./umd.css": "./dist/sophia-element.umd.css"
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "prepublishOnly": "../../utils/package-pre-publish-check.sh",
+        "build:umd": "rollup -c rollup.config.mjs"
+    },
+    "dependencies": {
+        "@ethosengine/sophia": "workspace:*",
+        "@ethosengine/sophia-core": "workspace:*",
+        "@ethosengine/perseus-core": "workspace:*",
+        "@ethosengine/perseus-score": "workspace:*"
+    },
+    "devDependencies": {
+        "@khanacademy/wonder-blocks-core": "catalog:devDeps",
+        "@rollup/plugin-alias": "^5.1.0",
+        "@rollup/plugin-commonjs": "^25.0.7",
+        "@rollup/plugin-node-resolve": "^15.2.3",
+        "@rollup/plugin-replace": "^5.0.5",
+        "@rollup/plugin-swc": "^0.3.0",
+        "@rollup/plugin-terser": "^0.4.4",
+        "aphrodite": "catalog:devDeps",
+        "perseus-build-settings": "workspace:*",
+        "react": "catalog:devDeps",
+        "react-dom": "catalog:devDeps",
+        "rollup": "^4.9.6",
+        "rollup-plugin-filesize": "^10.0.0",
+        "rollup-plugin-postcss": "^4.0.2"
+    },
+    "peerDependencies": {
+        "@khanacademy/wonder-blocks-core": "catalog:peerDeps",
+        "aphrodite": "catalog:peerDeps",
+        "react": "catalog:peerDeps",
+        "react-dom": "catalog:peerDeps"
+    },
+    "keywords": [
+        "sophia",
+        "web-component",
+        "assessment",
+        "mastery",
+        "discovery"
+    ]
+}

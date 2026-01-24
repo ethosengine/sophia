@@ -2,7 +2,7 @@ import type {
     PerseusCategorizerRubric,
     PerseusCategorizerUserInput,
     PerseusScore,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 function scoreCategorizer(
     // NOTE(benchristel): userInput can be undefined if the widget has never

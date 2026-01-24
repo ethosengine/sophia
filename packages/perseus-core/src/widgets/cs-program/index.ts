@@ -1,7 +1,7 @@
 import getCSProgramPublicWidgetOptions from "./cs-program-util";
 
 import type {PerseusCSProgramWidgetOptions} from "../../data-schema";
-import type {WidgetLogic} from "../logic-export.types";
+import type {WidgetLogicWithDefaults} from "../logic-export.types";
 
 export type CSProgramDefaultWidgetOptions = Pick<
     PerseusCSProgramWidgetOptions,
@@ -24,12 +24,13 @@ const defaultWidgetOptions: CSProgramDefaultWidgetOptions = {
     height: DEFAULT_HEIGHT,
 };
 
-const csProgramWidgetLogic: WidgetLogic = {
-    name: "cs-program",
-    defaultWidgetOptions,
-    supportedAlignments: ["block", "full-width"],
-    getPublicWidgetOptions: getCSProgramPublicWidgetOptions,
-    accessible: false,
-};
+const csProgramWidgetLogic: WidgetLogicWithDefaults<CSProgramDefaultWidgetOptions> =
+    {
+        name: "cs-program",
+        defaultWidgetOptions,
+        supportedAlignments: ["block", "full-width"],
+        getPublicWidgetOptions: getCSProgramPublicWidgetOptions,
+        accessible: false,
+    };
 
 export default csProgramWidgetLogic;

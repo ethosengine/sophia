@@ -1,7 +1,7 @@
 import getExpressionPublicWidgetOptions from "./expression-util";
 
 import type {PerseusExpressionWidgetOptions} from "../../data-schema";
-import type {WidgetLogic} from "../logic-export.types";
+import type {WidgetLogicWithDefaults} from "../logic-export.types";
 
 const currentVersion = {major: 2, minor: 0};
 
@@ -17,13 +17,14 @@ const defaultWidgetOptions: ExpressionDefaultWidgetOptions = {
     functions: ["f", "g", "h"],
 };
 
-const expressionWidgetLogic: WidgetLogic = {
-    name: "expression",
-    version: currentVersion,
-    defaultWidgetOptions: defaultWidgetOptions,
-    defaultAlignment: "inline-block",
-    getPublicWidgetOptions: getExpressionPublicWidgetOptions,
-    accessible: true,
-};
+const expressionWidgetLogic: WidgetLogicWithDefaults<ExpressionDefaultWidgetOptions> =
+    {
+        name: "expression",
+        version: currentVersion,
+        defaultWidgetOptions: defaultWidgetOptions,
+        defaultAlignment: "inline-block",
+        getPublicWidgetOptions: getExpressionPublicWidgetOptions,
+        accessible: true,
+    };
 
 export default expressionWidgetLogic;

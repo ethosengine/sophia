@@ -1,5 +1,5 @@
 import type {PerseusPhetSimulationWidgetOptions} from "../../data-schema";
-import type {WidgetLogic} from "../logic-export.types";
+import type {WidgetLogicWithDefaults} from "../logic-export.types";
 
 export type PhetSimulationDefaultWidgetOptions = Pick<
     PerseusPhetSimulationWidgetOptions,
@@ -11,10 +11,11 @@ const defaultWidgetOptions: PhetSimulationDefaultWidgetOptions = {
     description: "",
 };
 
-const phetSimulationWidgetLogic: WidgetLogic = {
-    name: "phet-simulation",
-    defaultWidgetOptions,
-    accessible: true,
-};
+const phetSimulationWidgetLogic: WidgetLogicWithDefaults<PhetSimulationDefaultWidgetOptions> =
+    {
+        name: "phet-simulation",
+        defaultWidgetOptions,
+        accessible: true,
+    };
 
 export default phetSimulationWidgetLogic;

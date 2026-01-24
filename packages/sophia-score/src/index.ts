@@ -39,4 +39,4 @@ export {
     scoreWidgetsFunctional,
     flattenScores,
     validateUserInput,
-} from "@khanacademy/perseus-score";
+} from "@ethosengine/perseus-score";

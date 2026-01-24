@@ -2,6 +2,7 @@ import {Errors} from "../error/errors";
 import {PerseusError} from "../error/perseus-error";
 import Registry from "../utils/registry";
 
+import {applyDefaultsToWidgets} from "./apply-defaults";
 import categorizerWidgetLogic from "./categorizer";
 import csProgramWidgetLogic from "./cs-program";
 import definitionWidgetLogic from "./definition";
@@ -32,6 +33,7 @@ import phetSimulationWidgetLogic from "./phet-simulation";
 import plotterWidgetLogic from "./plotter";
 import pythonProgramWidgetLogic from "./python-program";
 import radioWidgetLogic from "./radio";
+import {setRegistryAccessors} from "./registry-accessors";
 import sorterWidgetLogic from "./sorter";
 import tableWidgetLogic from "./table";
 import videoWidgetLogic from "./video";
@@ -228,5 +230,17 @@ export function registerCoreWidgets() {
 
     widgets.forEach((w) => {
         registerWidget(w.name, w);
+    });
+
+    // Initialize the lazy accessors now that the registry is populated.
+    // This breaks circular dependencies between widget logic, apply-defaults,
+    // and split-perseus-renderer.
+    setRegistryAccessors({
+        getPublicWidgetOptionsFunction,
+        applyDefaultsToWidgets,
+        getCurrentVersion,
+        getDefaultWidgetOptions,
+        getSupportedAlignments,
+        isWidgetRegistered,
     });
 }

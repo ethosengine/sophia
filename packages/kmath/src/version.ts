@@ -2,7 +2,7 @@
 // version number during the release build.
 // In dev, you'll never see the version number.
 
-import {addLibraryVersionToPerseusDebug} from "@khanacademy/perseus-utils";
+import {addLibraryVersionToPerseusDebug} from "@ethosengine/sophia-utils";
 
 const libName = "@khanacademy/kmath";
 export const libVersion = "__lib_version__";

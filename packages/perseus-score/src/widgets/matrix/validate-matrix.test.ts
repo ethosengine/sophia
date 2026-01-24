@@ -1,6 +1,6 @@
 import validateMatrix from "./validate-matrix";
 
-import type {PerseusMatrixUserInput} from "@khanacademy/perseus-core";
+import type {PerseusMatrixUserInput} from "@ethosengine/perseus-core";
 
 describe("matrixValidator", () => {
     it("should return invalid when user input is undefined", () => {

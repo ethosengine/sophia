@@ -1,0 +1,74 @@
+/**
+ * Sophia Element Base Styles
+ *
+ * Base container styles for the <sophia-question> custom element.
+ * These styles are injected into the Shadow DOM.
+ */
+
+:host {
+    display: block;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.5;
+    color: var(--sophia-text-color, #21242c);
+    background-color: var(--sophia-bg-color, #ffffff);
+}
+
+:host([hidden]) {
+    display: none;
+}
+
+.sophia-question-container {
+    padding: var(--sophia-container-padding, 16px);
+    border-radius: var(--sophia-border-radius, 8px);
+}
+
+.sophia-question-container.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.sophia-question-container.review-mode {
+    pointer-events: none;
+}
+
+.sophia-question-container.review-mode .widget-container {
+    cursor: default;
+}
+
+/* Error state */
+.sophia-error {
+    padding: 16px;
+    border: 1px solid var(--sophia-error-border, #d93025);
+    border-radius: 8px;
+    background-color: var(--sophia-error-bg, #fce8e6);
+    color: var(--sophia-error-text, #c5221f);
+}
+
+.sophia-error-title {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+/* Loading state */
+.sophia-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    color: var(--sophia-text-secondary, #5f6368);
+}
+
+.sophia-loading-spinner {
+    width: 24px;
+    height: 24px;
+    border: 3px solid var(--sophia-border-color, #e8eaed);
+    border-top-color: var(--sophia-primary-color, #1a73e8);
+    border-radius: 50%;
+    animation: sophia-spin 1s linear infinite;
+}
+
+@keyframes sophia-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

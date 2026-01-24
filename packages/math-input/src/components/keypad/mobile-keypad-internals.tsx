@@ -14,7 +14,7 @@ import type {
     AnalyticsEventHandlerFn,
     KeypadConfiguration,
     KeypadKey,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 const AnimationDurationInMS = 200;

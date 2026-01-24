@@ -41,8 +41,8 @@
     },
     "dependencies": {
         "@khanacademy/keypad-context": "workspace:*",
-        "@khanacademy/perseus-core": "workspace:*",
-        "@khanacademy/perseus-utils": "workspace:*"
+        "@ethosengine/perseus-core": "workspace:*",
+        "@ethosengine/sophia-utils": "workspace:*"
     },
     "devDependencies": {
         "@khanacademy/mathjax-renderer": "catalog:devDeps",

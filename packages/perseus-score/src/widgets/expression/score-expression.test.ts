@@ -4,7 +4,7 @@ import {expressionItem3Options} from "./score-expression.testdata";
 import type {
     PerseusExpressionRubric,
     PerseusExpressionWidgetOptions,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 describe("scoreExpression", () => {
     it("should score undefined user input as invalid", function () {

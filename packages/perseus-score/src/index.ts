@@ -1,3 +1,18 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// Imports
+// ─────────────────────────────────────────────────────────────────────────────
+
+import {registerScoringStrategy} from "@ethosengine/sophia-core";
+
+import {MasteryScoringStrategy} from "./mastery-strategy";
+import {scoreWidgetsFunctional as _scoreWidgetsFunctional} from "./score";
+import {setScoreAccessors} from "./score-accessors";
+import {emptyWidgetsFunctional as _emptyWidgetsFunctional} from "./validate";
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Exports
+// ─────────────────────────────────────────────────────────────────────────────
+
 export {default as KhanAnswerTypes} from "./util/answer-types";
 export type {Score} from "./util/answer-types";
 export {default as scoreCategorizer} from "./widgets/categorizer/score-categorizer";
@@ -47,3 +62,19 @@ export type {
 } from "./widgets/mock-widget/mock-widget-validation.types";
 
 export * from "./widgets/widget-registry";
+
+// Mastery Scoring Strategy
+export {MasteryScoringStrategy} from "./mastery-strategy";
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Side Effects
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Initialize lazy accessors to break circular dependencies
+setScoreAccessors({
+    scoreWidgetsFunctional: _scoreWidgetsFunctional,
+    emptyWidgetsFunctional: _emptyWidgetsFunctional,
+});
+
+// Auto-register mastery strategy on import
+registerScoringStrategy(MasteryScoringStrategy);

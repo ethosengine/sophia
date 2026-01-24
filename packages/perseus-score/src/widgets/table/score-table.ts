@@ -7,7 +7,7 @@ import type {
     PerseusTableRubric,
     PerseusScore,
     PerseusTableUserInput,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 function scoreTable(
     userInput: PerseusTableUserInput,

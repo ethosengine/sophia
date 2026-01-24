@@ -1,11 +1,11 @@
-import * as KAS from "@khanacademy/kas";
 import {
     ErrorCodes,
     Errors,
     getDecimalSeparator,
     getDivideSymbol,
     PerseusError,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
+import * as KAS from "@khanacademy/kas";
 import _ from "underscore";
 
 import KhanAnswerTypes from "../../util/answer-types";
@@ -16,7 +16,7 @@ import type {
     PerseusExpressionRubric,
     PerseusExpressionUserInput,
     PerseusScore,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 /* Content creators input a list of answers which are matched from top to
  * bottom. The intent is that they can include spcific solutions which should

@@ -16,7 +16,7 @@ import React, {useState} from "react";
 import MathInput from "../input/math-input";
 import {MobileKeypad} from "../keypad";
 
-import type {KeypadConfiguration} from "@khanacademy/perseus-core";
+import type {KeypadConfiguration} from "@ethosengine/perseus-core";
 import type {UserEvent} from "@testing-library/user-event";
 
 const MQ = MathQuill.getInterface(3);

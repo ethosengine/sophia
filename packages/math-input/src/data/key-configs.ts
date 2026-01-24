@@ -5,7 +5,7 @@
 import type {KeyType} from "../enums";
 import type {MathInputStrings} from "../strings";
 import type {KeyConfig} from "../types";
-import type {KeypadKey} from "@khanacademy/perseus-core";
+import type {KeypadKey} from "@ethosengine/perseus-core";
 
 type KeyConfigMapper = (args: {
     key: KeypadKey;

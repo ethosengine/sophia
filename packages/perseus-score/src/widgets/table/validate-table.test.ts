@@ -1,6 +1,6 @@
 import validateTable from "./validate-table";
 
-import type {PerseusTableUserInput} from "@khanacademy/perseus-core";
+import type {PerseusTableUserInput} from "@ethosengine/perseus-core";
 
 describe("tableValidator", () => {
     it("is invalid if there is an empty cell", () => {

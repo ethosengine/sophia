@@ -1,5 +1,5 @@
 import type {SineCoefficient} from "./geometry";
-import type {Coord} from "@khanacademy/perseus-core";
+import type {Coord} from "@ethosengine/perseus-core";
 
 export type NamedSineCoefficient = {
     amplitude: number;
@@ -8,14 +8,25 @@ export type NamedSineCoefficient = {
     verticalOffset: number;
 };
 
-// TODO: there's another, very similar getSinusoidCoefficients function
-// they should probably be merged
+/**
+ * Calculate sinusoid coefficients from two control points.
+ * Returns a tuple [amplitude, angularFrequency, phase, verticalOffset].
+ *
+ * Note: There is a similar function in interactive-graphs/graphs/sinusoid.tsx
+ * that returns a named object instead of a tuple. Both are kept intentionally
+ * as they serve different API needs (tuple for math operations, object for readability).
+ */
 export function getSinusoidCoefficients(
     coords: ReadonlyArray<Coord>,
-): SineCoefficient {
+): SineCoefficient | undefined {
     // It's assumed that p1 is the root and p2 is the first peak
     const p1 = coords[0];
     const p2 = coords[1];
+
+    // If the x-coordinates are the same, we cannot calculate the coefficients
+    if (p2[0] === p1[0]) {
+        return undefined;
+    }
 
     // Resulting coefficients are canonical for this sine curve
     const amplitude = p2[1] - p1[1];
@@ -28,20 +39,25 @@ export function getSinusoidCoefficients(
 
 export type QuadraticCoefficient = [number, number, number];
 
-// TODO: there's another, very similar getQuadraticCoefficients function
-// they should probably be merged
+/**
+ * Calculate quadratic coefficients [a, b, c] from three control points.
+ * Returns undefined if the points are collinear (denominator is 0).
+ *
+ * Note: There is a similar function in interactive-graphs/graphs/quadratic.tsx
+ * with stricter input typing (QuadraticCoords = [Coord, Coord, Coord]).
+ * Both are kept as they serve different API needs.
+ */
 export function getQuadraticCoefficients(
     coords: ReadonlyArray<Coord>,
-): QuadraticCoefficient {
+): QuadraticCoefficient | undefined {
     const p1 = coords[0];
     const p2 = coords[1];
     const p3 = coords[2];
 
     const denom = (p1[0] - p2[0]) * (p1[0] - p3[0]) * (p2[0] - p3[0]);
     if (denom === 0) {
-        // Many of the callers assume that the return value is always defined.
-        // @ts-expect-error - TS2322 - Type 'undefined' is not assignable to type 'QuadraticCoefficient'.
-        return;
+        // Points are collinear or coincident - cannot determine quadratic
+        return undefined;
     }
     const a =
         (p3[0] * (p2[1] - p1[1]) +

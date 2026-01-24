@@ -9,7 +9,7 @@ import {createMathField} from "../input/mathquill-instance";
 import {getKeyTranslator} from "../key-handlers/key-translator";
 
 import type {MathFieldInterface} from "../input/mathquill-types";
-import type {KeypadKey} from "@khanacademy/perseus-core";
+import type {KeypadKey} from "@ethosengine/perseus-core";
 
 import Keypad from "./index";
 

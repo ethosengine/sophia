@@ -3,7 +3,7 @@ import scoreMatcher from "./score-matcher";
 import type {
     PerseusMatcherRubric,
     PerseusMatcherUserInput,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 describe("scoreMatcher", () => {
     it("returns invalid for undefined user input", () => {

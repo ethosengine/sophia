@@ -1,11 +1,11 @@
-import {approximateDeepEqual} from "@khanacademy/perseus-core";
+import {approximateDeepEqual} from "@ethosengine/perseus-core";
 import _ from "underscore";
 
 import type {
     PerseusSorterRubric,
     PerseusSorterUserInput,
     PerseusScore,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 function scoreSorter(
     userInput: PerseusSorterUserInput,

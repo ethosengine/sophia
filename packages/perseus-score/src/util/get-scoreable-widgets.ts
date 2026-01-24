@@ -1,14 +1,14 @@
 import {
     applyDefaultsToWidgets,
     getWidgetIdsFromContent,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 import isWidgetScoreable from "./is-widget-scoreable";
 
 import type {
     PerseusRenderer,
     PerseusWidgetsMap,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 /**
  * Returns the upgraded widgets and the IDs of widgets that should be scored.

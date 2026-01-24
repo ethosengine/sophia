@@ -561,8 +561,15 @@ abstract class Expr {
         return new Mul(NumOne, this);
     }
 
-    // TODO(alex): rename to isDefinitePositive or similar?
-    // return whether this expression is 100% positive
+    /**
+     * Returns whether this expression is definitively positive (>0).
+     * For numeric values, this is straightforward. For variables/symbols,
+     * returns false since positivity cannot be guaranteed.
+     *
+     * Note: Name could be "isDefinitePositive" but keeping as "isPositive"
+     * for backwards compatibility. The semantics are: returns true ONLY
+     * when we can prove the expression is always positive.
+     */
     isPositive(): boolean {
         throw new Error(
             "Abstract method - must override for expr: " +
@@ -571,8 +578,14 @@ abstract class Expr {
         );
     }
 
-    // TODO(alex): rename to hasNegativeSign or similar?
-    // return whether this expression has a negative sign
+    /**
+     * Returns whether this expression has a leading negative sign.
+     * This is about presentation (e.g., -5 has a negative sign),
+     * NOT about whether the value is negative.
+     *
+     * Note: Name could be "hasNegativeSign" but keeping as "isNegative"
+     * for backwards compatibility.
+     */
     isNegative() {
         return false;
     }

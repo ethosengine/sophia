@@ -3,7 +3,7 @@ import scoreInputNumber from "./score-input-number";
 import type {
     PerseusInputNumberRubric,
     PerseusInputNumberUserInput,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 describe("scoreInputNumber", () => {
     it("scores undefined user input as invalid", () => {

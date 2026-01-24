@@ -1,4 +1,4 @@
-import {getDecimalSeparator} from "@khanacademy/perseus-core";
+import {getDecimalSeparator} from "@ethosengine/perseus-core";
 
 import KhanAnswerTypes from "../../util/answer-types";
 import {parseTex} from "../../util/tex-wrangler";
@@ -10,7 +10,7 @@ import type {
     PerseusScore,
     MathFormat,
     PerseusNumericInputAnswer,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 const answerFormButtons: ReadonlyArray<{
     title: string;

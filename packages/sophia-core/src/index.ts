@@ -18,12 +18,43 @@ export type {
     Recognition,
     MasteryResult,
     ResonanceResult,
+    ReflectionResult,
     AggregatedResonance,
     AggregatedMastery,
+    LogLevel,
 } from "./types";
+
+// Log level priority constants
+export {LOG_PRIORITY} from "./types";
 
 // Re-exported Perseus types
 export type {PerseusRenderer, Hint, UserInputMap} from "./types";
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Scoring Strategy Abstraction
+// ─────────────────────────────────────────────────────────────────────────────
+
+// Scoring strategy types
+export type {ScoringStrategy, WidgetScoringResult} from "./scoring-strategy";
+
+// Built-in strategies
+export {
+    NoOpScoringStrategy,
+    hasMasteryResult,
+    hasResonanceResult,
+    hasReflectionResult,
+} from "./scoring-strategy";
+
+// Scoring strategy registry
+export {
+    registerScoringStrategy,
+    getScoringStrategy,
+    getDefaultScoringStrategy,
+    setDefaultScoringStrategy,
+    getRegisteredStrategyIds,
+    hasStrategy,
+    clearStrategyRegistry,
+} from "./scoring-registry";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Factory Functions
@@ -36,6 +67,7 @@ import type {
     AssessmentPurpose,
     MasteryResult,
     ResonanceResult,
+    ReflectionResult,
     SubscaleMappings,
     PerseusRenderer,
     Hint,
@@ -93,6 +125,23 @@ export function createDiscoveryMoment(
 }
 
 /**
+ * Create a reflection moment (for open-ended/journaling assessment).
+ */
+export function createReflectionMoment(
+    id: string,
+    content: PerseusRenderer,
+    options?: {
+        subscaleContributions?: SubscaleMappings;
+        metadata?: MomentMetadata;
+    },
+): Moment {
+    return createMoment(id, "reflection", content, {
+        subscaleContributions: options?.subscaleContributions,
+        metadata: options?.metadata,
+    });
+}
+
+/**
  * Create a Recognition result.
  */
 export function createRecognition(
@@ -102,6 +151,7 @@ export function createRecognition(
     options?: {
         mastery?: MasteryResult;
         resonance?: ResonanceResult;
+        reflection?: ReflectionResult;
         timestamp?: number;
     },
 ): Recognition {
@@ -111,6 +161,7 @@ export function createRecognition(
         userInput,
         mastery: options?.mastery,
         resonance: options?.resonance,
+        reflection: options?.reflection,
         timestamp: options?.timestamp ?? Date.now(),
     };
 }
@@ -134,6 +185,13 @@ export function isDiscoveryMoment(moment: Moment): boolean {
 }
 
 /**
+ * Check if a moment is for reflection assessment.
+ */
+export function isReflectionMoment(moment: Moment): boolean {
+    return moment.purpose === "reflection";
+}
+
+/**
  * Check if a recognition indicates demonstrated mastery.
  */
 export function hasDemonstrated(recognition: Recognition): boolean {
@@ -147,7 +205,9 @@ export function getPrimarySubscale(
     resonance: ResonanceResult,
 ): string | undefined {
     const entries = Object.entries(resonance.subscaleContributions);
-    if (entries.length === 0) return undefined;
+    if (entries.length === 0) {
+        return undefined;
+    }
 
     let maxSubscale = entries[0][0];
     let maxValue = entries[0][1];

@@ -3,7 +3,7 @@ import type {
     NumericInputWidget,
     PerseusRenderer,
     RadioWidget,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 const radio: RadioWidget = {
     type: "radio",

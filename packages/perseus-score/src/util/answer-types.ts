@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-escape */
+import {ErrorCodes, Errors, PerseusError} from "@ethosengine/perseus-core";
 import * as KAS from "@khanacademy/kas";
 import {KhanMath} from "@khanacademy/kmath";
-import {ErrorCodes, Errors, PerseusError} from "@khanacademy/perseus-core";
 import _ from "underscore";
 
 const MAXERROR_EPSILON = Math.pow(2, -42);

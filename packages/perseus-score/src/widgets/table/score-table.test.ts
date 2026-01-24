@@ -4,7 +4,7 @@ import * as TableValidator from "./validate-table";
 import type {
     PerseusTableRubric,
     PerseusTableUserInput,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 describe("scoreTable", () => {
     it("should be correctly answerable if validation passes", function () {

@@ -6,7 +6,7 @@ import scoreInteractiveGraph from "./score-interactive-graph";
 import type {
     PerseusGraphType,
     PerseusInteractiveGraphRubric,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 describe("InteractiveGraph scoring on a segment question", () => {
     it("marks the answer invalid if guess is undefined", () => {
@@ -507,6 +507,126 @@ describe("InteractiveGraph scoring on an angle question", () => {
         const result = scoreInteractiveGraph(guess, rubric);
 
         // Assert
+        expect(result).toHaveBeenAnsweredCorrectly();
+    });
+});
+
+describe("InteractiveGraph scoring on a circle question", () => {
+    it("marks the answer invalid if guess.center and guess.radius are missing", () => {
+        const guess: PerseusGraphType = {type: "circle"};
+        const rubric: PerseusInteractiveGraphRubric = {
+            graph: {type: "circle"},
+            correct: {
+                type: "circle",
+                center: [0, 0],
+                radius: 5,
+            },
+        };
+
+        const result = scoreInteractiveGraph(guess, rubric);
+
+        expect(result).toHaveInvalidInput();
+    });
+
+    it("does not award points if guess center is wrong", () => {
+        const guess: PerseusGraphType = {
+            type: "circle",
+            center: [1, 1],
+            radius: 5,
+        };
+        const rubric: PerseusInteractiveGraphRubric = {
+            graph: {type: "circle"},
+            correct: {
+                type: "circle",
+                center: [0, 0],
+                radius: 5,
+            },
+        };
+
+        const result = scoreInteractiveGraph(guess, rubric);
+
+        expect(result).toHaveBeenAnsweredIncorrectly();
+    });
+
+    it("does not award points if guess radius is wrong", () => {
+        const guess: PerseusGraphType = {
+            type: "circle",
+            center: [0, 0],
+            radius: 3,
+        };
+        const rubric: PerseusInteractiveGraphRubric = {
+            graph: {type: "circle"},
+            correct: {
+                type: "circle",
+                center: [0, 0],
+                radius: 5,
+            },
+        };
+
+        const result = scoreInteractiveGraph(guess, rubric);
+
+        expect(result).toHaveBeenAnsweredIncorrectly();
+    });
+
+    it("awards points if guess center and radius are correct", () => {
+        const guess: PerseusGraphType = {
+            type: "circle",
+            center: [2, 3],
+            radius: 5,
+        };
+        const rubric: PerseusInteractiveGraphRubric = {
+            graph: {type: "circle"},
+            correct: {
+                type: "circle",
+                center: [2, 3],
+                radius: 5,
+            },
+        };
+
+        const result = scoreInteractiveGraph(guess, rubric);
+
+        expect(result).toHaveBeenAnsweredCorrectly();
+    });
+
+    it("uses approximate equality for center coordinates", () => {
+        // Uses default tolerance of 1e-9
+        const guess: PerseusGraphType = {
+            type: "circle",
+            center: [2.0000000001, 3.0000000001],
+            radius: 5,
+        };
+        const rubric: PerseusInteractiveGraphRubric = {
+            graph: {type: "circle"},
+            correct: {
+                type: "circle",
+                center: [2, 3],
+                radius: 5,
+            },
+        };
+
+        const result = scoreInteractiveGraph(guess, rubric);
+
+        expect(result).toHaveBeenAnsweredCorrectly();
+    });
+
+    it("uses approximate equality for radius", () => {
+        // Uses default tolerance of 1e-9
+        const guess: PerseusGraphType = {
+            type: "circle",
+            center: [0, 0],
+            radius: 5.0000000001,
+        };
+        const rubric: PerseusInteractiveGraphRubric = {
+            graph: {type: "circle"},
+            correct: {
+                type: "circle",
+                center: [0, 0],
+                radius: 5,
+            },
+        };
+
+        const result = scoreInteractiveGraph(guess, rubric);
+
         expect(result).toHaveBeenAnsweredCorrectly();
     });
 });

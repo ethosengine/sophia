@@ -28,10 +28,11 @@ const pkgMap = fg
             ...map,
             // NOTE(kevinb): we use the 'source' field here so that we can run our
             // tests without having to compile all of the packages first.
-            // NOTE(jeremy): We use strip the leading "@khanacademy/" namespace
-            // from all package names because our local directory structure
+            // NOTE(jeremy): We strip the leading "@khanacademy/" or "@ethosengine/"
+            // namespace from all package names because our local directory structure
             // doesn't include that. So "@khanacademy/perseus" becomes "perseus"
-            [`^${pkgJson.name}$`]: `<rootDir>/packages/${pkgJson.name.replace(/^@khanacademy\//, "")}/${pkgJson.source}`,
+            // and "@ethosengine/sophia-core" becomes "sophia-core"
+            [`^${pkgJson.name}$`]: `<rootDir>/packages/${pkgJson.name.replace(/^@(khanacademy|ethosengine)\//, "")}/${pkgJson.source}`,
         };
     }, {});
 
@@ -100,8 +101,6 @@ module.exports = {
     // https://github.com/facebook/jest/issues/4156#issuecomment-490764080
     // reporters: ["<rootDir>/config/test/log-on-fail-reporter.js"],
 
-    // TODO(LEMS-2858) We turn off Prettier as Prettier v3 is incompatible with
-    // Jest v29. Once they release Jest v30 we can switch to that:
-    // https://github.com/jestjs/jest/issues/14305
+    // Prettier v3 is incompatible with Jest v29, so we disable it
     prettierPath: null,
 };

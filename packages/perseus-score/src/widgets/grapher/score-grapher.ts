@@ -1,11 +1,11 @@
-import {Errors, PerseusError, GrapherUtil} from "@khanacademy/perseus-core";
+import {Errors, PerseusError, GrapherUtil} from "@ethosengine/perseus-core";
 
 import type {
     PerseusGrapherRubric,
     PerseusGrapherUserInput,
     PerseusScore,
     GrapherAnswerTypes,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 function getCoefficientsByType(
     data: GrapherAnswerTypes,

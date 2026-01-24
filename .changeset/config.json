@@ -1,6 +1,6 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@2/schema.json",
-  "changelog": ["@changesets/changelog-github", {"repo": "Khan/perseus"}],
+  "changelog": ["@changesets/changelog-github", {"repo": "ethosengine/sophia"}],
   "commit": ["@changesets/cli/commit", { "skipCI": false }],
   "linked": [],
   "access": "public",

@@ -1,19 +1,19 @@
 {
-    "name": "@khanacademy/perseus-core",
-    "description": "Shared Perseus infrastructure",
-    "author": "Khan Academy",
+    "name": "@ethosengine/perseus-core",
+    "description": "Perseus core types and widget infrastructure",
+    "author": "Ethos Engine",
     "license": "MIT",
-    "version": "22.0.0",
+    "version": "1.0.0",
     "publishConfig": {
         "access": "public"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/Khan/perseus.git",
+        "url": "https://github.com/ethosengine/sophia.git",
         "directory": "packages/perseus-core"
     },
     "bugs": {
-        "url": "https://github.com/Khan/perseus/issues"
+        "url": "https://github.com/ethosengine/sophia/issues"
     },
     "module": "dist/es/index.js",
     "main": "dist/index.js",
@@ -40,7 +40,7 @@
     },
     "dependencies": {
         "@khanacademy/kas": "workspace:*",
-        "@khanacademy/perseus-utils": "workspace:*",
+        "@ethosengine/sophia-utils": "workspace:*",
         "@khanacademy/pure-markdown": "workspace:*",
         "tiny-invariant": "catalog:prodDeps"
     },

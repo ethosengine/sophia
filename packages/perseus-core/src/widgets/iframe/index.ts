@@ -1,7 +1,7 @@
 import getIFramePublicWidgetOptions from "./iframe-util";
 
 import type {PerseusIFrameWidgetOptions} from "../../data-schema";
-import type {WidgetLogic} from "../logic-export.types";
+import type {WidgetLogicWithDefaults} from "../logic-export.types";
 
 export type IFrameDefaultWidgetOptions = Pick<
     PerseusIFrameWidgetOptions,
@@ -22,7 +22,7 @@ const defaultWidgetOptions: IFrameDefaultWidgetOptions = {
     allowTopNavigation: false,
 };
 
-const iframeWidgetLogic: WidgetLogic = {
+const iframeWidgetLogic: WidgetLogicWithDefaults<IFrameDefaultWidgetOptions> = {
     name: "iframe",
     defaultWidgetOptions,
     getPublicWidgetOptions: getIFramePublicWidgetOptions,

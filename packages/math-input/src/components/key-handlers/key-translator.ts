@@ -1,7 +1,7 @@
 import {
     getDecimalSeparator,
     getDivideSymbolForTex,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 import {MathFieldActionType} from "../../types";
 import {mathQuillInstance} from "../input/mathquill-instance";
@@ -14,7 +14,7 @@ import type {
     MathFieldInterface,
     MathFieldUpdaterCallback,
 } from "../input/mathquill-types";
-import type {KeypadKey} from "@khanacademy/perseus-core";
+import type {KeypadKey} from "@ethosengine/perseus-core";
 
 function buildGenericCallback(
     str: string,

@@ -3,7 +3,7 @@ import _ from "underscore";
 
 import * as knumber from "./number";
 
-import type {MathFormat} from "@khanacademy/perseus-core";
+import type {MathFormat} from "@ethosengine/perseus-core";
 
 const KhanMath = {
     // Simplify formulas before display

@@ -3,7 +3,7 @@ import scoreNumberLine from "./score-number-line";
 import type {
     PerseusNumberLineRubric,
     PerseusNumberLineUserInput,
-} from "@khanacademy/perseus-core";
+} from "@ethosengine/perseus-core";
 
 describe("scoreNumberLine", () => {
     it("is invalid when user input is undefined", () => {

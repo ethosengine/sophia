@@ -3,22 +3,24 @@ import {getFeatureFlags} from "./feature-flags-util";
 describe("getFeatureFlags", () => {
     it("returns default flags when no overrides are provided", () => {
         const flags = getFeatureFlags();
+        // Default flags for testing are defined in feature-flags-util.ts
+        expect(Object.keys(flags).length).toBe(3);
         expect(flags["new-radio-widget"]).toBe(false);
         expect(flags["image-widget-upgrade"]).toBe(false);
+        expect(flags["image-widget-upgrade-alignment"]).toBe(false);
     });
 
-    it("overrides a single flag correctly", () => {
-        const flags = getFeatureFlags({"new-radio-widget": true});
-        expect(flags["new-radio-widget"]).toBe(true);
-        expect(flags["image-widget-upgrade"]).toBe(false);
+    it("can add custom flags via overrides", () => {
+        const flags = getFeatureFlags({"custom-flag": true});
+        expect(flags["custom-flag"]).toBe(true);
     });
 
-    it("overrides multiple flags correctly", () => {
+    it("handles multiple custom flags", () => {
         const flags = getFeatureFlags({
-            "new-radio-widget": true,
-            "image-widget-upgrade": true,
+            "flag-one": true,
+            "flag-two": false,
         });
-        expect(flags["new-radio-widget"]).toBe(true);
-        expect(flags["image-widget-upgrade"]).toBe(true);
+        expect(flags["flag-one"]).toBe(true);
+        expect(flags["flag-two"]).toBe(false);
     });
 });
