@@ -9,7 +9,7 @@ import {
 import {
     setDependencies,
     DependenciesContext,
-} from "../packages/perseus/src/dependencies";
+} from "../packages/sophia/src/dependencies";
 import {
     storybookTestDependencies,
     storybookDependenciesV2,
