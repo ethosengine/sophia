@@ -1,5 +1,5 @@
 import {ApiOptions} from "@ethosengine/sophia";
-import {action} from "storybook/actions";
+import {action} from "@storybook/addon-actions";
 
 import PlotterEditor from "../plotter-editor";
 

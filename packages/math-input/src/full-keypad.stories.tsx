@@ -1,4 +1,4 @@
-import {INITIAL_VIEWPORTS} from "storybook/viewport";
+import {INITIAL_VIEWPORTS} from "@storybook/addon-viewport";
 
 import Keypad from "./components/keypad";
 

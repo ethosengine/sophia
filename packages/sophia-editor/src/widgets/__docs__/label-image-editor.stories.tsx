@@ -1,4 +1,4 @@
-import {action} from "storybook/actions";
+import {action} from "@storybook/addon-actions";
 
 import LabelImageEditor from "../label-image-editor/label-image-editor";
 

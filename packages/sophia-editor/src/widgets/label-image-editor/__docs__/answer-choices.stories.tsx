@@ -1,6 +1,6 @@
 import {StyleSheet, css} from "aphrodite";
 import * as React from "react";
-import {action} from "storybook/actions";
+import {action} from "@storybook/addon-actions";
 
 import AnswerChoices from "../answer-choices";
 

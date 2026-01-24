@@ -1,6 +1,6 @@
 import * as React from "react";
-import {action} from "storybook/actions";
-import {INITIAL_VIEWPORTS} from "storybook/viewport";
+import {action} from "@storybook/addon-actions";
+import {INITIAL_VIEWPORTS} from "@storybook/addon-viewport";
 
 import GeometryInputPage from "./geometry-page";
 import NumbersPage from "./numbers-page";

@@ -3,7 +3,7 @@ import {
     KeypadContext,
 } from "@khanacademy/keypad-context";
 import * as React from "react";
-import {action} from "storybook/actions";
+import {action} from "@storybook/addon-actions";
 
 import {KeypadInput, MobileKeypad} from "./index";
 

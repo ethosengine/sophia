@@ -1,4 +1,4 @@
-import {action} from "storybook/actions";
+import {action} from "@storybook/addon-actions";
 
 import {ArticleRendererWithDebugUI} from "../../../../testing/article-renderer-with-debug-ui";
 import {

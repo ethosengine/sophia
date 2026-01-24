@@ -1,6 +1,6 @@
 import {ApiOptions} from "@ethosengine/sophia";
 import * as React from "react";
-import {action} from "storybook/actions";
+import {action} from "@storybook/addon-actions";
 
 import EditorPageWithStorybookPreview from "../../__docs__/editor-page-with-storybook-preview";
 import {question} from "../../__testdata__/categorizer.testdata";
