@@ -5,8 +5,8 @@ import {
 } from "@ethosengine/perseus-core";
 import {ApiOptions} from "@ethosengine/sophia";
 import {View} from "@khanacademy/wonder-blocks-core";
-import * as React from "react";
 import {action} from "@storybook/addon-actions";
+import * as React from "react";
 
 import {Editor} from "..";
 import SplitView from "../../../../testing/split-view";

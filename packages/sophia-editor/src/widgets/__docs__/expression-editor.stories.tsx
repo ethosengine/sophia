@@ -4,8 +4,8 @@ import {
     generateExpressionWidget,
     type PerseusRenderer,
 } from "@ethosengine/perseus-core";
-import * as React from "react";
 import {action} from "@storybook/addon-actions";
+import * as React from "react";
 
 import EditorPageWithStorybookPreview from "../../__docs__/editor-page-with-storybook-preview";
 import {registerAllWidgetsAndEditorsForTesting} from "../../util/register-all-widgets-and-editors-for-testing";

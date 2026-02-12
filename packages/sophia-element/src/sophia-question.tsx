@@ -23,7 +23,11 @@ import {computeRecognition, userInputEqual} from "./recognition";
 import {Sophia, logger} from "./sophia-config";
 import {injectStyles, updateStyleColors} from "./theme";
 
-import type {PerseusItem, UserInputMap, PerseusWidgetsMap} from "@ethosengine/perseus-core";
+import type {
+    PerseusItem,
+    UserInputMap,
+    PerseusWidgetsMap,
+} from "@ethosengine/perseus-core";
 import type {PerseusDependencies, ILogger} from "@ethosengine/sophia";
 import type {Moment, Recognition} from "@ethosengine/sophia-core";
 
@@ -135,7 +139,9 @@ function checkAnswerValidity(
     userInput: UserInputMap | null | undefined,
     locale: string,
 ): boolean {
-    if (!widgets || !userInput) return false;
+    if (!widgets || !userInput) {
+        return false;
+    }
     const widgetIds = Object.keys(widgets);
     const emptyWidgetIds = emptyWidgetsFunctional(
         widgets,
@@ -655,7 +661,7 @@ export class SophiaQuestionElement extends HTMLElement {
         // use moment.id to force complete re-render when question changes.
         const shouldForceRemount = !this._initialUserInput;
         const momentKey = shouldForceRemount
-            ? (this._moment.id || `moment-${Date.now()}`)
+            ? this._moment.id || `moment-${Date.now()}`
             : `restore-${this._moment.id}`;
 
         this.reactRoot.render(
