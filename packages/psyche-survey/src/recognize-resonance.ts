@@ -25,6 +25,14 @@ interface RadioUserInput {
 }
 
 /**
+ * User input for a likert-scale widget.
+ * Stores the selected numeric value.
+ */
+interface LikertScaleUserInput {
+    value?: number | null;
+}
+
+/**
  * Recognize resonance from a discovery Moment interaction.
  *
  * Unlike mastery assessment, there is no "correct" answer.
@@ -45,15 +53,37 @@ export function recognizeResonance(
     // Process each widget's input
     for (const [widgetId, input] of Object.entries(userInput)) {
         const widgetMappings = moment.subscaleContributions?.[widgetId];
-        if (!widgetMappings) {
+        if (widgetMappings == null || input == null) {
+            continue;
+        }
+
+        // Determine widget type from moment content
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const widgetConfig = (moment.content?.widgets as any)?.[widgetId] as
+            | {type?: string}
+            | undefined;
+        const widgetType = widgetConfig?.type;
+
+        // Handle likert-scale widget input
+        if (widgetType === "likert-scale") {
+            const likertInput = input as LikertScaleUserInput;
+            if (likertInput.value != null) {
+                const valueKey = String(likertInput.value);
+                const choiceContributions = widgetMappings[valueKey];
+                if (choiceContributions != null) {
+                    for (const [subscale, value] of Object.entries(
+                        choiceContributions,
+                    )) {
+                        subscaleContributions[subscale] =
+                            (subscaleContributions[subscale] ?? 0) + value;
+                    }
+                }
+            }
             continue;
         }
 
         // Handle radio widget input
-        const radioInput = input as RadioUserInput | undefined;
-        if (!radioInput) {
-            continue;
-        }
+        const radioInput = input as RadioUserInput;
 
         // Get selected choice IDs
         const choiceIds = getSelectedChoiceIds(radioInput, widgetId);
@@ -61,7 +91,16 @@ export function recognizeResonance(
 
         // Accumulate subscale contributions from selected choices
         for (const choiceId of choiceIds) {
-            const choiceContributions = widgetMappings[choiceId];
+            let choiceContributions = widgetMappings[choiceId];
+            if (choiceContributions == null) {
+                // Fallback: extract trailing index from choice ID
+                // Content data may key by index ("0", "1") while
+                // radio widgets produce IDs like "str-q1-choice-2"
+                const indexMatch = choiceId.match(/-(\d+)$/);
+                if (indexMatch) {
+                    choiceContributions = widgetMappings[indexMatch[1]];
+                }
+            }
             if (choiceContributions != null) {
                 for (const [subscale, value] of Object.entries(
                     choiceContributions,

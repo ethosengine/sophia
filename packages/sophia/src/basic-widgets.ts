@@ -3,6 +3,7 @@
 // content_internal/perseus_traversal.py so they can be properly translated.
 import Expression from "./widgets/expression";
 import InputNumber from "./widgets/input-number";
+import LikertScale from "./widgets/likert-scale";
 import NumericInput from "./widgets/numeric-input";
 import Radio from "./widgets/radio";
 
@@ -13,4 +14,5 @@ export default [
     InputNumber,
     NumericInput,
     Expression,
+    LikertScale,
 ] as ReadonlyArray<WidgetExports>;

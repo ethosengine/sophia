@@ -122,9 +122,7 @@ export const PERSEUS_STYLE_OVERRIDES = `
     border-color: var(--sophia-primary-color);
 }
 
-.perseus-widget-radio .choice-selected {
-    background-color: var(--sophia-selection-bg);
-}
+/* .choice-selected removed: class doesn't exist in Perseus; use .perseus-radio-selected */
 
 /* Correct/incorrect feedback */
 .perseus-widget-radio .choice-correct,
@@ -217,6 +215,11 @@ export const PERSEUS_STYLE_OVERRIDES = `
 
 .perseus-radio-option:hover {
     background-color: var(--sophia-hover-overlay, rgba(0, 0, 0, 0.04));
+}
+
+/* Selected radio option background (Aphrodite styles don't apply in Shadow DOM) */
+.perseus-radio-selected {
+    background-color: var(--sophia-selection-bg, #e8f0fe);
 }
 
 /* Radio choice icon circle - using stable data attributes */

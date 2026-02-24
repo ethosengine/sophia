@@ -153,6 +153,7 @@ export interface PerseusWidgetTypes {
     interaction: InteractionWidget;
     "interactive-graph": InteractiveGraphWidget;
     "label-image": LabelImageWidget;
+    "likert-scale": LikertScaleWidget;
     matcher: MatcherWidget;
     matrix: MatrixWidget;
     measurer: MeasurerWidget;
@@ -389,6 +390,8 @@ export type SorterWidget = WidgetOptions<'sorter', PerseusSorterWidgetOptions>;
 export type TableWidget = WidgetOptions<'table', PerseusTableWidgetOptions>;
 // prettier-ignore
 export type InputNumberWidget = WidgetOptions<'input-number', PerseusInputNumberWidgetOptions>;
+// prettier-ignore
+export type LikertScaleWidget = WidgetOptions<'likert-scale', PerseusLikertScaleWidgetOptions>;
 // prettier-ignore
 export type MoleculeRendererWidget = WidgetOptions<'molecule-renderer', PerseusMoleculeRendererWidgetOptions>;
 // prettier-ignore
@@ -1377,6 +1380,19 @@ export type PerseusRadioChoice = {
     isNoneOfTheAbove?: boolean;
 };
 
+export type PerseusLikertScaleWidgetOptions = {
+    // The minimum value. Default: 1
+    min: number;
+    // The maximum value. Default: 7
+    max: number;
+    // The step between values. Default: 1
+    step: number;
+    // Label for the minimum end. e.g. "Not Important"
+    minLabel: string;
+    // Label for the maximum end. e.g. "Supreme Importance"
+    maxLabel: string;
+};
+
 export type PerseusSorterWidgetOptions = {
     // Translatable Text; The correct answer (in the correct order). The user will see the cards in a randomized order.
     correct: string[];
@@ -1760,6 +1776,7 @@ export type PerseusWidgetOptions =
     | PerseusInteractionWidgetOptions
     | PerseusInteractiveGraphWidgetOptions
     | PerseusLabelImageWidgetOptions
+    | PerseusLikertScaleWidgetOptions
     | PerseusMatcherWidgetOptions
     | PerseusMatrixWidgetOptions
     | PerseusMeasurerWidgetOptions

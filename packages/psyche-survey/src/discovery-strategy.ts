@@ -128,6 +128,12 @@ function isWidgetEmpty(widgetType: string, input: unknown): boolean {
         return !expressionInput.value || expressionInput.value.trim() === "";
     }
 
+    // Handle likert-scale widget
+    if (widgetType === "likert-scale") {
+        const likertInput = input as {value?: number | null};
+        return likertInput.value == null;
+    }
+
     // Handle orderer widget
     if (widgetType === "orderer") {
         const ordererInput = input as {current?: unknown[]};

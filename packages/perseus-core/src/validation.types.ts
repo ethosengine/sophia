@@ -165,6 +165,11 @@ export type PerseusInteractiveGraphRubric = {
 
 export type PerseusInteractiveGraphUserInput = PerseusGraphType;
 
+export type PerseusLikertScaleUserInput = {
+    // The selected value, or null if nothing selected
+    value: number | null;
+};
+
 export type PerseusLabelImageRubric = {
     markers: Array<{
         answers: string[];
@@ -344,6 +349,7 @@ interface UserInputRegistry {
     "input-number": PerseusInputNumberUserInput;
     "interactive-graph": PerseusInteractiveGraphUserInput;
     "label-image": PerseusLabelImageUserInput;
+    "likert-scale": PerseusLikertScaleUserInput;
     matcher: PerseusMatcherUserInput;
     matrix: PerseusMatrixUserInput;
     "number-line": PerseusNumberLineUserInput;
