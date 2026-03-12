@@ -21,8 +21,7 @@ describe("definition-editor", () => {
     });
 
     it("should render", async () => {
-        // @ts-expect-error - minimal props for test
-        render(<DefinitionEditor onChange={() => undefined} />);
+        render(<DefinitionEditor onChange={() => undefined} static={false} />);
 
         expect(
             await screen.findByText("Definition style guide"),
@@ -32,8 +31,7 @@ describe("definition-editor", () => {
     it("should be possible to change the definition", async () => {
         const onChangeMock = jest.fn();
 
-        // @ts-expect-error - minimal props for test
-        render(<DefinitionEditor onChange={onChangeMock} />);
+        render(<DefinitionEditor onChange={onChangeMock} static={false} />);
 
         const input = screen.getByRole("textbox", {
             name: "Word to be defined:",

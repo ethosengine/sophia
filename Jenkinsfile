@@ -128,7 +128,7 @@ spec:
             when { expression { env.PIPELINE_SKIPPED != 'true' } }
             steps {
                 container('node') {
-                    dir('app/sophia') {
+                    dir('sophia') {
                         sh '''#!/bin/bash
                             set -euo pipefail
 
@@ -147,7 +147,7 @@ spec:
             when { expression { env.PIPELINE_SKIPPED != 'true' } }
             steps {
                 container('node') {
-                    dir('app/sophia') {
+                    dir('sophia') {
                         sh '''#!/bin/bash
                             set -euo pipefail
                             pnpm lint
@@ -161,7 +161,7 @@ spec:
             when { expression { env.PIPELINE_SKIPPED != 'true' } }
             steps {
                 container('node') {
-                    dir('app/sophia') {
+                    dir('sophia') {
                         sh '''#!/bin/bash
                             set -euo pipefail
                             pnpm typecheck
@@ -175,7 +175,7 @@ spec:
             when { expression { env.PIPELINE_SKIPPED != 'true' } }
             steps {
                 container('node') {
-                    dir('app/sophia') {
+                    dir('sophia') {
                         sh '''#!/bin/bash
                             set -euo pipefail
                             pnpm test -- --ci --coverage
@@ -189,7 +189,7 @@ spec:
             when { expression { env.PIPELINE_SKIPPED != 'true' } }
             steps {
                 container('node') {
-                    dir('app/sophia') {
+                    dir('sophia') {
                         sh '''#!/bin/bash
                             set -euo pipefail
                             pnpm build
@@ -204,7 +204,7 @@ spec:
             when { expression { env.PIPELINE_SKIPPED != 'true' } }
             steps {
                 container('node') {
-                    dir('app/sophia') {
+                    dir('sophia') {
                         sh '''#!/bin/bash
                             set -euo pipefail
 
@@ -244,7 +244,7 @@ spec:
             }
             steps {
                 container('node') {
-                    dir('app/sophia') {
+                    dir('sophia') {
                         script {
                             def sonarConfig = getSonarProjectConfig()
                             echo "SonarQube Analysis: project=${sonarConfig.projectKey}, env=${sonarConfig.env}, enforce=${sonarConfig.shouldEnforce}"
@@ -309,7 +309,7 @@ spec:
             }
             steps {
                 container('node') {
-                    dir('app/sophia') {
+                    dir('sophia') {
                         script {
                             withCredentials([string(credentialsId: 'npm-publish-token', variable: 'NPM_TOKEN')]) {
                                 sh '''#!/bin/bash
@@ -330,7 +330,7 @@ spec:
             when { expression { env.PIPELINE_SKIPPED != 'true' } }
             steps {
                 container('node') {
-                    dir('app/sophia') {
+                    dir('sophia') {
                         script {
                             // Stash UMD bundle + CSS for downstream pipelines (e.g. elohim-app)
                             stash(
