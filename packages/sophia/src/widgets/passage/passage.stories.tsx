@@ -4,7 +4,7 @@ import {ServerItemRendererWithDebugUI} from "../../../../../testing/server-item-
 
 import {question1, question2, question3} from "./__tests__/passage.testdata";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 const meta: Meta = {
     title: "Widgets/Passage",

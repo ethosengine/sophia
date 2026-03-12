@@ -158,8 +158,10 @@ export default class ArticleEditor extends React.Component<Props, State> {
                     (linterWarning) => {
                         if (linterWarning.rule === "inaccessible-widget") {
                             return WARNINGS.inaccessibleWidget(
-                                linterWarning.metadata?.widgetType ?? "unknown",
-                                linterWarning.metadata?.widgetId ?? "unknown",
+                                (linterWarning.metadata as any)?.widgetType ??
+                                    "unknown",
+                                (linterWarning.metadata as any)?.widgetId ??
+                                    "unknown",
                             );
                         }
                         return WARNINGS.genericLinterWarning(

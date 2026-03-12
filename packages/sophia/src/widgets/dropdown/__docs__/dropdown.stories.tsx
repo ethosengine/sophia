@@ -9,7 +9,7 @@ import {
     inlineDropdownWithVisibleLabel,
 } from "../dropdown.testdata";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 const meta: Meta = {
     title: "Widgets/Dropdown",

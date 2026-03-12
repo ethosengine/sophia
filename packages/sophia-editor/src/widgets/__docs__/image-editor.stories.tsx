@@ -17,7 +17,7 @@ import ImageEditor from "../image-editor/image-editor";
 
 import {PROD_EDITOR_WIDTH} from "./utils";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 const withinEditorPageDecorator = (_, {args}) => {
     return (

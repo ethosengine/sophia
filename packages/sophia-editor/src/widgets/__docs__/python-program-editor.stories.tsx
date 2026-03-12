@@ -2,7 +2,7 @@ import {action} from "@storybook/addon-actions";
 
 import PythonProgramEditor from "../python-program-editor";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 const meta: Meta = {
     title: "Widgets/Python Program/Editor Demo",

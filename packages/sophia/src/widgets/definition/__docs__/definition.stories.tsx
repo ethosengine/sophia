@@ -6,7 +6,7 @@ import {storybookDependenciesV2} from "../../../../../../testing/test-dependenci
 import ArticleRenderer from "../../../article-renderer";
 import {article, question} from "../definition.testdata";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 const meta: Meta = {
     title: "Widgets/Definition",

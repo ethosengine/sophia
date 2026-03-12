@@ -42,7 +42,7 @@ class GradedGroupSetEditor extends React.Component<Props> {
     getSaveWarnings: () => ReadonlyArray<any> = () => {
         return [].concat(
             ...this._editors.map((editor) =>
-                editor ? editor.getSaveWarnings() : [],
+                editor ? (editor as any).getSaveWarnings() : [],
             ),
         );
     };

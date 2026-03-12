@@ -2,7 +2,7 @@ import {action} from "@storybook/addon-actions";
 
 import NumberLineEditor from "../number-line-editor";
 
-import type {StoryObj} from "@storybook/react-vite";
+import type {StoryObj} from "@storybook/react";
 
 const meta = {
     title: "Widgets/Number Line/Editor Demo",

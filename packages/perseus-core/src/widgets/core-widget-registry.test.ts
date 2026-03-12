@@ -60,8 +60,7 @@ describe("core-widget-registry", () => {
 
         it("throws if traverseRenderer is not provided", () => {
             expect(() =>
-                // @ts-expect-error - Testing error handling for undefined
-                traverseChildWidgets(validRadioWidget, undefined),
+                traverseChildWidgets(validRadioWidget, undefined as any),
             ).toThrow("traverseRenderer must be provided, but was not");
         });
 

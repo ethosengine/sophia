@@ -4,7 +4,7 @@ import * as React from "react";
 import ColorSelect from "../../widgets/interactive-graph-editor/locked-figures/color-select";
 
 import type {LockedFigureColor} from "@ethosengine/perseus-core";
-import type {Meta} from "@storybook/react-vite";
+import type {Meta} from "@storybook/react";
 
 export default {
     title: "PerseusEditor/Components/Color Select",

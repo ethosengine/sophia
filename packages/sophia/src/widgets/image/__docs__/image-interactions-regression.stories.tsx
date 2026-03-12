@@ -15,7 +15,7 @@ import UserInputManager from "../../../user-input-manager";
 import {earthMoonImage} from "../utils";
 
 import type {PerseusRenderer} from "@ethosengine/perseus-core";
-import type {Meta} from "@storybook/react-vite";
+import type {Meta} from "@storybook/react";
 
 const earthMoonImageCaption =
     "The Moon above Earth's horizon, captured by the International Space Station, [NASA](https://images.nasa.gov/details/iss071e515452)";

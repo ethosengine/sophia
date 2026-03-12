@@ -4,7 +4,7 @@ import {themeModes} from "../../../../../../.storybook/modes";
 import {ServerItemRendererWithDebugUI} from "../../../../../../testing/server-item-renderer-with-debug-ui";
 import {question1, wideButton} from "../explanation.testdata";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 /**
  * This is a visual regression story for the Explanation widget.

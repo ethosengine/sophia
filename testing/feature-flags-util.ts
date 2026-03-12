@@ -18,7 +18,8 @@ const DEFAULT_FEATURE_FLAGS: Record<
  *  getFeatureFlags({"my-feature-flag": true})
  */
 export function getFeatureFlags(
-    overrides: Partial<typeof DEFAULT_FEATURE_FLAGS> = {},
+    overrides: Partial<typeof DEFAULT_FEATURE_FLAGS> &
+        Record<string, boolean> = {},
 ) {
     return {...DEFAULT_FEATURE_FLAGS, ...overrides};
 }

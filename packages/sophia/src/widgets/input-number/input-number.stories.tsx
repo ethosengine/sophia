@@ -10,7 +10,7 @@ import {getAnswerfulItem} from "../../util/test-utils";
 
 import {question1, question2, question3} from "./input-number.testdata";
 
-import type {Meta} from "@storybook/react-vite";
+import type {Meta} from "@storybook/react";
 
 const meta: Meta = {
     title: "Widgets/Input Number",

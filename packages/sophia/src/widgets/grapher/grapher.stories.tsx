@@ -14,7 +14,7 @@ import {
     staticGrapher,
 } from "./grapher.testdata";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 const meta: Meta = {
     title: "Widgets/Grapher",

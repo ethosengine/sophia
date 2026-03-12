@@ -2,7 +2,7 @@ import * as React from "react";
 
 import ZoomableTex from "../zoomable-tex";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 const meta: Meta = {
     title: "Components/Zoomable Tex",

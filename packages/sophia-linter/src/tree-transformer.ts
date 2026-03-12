@@ -65,6 +65,10 @@ export type TreeNode = {
     widgetType?: string;
     id?: string;
     level?: number; // For heading nodes from PureMarkdown
+    target?: string; // For link/image nodes
+    alt?: string; // For image nodes
+    header?: TreeNode[][]; // For table nodes
+    cells?: TreeNode[][][]; // For table nodes
 };
 
 // TraversalCallback is the type of the callback function passed to the

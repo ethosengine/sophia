@@ -11,7 +11,7 @@ export function generateExplanationOptions(
     return {
         ...explanationWidgetLogic.defaultWidgetOptions,
         ...options,
-    };
+    } as PerseusExplanationWidgetOptions;
 }
 
 export function generateExplanationWidget(

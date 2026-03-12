@@ -8,7 +8,7 @@ export default Rule.makeRule({
     selector: "link, image",
     lint: function (state, content, nodes, match) {
         const url = nodes[0].target;
-        const hostname = getHostname(url);
+        const hostname = getHostname(url as string);
 
         if (
             hostname === "khanacademy.org" ||

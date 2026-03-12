@@ -267,13 +267,13 @@ class InteractionEditor extends React.Component<Props, State> {
                                 // eslint-disable-next-line react/jsx-no-bind
                                 onUp={
                                     n === 0
-                                        ? null
+                                        ? undefined
                                         : () => this._moveElementUp(n)
                                 }
                                 // eslint-disable-next-line react/jsx-no-bind
                                 onDown={
                                     n === this.props.elements.length - 1
-                                        ? null
+                                        ? undefined
                                         : () => this._moveElementDown(n)
                                 }
                                 onDelete={() => this._deleteElement(n)}
@@ -314,13 +314,13 @@ class InteractionEditor extends React.Component<Props, State> {
                                 // eslint-disable-next-line react/jsx-no-bind
                                 onUp={
                                     n === 0
-                                        ? null
+                                        ? undefined
                                         : () => this._moveElementUp(n)
                                 }
                                 // eslint-disable-next-line react/jsx-no-bind
                                 onDown={
                                     n === this.props.elements.length - 1
-                                        ? null
+                                        ? undefined
                                         : () => this._moveElementDown(n)
                                 }
                                 onDelete={() => this._deleteElement(n)}
@@ -353,13 +353,13 @@ class InteractionEditor extends React.Component<Props, State> {
                                 // eslint-disable-next-line react/jsx-no-bind
                                 onUp={
                                     n === 0
-                                        ? null
+                                        ? undefined
                                         : () => this._moveElementUp(n)
                                 }
                                 // eslint-disable-next-line react/jsx-no-bind
                                 onDown={
                                     n === this.props.elements.length - 1
-                                        ? null
+                                        ? undefined
                                         : () => this._moveElementDown(n)
                                 }
                                 onDelete={() => this._deleteElement(n)}
@@ -400,13 +400,13 @@ class InteractionEditor extends React.Component<Props, State> {
                                 // eslint-disable-next-line react/jsx-no-bind
                                 onUp={
                                     n === 0
-                                        ? null
+                                        ? undefined
                                         : () => this._moveElementUp(n)
                                 }
                                 // eslint-disable-next-line react/jsx-no-bind
                                 onDown={
                                     n === this.props.elements.length - 1
-                                        ? null
+                                        ? undefined
                                         : () => this._moveElementDown(n)
                                 }
                                 onDelete={() => this._deleteElement(n)}
@@ -437,13 +437,13 @@ class InteractionEditor extends React.Component<Props, State> {
                                 // eslint-disable-next-line react/jsx-no-bind
                                 onUp={
                                     n === 0
-                                        ? null
+                                        ? undefined
                                         : () => this._moveElementUp(n)
                                 }
                                 // eslint-disable-next-line react/jsx-no-bind
                                 onDown={
                                     n === this.props.elements.length - 1
-                                        ? null
+                                        ? undefined
                                         : () => this._moveElementDown(n)
                                 }
                                 onDelete={() => this._deleteElement(n)}
@@ -465,13 +465,13 @@ class InteractionEditor extends React.Component<Props, State> {
                                 // eslint-disable-next-line react/jsx-no-bind
                                 onUp={
                                     n === 0
-                                        ? null
+                                        ? undefined
                                         : () => this._moveElementUp(n)
                                 }
                                 // eslint-disable-next-line react/jsx-no-bind
                                 onDown={
                                     n === this.props.elements.length - 1
-                                        ? null
+                                        ? undefined
                                         : () => this._moveElementDown(n)
                                 }
                                 onDelete={() => this._deleteElement(n)}
@@ -502,13 +502,13 @@ class InteractionEditor extends React.Component<Props, State> {
                                 // eslint-disable-next-line react/jsx-no-bind
                                 onUp={
                                     n === 0
-                                        ? null
+                                        ? undefined
                                         : () => this._moveElementUp(n)
                                 }
                                 // eslint-disable-next-line react/jsx-no-bind
                                 onDown={
                                     n === this.props.elements.length - 1
-                                        ? null
+                                        ? undefined
                                         : () => this._moveElementDown(n)
                                 }
                                 onDelete={() => this._deleteElement(n)}
@@ -547,13 +547,13 @@ class InteractionEditor extends React.Component<Props, State> {
                                 // eslint-disable-next-line react/jsx-no-bind
                                 onUp={
                                     n === 0
-                                        ? null
+                                        ? undefined
                                         : () => this._moveElementUp(n)
                                 }
                                 // eslint-disable-next-line react/jsx-no-bind
                                 onDown={
                                     n === this.props.elements.length - 1
-                                        ? null
+                                        ? undefined
                                         : () => this._moveElementDown(n)
                                 }
                                 onDelete={() => this._deleteElement(n)}

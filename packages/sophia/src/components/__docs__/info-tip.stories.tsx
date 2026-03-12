@@ -2,7 +2,7 @@ import * as React from "react";
 
 import InfoTip from "../info-tip";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 const meta: Meta = {
     title: "Components/Info Tip",

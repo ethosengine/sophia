@@ -7,7 +7,7 @@ import {
     question1,
 } from "./graded-group.testdata";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 const meta: Meta = {
     title: "Widgets/Graded Group",

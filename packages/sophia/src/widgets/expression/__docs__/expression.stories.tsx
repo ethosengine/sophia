@@ -9,7 +9,7 @@ import {
     expressionItem4Static,
 } from "../expression.testdata";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 const meta: Meta = {
     title: "Widgets/Expression",

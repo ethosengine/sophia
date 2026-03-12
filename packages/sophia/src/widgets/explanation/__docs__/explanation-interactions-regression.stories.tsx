@@ -4,7 +4,7 @@ import {themeModes} from "../../../../../../.storybook/modes";
 import {ServerItemRendererWithDebugUI} from "../../../../../../testing/server-item-renderer-with-debug-ui";
 import {question1} from "../explanation.testdata";
 
-import type {Meta} from "@storybook/react-vite";
+import type {Meta} from "@storybook/react";
 
 const meta: Meta = {
     title: "Widgets/Explanation/Visual Regression Tests/Interactions",

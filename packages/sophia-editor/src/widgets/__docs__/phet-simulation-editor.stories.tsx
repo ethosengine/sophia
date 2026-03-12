@@ -2,7 +2,7 @@ import {action} from "@storybook/addon-actions";
 
 import PhetSimulationEditor from "../phet-simulation-editor";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 const meta: Meta = {
     component: PhetSimulationEditor,

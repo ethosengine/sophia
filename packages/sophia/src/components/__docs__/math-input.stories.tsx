@@ -2,7 +2,7 @@ import {action} from "@storybook/addon-actions";
 
 import MathInput from "../math-input";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 const meta: Meta = {
     title: "Components/Math Input",

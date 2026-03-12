@@ -1,6 +1,6 @@
 import ExerciseFramePage from "./preview/exercise-preview-page";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 const meta: Meta = {
     title: "Dev Support/Preview",

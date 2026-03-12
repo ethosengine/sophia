@@ -58,7 +58,7 @@ export function createTypedChange<TOptions extends object>(
     // We use a type assertion here because the underlying Changeable.change
     // function uses `any` types, but we're providing a strongly-typed wrapper.
     return ((...args: unknown[]) => {
-        return Changeable.change.apply(component, args);
+        return Changeable.change.apply(component, args as any);
     }) as ChangeFn<TOptions>;
 }
 

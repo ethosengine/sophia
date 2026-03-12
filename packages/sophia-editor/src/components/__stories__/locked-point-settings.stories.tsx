@@ -3,7 +3,7 @@ import * as React from "react";
 
 import LockedPointSettings from "../../widgets/interactive-graph-editor/locked-figures/locked-point-settings";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 export default {
     title: "PerseusEditor/Components/Locked Point Settings",

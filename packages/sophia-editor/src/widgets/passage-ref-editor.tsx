@@ -61,7 +61,7 @@ class PassageRefEditor extends React.Component<Props> {
                         {"Summary Text: "}
                         <TextInput
                             value={this.props.summaryText}
-                            onChange={this.change("summaryText")}
+                            onChange={this.change("summaryText") as any}
                         />
                         <InfoTip>
                             <p>

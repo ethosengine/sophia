@@ -2,7 +2,7 @@ import {ApiOptions} from "../../perseus-api";
 
 import {PhetSimulation} from "./phet-simulation";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 const meta: Meta<typeof PhetSimulation> = {
     title: "Widgets/PhET Simulation",

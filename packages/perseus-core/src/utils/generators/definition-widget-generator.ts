@@ -11,7 +11,7 @@ export function generateDefinitionOptions(
     return {
         ...definitionWidgetLogic.defaultWidgetOptions,
         ...options,
-    };
+    } as PerseusDefinitionWidgetOptions;
 }
 
 export function generateDefinitionWidget(

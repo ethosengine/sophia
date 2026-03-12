@@ -20,7 +20,7 @@ import {
 } from "../__tests__/radio.testdata";
 
 import type {PerseusItem} from "@ethosengine/perseus-core";
-import type {StoryObj} from "@storybook/react-vite";
+import type {StoryObj} from "@storybook/react";
 
 type Story = StoryObj<typeof RadioQuestionRenderer>;
 

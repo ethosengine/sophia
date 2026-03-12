@@ -9,7 +9,7 @@ import {
     multiSectionArticleWithExpression,
 } from "../__testdata__/article-renderer.testdata";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 const meta: Meta = {
     title: "Renderers/Article Renderer",

@@ -7,7 +7,7 @@ import {
     questionWithMovablePointMissingConstraints,
 } from "./interaction.testdata";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 const meta: Meta = {
     title: "Widgets/Interaction",

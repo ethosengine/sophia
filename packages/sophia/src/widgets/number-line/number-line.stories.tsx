@@ -4,7 +4,7 @@ import {ServerItemRendererWithDebugUI} from "../../../../../testing/server-item-
 
 import {inequality, question1, tickCtrl} from "./number-line.testdata";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 const meta: Meta = {
     title: "Widgets/Number Line",

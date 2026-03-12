@@ -9,7 +9,7 @@ import {
     questionWithManyCards,
 } from "./orderer.testdata";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 const meta: Meta = {
     title: "Widgets/Orderer",

@@ -17,7 +17,7 @@ import {
 } from "../dropdown.testdata";
 
 import type {PerseusItem} from "@ethosengine/perseus-core";
-import type {StoryObj} from "@storybook/react-vite";
+import type {StoryObj} from "@storybook/react";
 
 type Story = StoryObj<typeof DropdownQuestionRenderer>;
 

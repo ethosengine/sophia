@@ -57,7 +57,8 @@ export type WidgetLogic<
      * A function that provides a public version of the widget options that can
      * be shared with the client.
      */
-    getPublicWidgetOptions?: PublicWidgetOptionsFunction;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    getPublicWidgetOptions?: PublicWidgetOptionsFunction<any, any>;
 };
 
 /**

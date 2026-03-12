@@ -11,7 +11,7 @@ export function generateDropdownOptions(
     return {
         ...dropdownWidgetLogic.defaultWidgetOptions,
         ...options,
-    };
+    } as PerseusDropdownWidgetOptions;
 }
 
 export function generateDropdownWidget(

@@ -5,7 +5,7 @@ import {ServerItemRendererWithDebugUI} from "../../../../../../testing/server-it
 import Behavior from "../behavior";
 
 import type {PreferredPopoverDirection} from "../behavior";
-import type {Meta} from "@storybook/react-vite";
+import type {Meta} from "@storybook/react";
 
 const meta: Meta = {
     title: "Widgets/Label Image/Widget Internal Components/Behavior",

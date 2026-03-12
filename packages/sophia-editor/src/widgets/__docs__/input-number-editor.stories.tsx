@@ -2,7 +2,7 @@ import {action} from "@storybook/addon-actions";
 
 import InputNumberEditor from "../input-number-editor";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 const meta = {
     title: "Widgets/Input Number/Editor Demo",

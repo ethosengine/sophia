@@ -27,7 +27,7 @@ import {
     floatingPointIssueQuestion,
 } from "../interactive-graph.testdata";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 const defaultApiOptions = ApiOptions.defaults;
 

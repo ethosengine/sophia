@@ -153,7 +153,7 @@ class HintEditor extends React.Component<HintEditorProps> {
                     )}
                     <input
                         type="checkbox"
-                        checked={this.props.replace}
+                        checked={this.props.replace ?? undefined}
                         onChange={this.handleChange}
                     />
                     Replace previous hint

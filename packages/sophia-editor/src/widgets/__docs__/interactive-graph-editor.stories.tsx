@@ -40,7 +40,7 @@ import type {
     PerseusRenderer,
 } from "@ethosengine/perseus-core";
 import type {DeviceType} from "@ethosengine/sophia";
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 // This is to address timing - Perseus widget editor registry accessed before initialization!
 registerAllWidgetsAndEditorsForTesting();

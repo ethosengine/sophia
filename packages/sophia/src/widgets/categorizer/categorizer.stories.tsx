@@ -4,7 +4,7 @@ import {ServerItemRendererWithDebugUI} from "../../../../../testing/server-item-
 
 import {question1} from "./categorizer.testdata";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 const meta: Meta = {
     title: "Widgets/Categorizer",

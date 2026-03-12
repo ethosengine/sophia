@@ -197,8 +197,8 @@ function SophiaRenderer(props: RendererProps): React.ReactElement {
     const defaultDependencies = React.useMemo(
         () => ({
             analytics: {onAnalyticsEvent: async () => {}},
-            generateUrl: (args: {path: string}) => args.path,
-            useVideo: () => ({status: "loading" as const}),
+            generateUrl: ((args: {path: string}) => args.path) as any,
+            useVideo: (() => ({status: "loading" as const})) as any,
         }),
         [],
     );
@@ -648,13 +648,13 @@ export class SophiaQuestionElement extends HTMLElement {
         }
 
         // Convert Moment to PerseusItem format
-        const item: PerseusItem = {
+        const item = {
             question: this._moment.content,
             hints: this._moment.hints ?? [],
             answerArea: null,
             _multi: null,
             itemDataVersion: {major: 0, minor: 1},
-        };
+        } as PerseusItem;
 
         // Key strategy: When restoring input, use a different key prefix to avoid
         // React remounting and losing the restored state. When not restoring,

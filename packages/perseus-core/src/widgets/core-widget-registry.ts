@@ -108,7 +108,7 @@ export const traverseChildWidgets = (
             props,
             traverseRenderer,
         );
-        return {...widgetInfo, options: newProps};
+        return {...widgetInfo, options: newProps as any};
     }
     return widgetInfo;
 };

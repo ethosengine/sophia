@@ -2,7 +2,7 @@ import {action} from "@storybook/addon-actions";
 
 import Hud from "../hud";
 
-import type {StoryObj, Meta} from "@storybook/react-vite";
+import type {StoryObj, Meta} from "@storybook/react";
 
 type Story = StoryObj<typeof Hud>;
 

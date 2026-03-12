@@ -4,7 +4,7 @@ import * as React from "react";
 import ViewportResizer from "../viewport-resizer";
 
 import type {DeviceType} from "@ethosengine/sophia";
-import type {Meta, StoryFn} from "@storybook/react-vite";
+import type {Meta, StoryFn} from "@storybook/react";
 
 const meta: Meta<typeof ViewportResizer> = {
     component: ViewportResizer,

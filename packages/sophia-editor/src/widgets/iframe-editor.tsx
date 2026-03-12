@@ -154,7 +154,7 @@ class IframeEditor extends React.Component<IframeEditorProps> {
                     Url or Program ID:
                     <BlurInput
                         value={this.props.url}
-                        onChange={this.change("url")}
+                        onChange={this.change("url") as any}
                     />
                 </label>
                 <br />
@@ -172,14 +172,14 @@ class IframeEditor extends React.Component<IframeEditorProps> {
                     Width:
                     <BlurInput
                         value={this.props.width}
-                        onChange={this.change("width")}
+                        onChange={this.change("width") as any}
                     />
                 </label>
                 <label>
                     Height:
                     <BlurInput
                         value={this.props.height}
-                        onChange={this.change("height")}
+                        onChange={this.change("height") as any}
                     />
                 </label>
                 <Checkbox

@@ -10,7 +10,7 @@ import {ServerItemRendererWithDebugUI} from "../../../../../../testing/server-it
 import {getWidget} from "../../../widgets";
 import {questionWithZoom} from "../image.testdata";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 const ImageWidget = getWidget("image")!;
 

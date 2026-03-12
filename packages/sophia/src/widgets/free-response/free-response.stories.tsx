@@ -1,6 +1,6 @@
 import {FreeResponse} from "./free-response";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 const meta: Meta<typeof FreeResponse> = {
     component: FreeResponse,

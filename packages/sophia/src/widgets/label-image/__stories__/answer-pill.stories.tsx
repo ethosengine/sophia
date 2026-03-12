@@ -2,7 +2,7 @@ import * as React from "react";
 
 import {AnswerPill} from "../answer-pill";
 
-import type {Meta} from "@storybook/react-vite";
+import type {Meta} from "@storybook/react";
 
 const story: Meta<React.ComponentProps<typeof AnswerPill>> = {
     title: "Widgets/Label Image/Widget Internal Components/Answer Pill",

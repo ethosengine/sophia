@@ -14,7 +14,7 @@ import {
 } from "../__testdata__/server-item-renderer.testdata";
 import {ServerItemRenderer} from "../server-item-renderer";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 const meta: Meta = {
     title: "Renderers/Server Item Renderer",

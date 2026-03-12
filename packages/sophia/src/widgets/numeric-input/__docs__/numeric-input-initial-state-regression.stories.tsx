@@ -11,7 +11,7 @@ import {ApiOptions} from "../../../perseus-api";
 import {ServerItemRenderer} from "../../../server-item-renderer";
 
 import type {PerseusItem} from "@ethosengine/perseus-core";
-import type {StoryObj} from "@storybook/react-vite";
+import type {StoryObj} from "@storybook/react";
 
 type Story = StoryObj<typeof NumericInputQuestionRenderer>;
 

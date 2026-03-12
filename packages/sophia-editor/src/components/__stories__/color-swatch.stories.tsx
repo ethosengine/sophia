@@ -3,7 +3,7 @@ import * as React from "react";
 
 import ColorSwatch from "../../widgets/interactive-graph-editor/locked-figures/color-swatch";
 
-import type {Meta} from "@storybook/react-vite";
+import type {Meta} from "@storybook/react";
 
 export default {
     title: "PerseusEditor/Components/Color Swatch",

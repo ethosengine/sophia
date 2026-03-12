@@ -2,7 +2,7 @@ import * as React from "react";
 
 import Lint from "../lint";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 const Container = (Story) => {
     return (

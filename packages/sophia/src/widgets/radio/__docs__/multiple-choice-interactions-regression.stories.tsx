@@ -17,7 +17,7 @@ import {choicesWithMathFont, question} from "../__tests__/radio.testdata";
 
 import type {APIOptions} from "../../../types";
 import type {PerseusItem} from "@ethosengine/perseus-core";
-import type {Meta} from "@storybook/react-vite";
+import type {Meta} from "@storybook/react";
 
 type StoryArgs = {
     // Story Option

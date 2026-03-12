@@ -2,7 +2,7 @@ import {generateTestPerseusItem} from "@ethosengine/perseus-core";
 
 import {ServerItemRendererWithDebugUI} from "../../../../../testing/server-item-renderer-with-debug-ui";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 const meta: Meta = {
     title: "Widgets/Deprecated Standin",

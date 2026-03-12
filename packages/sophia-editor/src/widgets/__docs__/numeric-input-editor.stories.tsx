@@ -6,7 +6,7 @@ import {integerProblem} from "../../__testdata__/numeric-input.testdata";
 import {registerAllWidgetsAndEditorsForTesting} from "../../util/register-all-widgets-and-editors-for-testing";
 import NumericInputEditor from "../numeric-input-editor";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 // This is to address timing - Perseus widget editor registry accessed before initialization!
 registerAllWidgetsAndEditorsForTesting();

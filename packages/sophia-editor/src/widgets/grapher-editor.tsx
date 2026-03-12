@@ -72,9 +72,9 @@ class GrapherEditor extends React.Component<Props> {
         let graph;
         if (this.props.graph.valid === true) {
             const graphProps: Partial<PropsFor<typeof Grapher>> = {
-                apiOptions: this.props.apiOptions,
+                apiOptions: this.props.apiOptions as any,
                 containerSizeClass: sizeClass,
-                graph: this.props.graph,
+                graph: this.props.graph as any,
                 userInput: this.props.correct,
                 correct: this.props.correct,
                 handleUserInput: (userInput, cb) => {
@@ -90,7 +90,9 @@ class GrapherEditor extends React.Component<Props> {
                 availableTypes: this.props.availableTypes,
                 trackInteraction: function () {},
                 // Set the "correct answer" graph to static when editing is disabled
-                static: this.props.apiOptions.editingDisabled,
+                static: this.props.apiOptions?.editingDisabled as
+                    | boolean
+                    | undefined,
             };
 
             graph = (
@@ -130,13 +132,13 @@ class GrapherEditor extends React.Component<Props> {
                     step={this.props.graph.step}
                     gridStep={this.props.graph.gridStep}
                     snapStep={this.props.graph.snapStep}
-                    valid={this.props.graph.valid}
+                    valid={this.props.graph.valid as boolean | undefined}
                     backgroundImage={this.props.graph.backgroundImage}
                     markings={this.props.graph.markings}
                     rulerLabel={this.props.graph.rulerLabel}
                     rulerTicks={this.props.graph.rulerTicks}
-                    showTooltips={this.props.graph.showTooltips}
-                    onChange={this.change("graph")}
+                    showTooltips={this.props.graph.showTooltips!}
+                    onChange={this.change("graph") as any}
                 />
                 <div className="perseus-widget-row">
                     {/* eslint-disable-next-line jsx-a11y/label-has-associated-control -- TODO(LEMS-2871): Address a11y error */}

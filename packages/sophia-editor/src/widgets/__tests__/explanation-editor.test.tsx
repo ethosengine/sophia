@@ -21,6 +21,7 @@ describe("explanation-editor", () => {
     });
 
     it("should render", async () => {
+        // @ts-expect-error - minimal props for test
         render(<ExplanationEditor onChange={() => undefined} />);
 
         expect(
@@ -31,6 +32,7 @@ describe("explanation-editor", () => {
     it("should be possible to change prompt to show explanation", async () => {
         const onChangeMock = jest.fn();
 
+        // @ts-expect-error - minimal props for test
         render(<ExplanationEditor onChange={onChangeMock} />);
 
         const input = screen.getByRole("textbox", {
@@ -48,6 +50,7 @@ describe("explanation-editor", () => {
     it("should be possible to change prompt to hide explanation", async () => {
         const onChangeMock = jest.fn();
 
+        // @ts-expect-error - minimal props for test
         render(<ExplanationEditor onChange={onChangeMock} />);
 
         const input = screen.getByRole("textbox", {

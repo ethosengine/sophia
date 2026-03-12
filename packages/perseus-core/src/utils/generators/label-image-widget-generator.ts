@@ -11,7 +11,7 @@ export function generateLabelImageOptions(
     return {
         ...labelImageWidgetLogic.defaultWidgetOptions,
         ...options,
-    };
+    } as PerseusLabelImageWidgetOptions;
 }
 
 export function generateLabelImageWidget(

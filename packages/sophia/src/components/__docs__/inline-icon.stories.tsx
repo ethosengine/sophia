@@ -1,6 +1,6 @@
 import InlineIcon from "../inline-icon";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 const meta: Meta = {
     title: "Components/Inline Icon",

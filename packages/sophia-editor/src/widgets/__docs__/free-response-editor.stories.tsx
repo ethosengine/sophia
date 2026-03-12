@@ -4,7 +4,7 @@ import * as React from "react";
 import FreeResponseEditor from "../free-response-editor";
 
 import type {PropsFor} from "@khanacademy/wonder-blocks-core";
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 type StoryArgs = Record<any, any>;
 

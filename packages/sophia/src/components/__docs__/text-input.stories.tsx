@@ -2,7 +2,7 @@ import {action} from "@storybook/addon-actions";
 
 import TextInput from "../text-input";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 const meta: Meta = {
     title: "Components/Text Input",

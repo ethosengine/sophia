@@ -50,7 +50,7 @@ describe("ReflectionScoringStrategy", () => {
                 content: "Some content [[widget 1]]",
                 widgets: {
                     "widget 1": {type: "radio", options: {}},
-                } as PerseusRenderer["widgets"],
+                } as unknown as PerseusRenderer["widgets"],
             });
             const userInput = mockInput({});
 
@@ -68,7 +68,7 @@ describe("ReflectionScoringStrategy", () => {
                 content: "Some content [[widget 1]]",
                 widgets: {
                     "widget 1": {type: "radio", options: {}},
-                } as PerseusRenderer["widgets"],
+                } as unknown as PerseusRenderer["widgets"],
             });
             const userInput = mockInput({
                 "widget 1": {choicesSelected: [true, false]},
@@ -88,7 +88,7 @@ describe("ReflectionScoringStrategy", () => {
                 content: "Some content [[widget 1]]",
                 widgets: {
                     "widget 1": {type: "radio", options: {}, static: true},
-                } as PerseusRenderer["widgets"],
+                } as unknown as PerseusRenderer["widgets"],
             });
             const userInput = mockInput({});
 
@@ -106,7 +106,7 @@ describe("ReflectionScoringStrategy", () => {
                 content: "Some content [[free-response 1]]",
                 widgets: {
                     "free-response 1": {type: "free-response", options: {}},
-                } as PerseusRenderer["widgets"],
+                } as unknown as PerseusRenderer["widgets"],
             });
             const userInput = mockInput({
                 "free-response 1": {content: "   "},
@@ -131,7 +131,7 @@ describe("ReflectionScoringStrategy", () => {
                     content: "Describe your thoughts [[free-response 1]]",
                     widgets: {
                         "free-response 1": {type: "free-response", options: {}},
-                    } as PerseusRenderer["widgets"],
+                    } as unknown as PerseusRenderer["widgets"],
                 }),
             };
             const userInput = mockInput({
@@ -167,7 +167,7 @@ describe("ReflectionScoringStrategy", () => {
                     content: "Select one [[radio 1]]",
                     widgets: {
                         "radio 1": {type: "radio", options: {}},
-                    } as PerseusRenderer["widgets"],
+                    } as unknown as PerseusRenderer["widgets"],
                 }),
                 subscaleContributions,
             };
@@ -201,7 +201,7 @@ describe("ReflectionScoringStrategy", () => {
                     content: "Select one [[radio 1]]",
                     widgets: {
                         "radio 1": {type: "radio", options: {}},
-                    } as PerseusRenderer["widgets"],
+                    } as unknown as PerseusRenderer["widgets"],
                 }),
                 subscaleContributions,
             };
@@ -235,7 +235,7 @@ describe("ReflectionScoringStrategy", () => {
                     content: "Select [[dropdown 1]]",
                     widgets: {
                         "dropdown 1": {type: "dropdown", options: {}},
-                    } as PerseusRenderer["widgets"],
+                    } as unknown as PerseusRenderer["widgets"],
                 }),
                 subscaleContributions,
             };
@@ -281,7 +281,7 @@ describe("ReflectionScoringStrategy", () => {
                     content: "Enter a number [[input-number 1]]",
                     widgets: {
                         "input-number 1": {type: "input-number", options: {}},
-                    } as PerseusRenderer["widgets"],
+                    } as unknown as PerseusRenderer["widgets"],
                 }),
             };
             const userInput = mockInput({
@@ -307,7 +307,7 @@ describe("ReflectionScoringStrategy", () => {
                     widgets: {
                         "free-response 1": {type: "free-response", options: {}},
                         "free-response 2": {type: "free-response", options: {}},
-                    } as PerseusRenderer["widgets"],
+                    } as unknown as PerseusRenderer["widgets"],
                 }),
             };
             const userInput = mockInput({
@@ -334,7 +334,7 @@ describe("ReflectionScoringStrategy", () => {
                     content: "Select [[radio 1]]",
                     widgets: {
                         "radio 1": {type: "radio", options: {}},
-                    } as PerseusRenderer["widgets"],
+                    } as unknown as PerseusRenderer["widgets"],
                 }),
             };
             const userInput = mockInput({

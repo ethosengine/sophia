@@ -71,13 +71,13 @@ class MatrixEditor extends React.Component<Props> {
     };
 
     render(): React.ReactNode {
-        const matrixProps: Partial<PropsFor<typeof Matrix>> = {
+        const matrixProps: any = {
             onBlur: () => {},
             onFocus: () => {},
             trackInteraction: () => {},
-            userInput: {answers: this.props.answers},
+            userInput: {answers: this.props.answers as any},
             handleUserInput: (userInput) => {
-                this.change({answers: userInput.answers});
+                this.change({answers: userInput.answers} as any);
             },
             ...this.props,
         };
@@ -90,7 +90,7 @@ class MatrixEditor extends React.Component<Props> {
                     <RangeInput
                         value={this.props.matrixBoardSize}
                         onChange={this.onMatrixBoardSizeChange}
-                        format={this.props.labelStyle}
+                        format={(this.props as any).labelStyle}
                         useArrowKeys={true}
                     />
                 </div>

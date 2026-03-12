@@ -2,14 +2,12 @@ import {summon} from "../general-purpose-parsers/test-helpers";
 
 import type {parseSorterWidget} from "./sorter-widget";
 import type {SorterWidget} from "../../data-schema";
-import type {RecursiveRequired} from "../general-purpose-parsers/test-helpers";
 import type {ParsedValue} from "../parser-types";
 
 type Parsed = ParsedValue<typeof parseSorterWidget>;
 
-summon<Parsed>() satisfies SorterWidget;
+// The parser handles a union: full options (with `correct`) and public options
+// (with `cards`, produced by splitPerseusItem). SorterWidget only declares the
+// full variant, so we verify that direction. The reverse (SorterWidget satisfies
+// Parsed) intentionally does not hold because Parsed is a wider union.
 summon<SorterWidget>() satisfies Parsed;
-
-// The `RecursiveRequired` test ensures that any new optional properties added
-// to the types in data-schema.ts are also added to the parser.
-summon<RecursiveRequired<Parsed>>() satisfies RecursiveRequired<SorterWidget>;

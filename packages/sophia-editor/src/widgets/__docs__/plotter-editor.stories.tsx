@@ -3,7 +3,7 @@ import {action} from "@storybook/addon-actions";
 
 import PlotterEditor from "../plotter-editor";
 
-import type {StoryObj} from "@storybook/react-vite";
+import type {StoryObj} from "@storybook/react";
 
 const meta = {
     title: "Widgets/Plotter/Editor Demo",

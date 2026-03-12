@@ -21,8 +21,8 @@ function sum(array: any) {
 function clockwise(points: any) {
     const segments = _.zip(points, points.slice(1).concat(points.slice(0, 1)));
     const areas = _.map(segments, function (segment) {
-        const p1 = segment[0];
-        const p2 = segment[1];
+        const p1 = segment[0] as any;
+        const p2 = segment[1] as any;
         return (p2[0] - p1[0]) * (p2[1] + p1[1]);
     });
     return sum(areas) > 0;

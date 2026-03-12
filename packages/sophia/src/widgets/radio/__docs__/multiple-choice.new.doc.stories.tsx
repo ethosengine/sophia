@@ -10,7 +10,7 @@ import Renderer from "../../../renderer";
 import {mockStrings} from "../../../strings";
 import UserInputManager from "../../../user-input-manager";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 interface RendererQuestion {
     content: string;

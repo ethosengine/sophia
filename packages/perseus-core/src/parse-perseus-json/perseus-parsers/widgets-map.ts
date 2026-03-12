@@ -40,6 +40,7 @@ import {parseWidgetIdComponents} from "./widget-id-components";
 import type {
     DeprecatedStandinWidget,
     PerseusWidgetsMap,
+    SorterWidget,
 } from "../../data-schema";
 import type {ParseContext, Parser, ParseResult} from "../parser-types";
 
@@ -180,7 +181,10 @@ const parseWidgetsMapEntry: (
         case "radio":
             return parseAndAssign(`radio ${n}`, parseRadioWidget);
         case "sorter":
-            return parseAndAssign(`sorter ${n}`, parseSorterWidget);
+            return parseAndAssign(
+                `sorter ${n}`,
+                parseSorterWidget as Parser<SorterWidget>,
+            );
         case "table":
             return parseAndAssign(`table ${n}`, parseTableWidget);
         case "video":

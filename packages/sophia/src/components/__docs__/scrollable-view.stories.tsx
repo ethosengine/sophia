@@ -4,7 +4,7 @@ import ScrollableView from "../scrollable-view";
 
 import styles from "./scrollable-view.stories.module.css";
 
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 type Story = StoryObj<typeof ScrollableView>;
 

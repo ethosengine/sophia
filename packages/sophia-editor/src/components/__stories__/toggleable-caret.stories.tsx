@@ -3,7 +3,7 @@ import * as React from "react";
 
 import ToggleableCaret from "../toggleable-caret";
 
-import type {StoryObj, Meta} from "@storybook/react-vite";
+import type {StoryObj, Meta} from "@storybook/react";
 
 type Story = StoryObj<typeof ToggleableCaret>;
 

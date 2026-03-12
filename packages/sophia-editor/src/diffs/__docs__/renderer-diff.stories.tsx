@@ -9,7 +9,7 @@ import RendererDiff from "../renderer-diff";
 import Wrapper from "./perseus-diff-wrapper";
 
 import "../../styles/perseus-editor.css";
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 const meta: Meta = {
     title: "Editors/Diffs/Renderer Diff",

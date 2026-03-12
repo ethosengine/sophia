@@ -15,7 +15,7 @@ export default Rule.makeRule({
         if (context && context.content) {
             // Find the url in the original content and make sure that the
             // character before is '(' and the character after is ')'
-            const index = context.content.indexOf(url);
+            const index = context.content.indexOf(url as string);
             if (index === -1) {
                 // It is not an error if we didn't find it.
                 return;
@@ -23,7 +23,7 @@ export default Rule.makeRule({
 
             if (
                 context.content[index - 1] !== "(" ||
-                context.content[index + url.length] !== ")"
+                context.content[index + url!.length] !== ")"
             ) {
                 return `Whitespace before or after image url:
 For images, don't include any space or newlines after '(' or before ')'.

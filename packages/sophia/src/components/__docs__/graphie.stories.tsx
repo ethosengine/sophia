@@ -6,7 +6,7 @@ import Graphie from "../graphie";
 
 import GraphieDocsPage from "./graphie.mdx";
 
-import type {StoryObj, Meta} from "@storybook/react-vite";
+import type {StoryObj, Meta} from "@storybook/react";
 
 type Story = StoryObj<typeof Graphie>;
 

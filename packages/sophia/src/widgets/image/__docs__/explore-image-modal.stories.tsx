@@ -14,7 +14,7 @@ import {
 import styles from "./image-stories.module.css";
 
 import type {Size} from "@ethosengine/perseus-core";
-import type {Meta, StoryObj} from "@storybook/react-vite";
+import type {Meta, StoryObj} from "@storybook/react";
 
 const meta: Meta<typeof ExploreImageModal> = {
     title: "Widgets/Image/Widget Internal Components/ExploreImageModal",
