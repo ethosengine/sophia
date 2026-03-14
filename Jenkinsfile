@@ -78,7 +78,7 @@ spec:
           cpu: "500m"
           ephemeral-storage: "3Gi"
         limits:
-          memory: "3Gi"
+          memory: "4Gi"
           cpu: "2"
           ephemeral-storage: "6Gi"
 '''
@@ -186,7 +186,7 @@ spec:
                     dir('sophia') {
                         sh '''#!/bin/bash
                             set -euo pipefail
-                            pnpm exec jest --ci --coverage
+                            pnpm exec jest --ci --coverage --maxWorkers=2
                         '''
                     }
                 }
