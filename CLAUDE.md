@@ -583,4 +583,24 @@ Or reference the skills for content creation guidance.
 
 ---
 
+## Psephos — Third Pillar (Planned)
+
+A new `@ethosengine/psephos` package is being designed as the governance ballot rendering pillar — sibling to Perseus (exercises) and Psyche (instruments).
+
+**Design doc:** `genesis/plans/2026-03-15-psephos-governance-rendering-design.md`
+
+**Key boundary notes:**
+
+1. **Content supply chain:** The protocol supplies ballot content (proposal, options, mechanism, hygiene config) through EPR content addressing — the same way it supplies exercises to Perseus and instruments to Psyche. Psephos is a pure renderer. It receives ballot artifacts and renders them faithfully. The protocol owns the content; Sophia owns the experience.
+
+2. **No dependency on Perseus or Psyche.** Psephos is standalone within the Sophia workspace. It uses the common sophia layer (types, rendering infrastructure) but does not import from perseus or psyche packages.
+
+3. **Election hygiene is structural, not optional.** Randomized option ordering, equal visual weight, result hiding before submission — these are built into the renderer, not configurable by the consuming app. The protocol can override defaults via the ballot artifact's hygiene config.
+
+4. **Output is `BallotRecognition`** — analogous to Perseus Recognition callbacks. Same event pattern, different payload (ballot entries instead of scores).
+
+5. **Web component:** `<psephos-ballot>` via `psephos-element` UMD bundle, wrapped for Angular by `psephos-plugin` in elohim-library. Same pipeline as `<sophia-question>`.
+
+6. **psyche-core must NEVER depend on perseus packages** (existing rule). Similarly, **psephos must NEVER depend on perseus or psyche packages.**
+
 *This document is maintained for AI assistants. For human developers, see README.md.*
