@@ -1,3 +1,5 @@
+import type {BallotEntry} from "@ethosengine/sophia-core";
+
 /**
  * Psephos — Governance ballot rendering types
  *
@@ -22,7 +24,7 @@ export interface PsephosBallot {
     mechanism: VotingMechanism;
     config: PsephosConfig;
     hygiene: ElectionHygiene;
-    previousBallot?: string;
+    previousBallot?: BallotEntry[];
 }
 
 /** The proposal being voted on */
