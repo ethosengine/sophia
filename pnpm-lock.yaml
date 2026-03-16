@@ -690,6 +690,22 @@ importers:
         specifier: catalog:devDeps
         version: 1.4.4
 
+  packages/psephos:
+    dependencies:
+      '@ethosengine/sophia-core':
+        specifier: workspace:*
+        version: link:../sophia-core
+    devDependencies:
+      perseus-build-settings:
+        specifier: workspace:*
+        version: link:../../config/build
+      react:
+        specifier: catalog:devDeps
+        version: 18.2.0
+      react-dom:
+        specifier: catalog:devDeps
+        version: 18.2.0(react@18.2.0)
+
   packages/psyche-survey:
     dependencies:
       '@ethosengine/perseus-core':
