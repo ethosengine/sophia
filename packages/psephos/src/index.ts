@@ -21,6 +21,11 @@ export type {
 } from "./types";
 export {DEFAULT_HYGIENE} from "./types";
 
+// Renderer
+export {PsephosRenderer} from "./psephos-renderer";
+
+export type {PsephosRendererProps} from "./psephos-renderer";
+
 // Re-export governance types from sophia-core for convenience
 export type {GovernanceResult, BallotEntry} from "@ethosengine/sophia-core";
 export {hasGovernanceResult} from "@ethosengine/sophia-core";
