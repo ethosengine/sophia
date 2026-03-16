@@ -1,0 +1,49 @@
+{
+  "id": "ballot-steward-selection",
+  "purpose": "governance",
+  "proposal": {
+    "id": "prop-steward-q2-2026",
+    "title": "Q2 content steward selection",
+    "description": "Rank candidates for the Q2 2026 content steward role. The steward curates and reviews community-submitted learning content.",
+    "proposalType": "consensus"
+  },
+  "options": [
+    {
+      "id": "opt-candidate-a",
+      "label": "Miriam Chen",
+      "description": "3 years as contributor, specializes in distributed systems content",
+      "position": 0,
+      "source": "Governance committee",
+      "sourceJustification": "Nominated based on contribution history and peer endorsements"
+    },
+    {
+      "id": "opt-candidate-b",
+      "label": "James Okafor",
+      "description": "2 years as contributor, led facilitation skills path development",
+      "position": 1,
+      "source": "Self-nominated",
+      "sourceJustification": "Expressed interest during community call 2026-02-15"
+    },
+    {
+      "id": "opt-candidate-c",
+      "label": "Priya Sharma",
+      "description": "1 year as contributor, expertise in cooperative economics and governance",
+      "position": 2,
+      "source": "Peer nomination",
+      "sourceJustification": "Nominated by 4 community members for governance knowledge"
+    }
+  ],
+  "mechanism": "ranked-choice",
+  "config": {
+    "quorumPercentage": 0.5,
+    "passageThreshold": 0.5
+  },
+  "hygiene": {
+    "randomizeOrder": true,
+    "equalVisualWeight": true,
+    "requireReasoning": false,
+    "showResultsAfterVote": true,
+    "confirmBeforeSubmit": true,
+    "hideVoterCount": true
+  }
+}

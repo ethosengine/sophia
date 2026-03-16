@@ -1,0 +1,34 @@
+{
+  "id": "ballot-content-policy-amendment",
+  "purpose": "governance",
+  "proposal": {
+    "id": "prop-content-policy-v2",
+    "title": "Adopt revised content review policy",
+    "description": "Replace the current ad-hoc content review process with structured quarterly reviews. All published content would undergo community review every 90 days. Reviewers would be selected by sortition from qualified stewards. Content failing review enters a 30-day remediation period before removal.",
+    "proposalType": "constitutional"
+  },
+  "options": [
+    {
+      "id": "opt-policy-adoption",
+      "label": "Adopt revised content review policy",
+      "description": "Structured quarterly reviews with sortition-selected reviewers and 30-day remediation",
+      "position": 0,
+      "source": "Content governance working group",
+      "sourceJustification": "Developed over 3 months of community consultation and 2 pilot reviews"
+    }
+  ],
+  "mechanism": "consent",
+  "config": {
+    "quorumPercentage": 0.67,
+    "passageThreshold": 1.0
+  },
+  "hygiene": {
+    "randomizeOrder": false,
+    "equalVisualWeight": true,
+    "requireReasoning": true,
+    "reasoningMinLength": 50,
+    "showResultsAfterVote": true,
+    "confirmBeforeSubmit": true,
+    "hideVoterCount": true
+  }
+}

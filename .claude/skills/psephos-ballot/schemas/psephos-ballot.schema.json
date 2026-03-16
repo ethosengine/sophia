@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "psephos-ballot.schema.json",
+  "title": "PsephosBallot",
+  "description": "Governance ballot rendered by Psephos — the third Sophia pillar",
+  "type": "object",
+  "required": ["id", "purpose", "proposal", "options", "mechanism", "config", "hygiene"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Unique ballot identifier"
+    },
+    "purpose": {
+      "const": "governance",
+      "description": "Always 'governance' for Psephos ballots"
+    },
+    "proposal": {
+      "$ref": "#/$defs/PsephosProposal"
+    },
+    "options": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/PsephosOption"
+      }
+    },
+    "mechanism": {
+      "enum": ["ranked-choice", "approval", "score-vote", "dot-vote", "consent"],
+      "description": "Which voting widget to render"
+    },
+    "config": {
+      "$ref": "#/$defs/PsephosConfig"
+    },
+    "hygiene": {
+      "$ref": "#/$defs/ElectionHygiene"
+    },
+    "previousBallot": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/BallotEntry"
+      },
+      "description": "Existing vote for amendment/review"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "mechanism": { "const": "consent" } }
+      },
+      "then": {
+        "properties": {
+          "options": { "minItems": 1, "maxItems": 1 }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "mechanism": { "enum": ["approval", "ranked-choice", "score-vote", "dot-vote"] } }
+      },
+      "then": {
+        "properties": {
+          "options": { "minItems": 2 }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "mechanism": { "const": "score-vote" } }
+      },
+      "then": {
+        "properties": {
+          "config": {
+            "required": ["scoreMin", "scoreMax"]
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "mechanism": { "const": "dot-vote" } }
+      },
+      "then": {
+        "properties": {
+          "config": {
+            "required": ["dotsPerVoter"]
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "PsephosProposal": {
+      "type": "object",
+      "required": ["id", "title", "description", "proposalType"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "title": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "description": { "type": "string", "minLength": 1 },
+        "proposalType": {
+          "enum": ["advice", "consent", "consensus", "policy", "constitutional"]
+        }
+      }
+    },
+    "PsephosOption": {
+      "type": "object",
+      "required": ["id", "label", "description", "position"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "label": { "type": "string", "minLength": 1, "maxLength": 50 },
+        "description": { "type": "string", "minLength": 1 },
+        "position": { "type": "integer", "minimum": 0 },
+        "source": { "type": "string" },
+        "sourceJustification": { "type": "string" }
+      }
+    },
+    "PsephosConfig": {
+      "type": "object",
+      "properties": {
+        "scoreMin": { "type": "number" },
+        "scoreMax": { "type": "number" },
+        "dotsPerVoter": { "type": "integer", "minimum": 1 },
+        "quorumPercentage": { "type": "number", "minimum": 0, "maximum": 1 },
+        "passageThreshold": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "ElectionHygiene": {
+      "type": "object",
+      "required": [
+        "randomizeOrder", "equalVisualWeight", "requireReasoning",
+        "showResultsAfterVote", "confirmBeforeSubmit", "hideVoterCount"
+      ],
+      "properties": {
+        "randomizeOrder": { "type": "boolean" },
+        "randomSeed": { "type": "string" },
+        "equalVisualWeight": { "type": "boolean" },
+        "requireReasoning": { "type": "boolean" },
+        "reasoningMinLength": { "type": "integer", "minimum": 1 },
+        "showResultsAfterVote": { "type": "boolean" },
+        "confirmBeforeSubmit": { "type": "boolean" },
+        "hideVoterCount": { "type": "boolean" }
+      }
+    },
+    "BallotEntry": {
+      "type": "object",
+      "required": ["optionId"],
+      "properties": {
+        "optionId": { "type": "string" },
+        "rank": { "type": ["integer", "null"] },
+        "score": { "type": ["number", "null"] },
+        "dots": { "type": ["integer", "null"] },
+        "approved": { "type": ["boolean", "null"] }
+      }
+    }
+  }
+}

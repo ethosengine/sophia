@@ -1,0 +1,46 @@
+{
+  "id": "ballot-learning-path-topics",
+  "purpose": "governance",
+  "proposal": {
+    "id": "prop-path-topics-2026-03",
+    "title": "Topics for next learning path",
+    "description": "Which topics should be included in the next community learning path? Approve all topics you think are valuable.",
+    "proposalType": "advice"
+  },
+  "options": [
+    {
+      "id": "opt-distributed-systems",
+      "label": "Distributed systems",
+      "description": "Consensus algorithms, partition tolerance, eventual consistency",
+      "position": 0
+    },
+    {
+      "id": "opt-cooperative-economics",
+      "label": "Cooperative economics",
+      "description": "Mutual credit, commons governance, REA accounting",
+      "position": 1
+    },
+    {
+      "id": "opt-digital-identity",
+      "label": "Digital identity",
+      "description": "Self-sovereign identity, key management, trust networks",
+      "position": 2
+    },
+    {
+      "id": "opt-facilitation",
+      "label": "Facilitation skills",
+      "description": "Consent-based decision making, active listening, conflict resolution",
+      "position": 3
+    }
+  ],
+  "mechanism": "approval",
+  "config": {},
+  "hygiene": {
+    "randomizeOrder": true,
+    "equalVisualWeight": true,
+    "requireReasoning": false,
+    "showResultsAfterVote": true,
+    "confirmBeforeSubmit": false,
+    "hideVoterCount": true
+  }
+}
