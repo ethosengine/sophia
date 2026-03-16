@@ -12,6 +12,7 @@ import type {
     MasteryResult,
     ResonanceResult,
     ReflectionResult,
+    GovernanceResult,
     Moment,
 } from "./types";
 import type {
@@ -170,4 +171,13 @@ export function hasReflectionResult(
     recognition: Recognition,
 ): recognition is Recognition & {reflection: ReflectionResult} {
     return recognition.reflection !== undefined;
+}
+
+/**
+ * Check if a Recognition has a governance result.
+ */
+export function hasGovernanceResult(
+    recognition: Recognition,
+): recognition is Recognition & {governance: GovernanceResult} {
+    return recognition.governance !== undefined;
 }

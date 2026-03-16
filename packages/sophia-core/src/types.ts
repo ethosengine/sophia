@@ -25,12 +25,14 @@ import type {
  * - discovery: What resonates with the learner?
  * - reflection: What does the learner think about their learning?
  * - invitation: What calls to the learner?
+ * - governance: What does the community decide?
  */
 export type AssessmentPurpose =
     | "mastery"
     | "discovery"
     | "reflection"
-    | "invitation";
+    | "invitation"
+    | "governance";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Moment - The Assessment Interaction
@@ -132,6 +134,9 @@ export interface Recognition {
     /** Reflection result (for reflection purpose) */
     reflection?: ReflectionResult;
 
+    /** Governance result (for governance purpose) */
+    governance?: GovernanceResult;
+
     /** Raw user input for further processing */
     userInput: UserInputMap;
 
@@ -210,6 +215,36 @@ export interface ReflectionResult {
 
     /** Optional text summary extracted from input */
     textContent?: string;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Governance Result
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * Result of a governance ballot submission.
+ * Parallel to MasteryResult (learning) and ResonanceResult (assessment).
+ */
+export interface GovernanceResult {
+    /** Which voting mechanism was used */
+    mechanism: string;
+    /** The voter's choices — one entry per option */
+    ballots: BallotEntry[];
+    /** Optional reasoning text */
+    reasoning?: string;
+    /** When the ballot was cast (ISO 8601) */
+    timestamp: string;
+    /** Proposal being voted on */
+    proposalId: string;
+}
+
+/** A single entry in a governance ballot */
+export interface BallotEntry {
+    optionId: string;
+    rank?: number | null;
+    score?: number | null;
+    dots?: number | null;
+    approved?: boolean | null;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

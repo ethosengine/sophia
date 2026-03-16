@@ -19,6 +19,8 @@ export type {
     MasteryResult,
     ResonanceResult,
     ReflectionResult,
+    GovernanceResult,
+    BallotEntry,
     AggregatedResonance,
     AggregatedMastery,
     LogLevel,
@@ -43,6 +45,7 @@ export {
     hasMasteryResult,
     hasResonanceResult,
     hasReflectionResult,
+    hasGovernanceResult,
 } from "./scoring-strategy";
 
 // Scoring strategy registry
@@ -68,6 +71,7 @@ import type {
     MasteryResult,
     ResonanceResult,
     ReflectionResult,
+    GovernanceResult,
     SubscaleMappings,
     PerseusRenderer,
     Hint,
@@ -166,6 +170,23 @@ export function createRecognition(
     };
 }
 
+/**
+ * Create a Recognition result for a governance ballot.
+ */
+export function createGovernanceRecognition(
+    momentId: string,
+    governance: GovernanceResult,
+    userInput: UserInputMap = {},
+): Recognition {
+    return {
+        momentId,
+        purpose: "governance",
+        governance,
+        userInput,
+        timestamp: Date.now(),
+    };
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // Utility Functions
 // ─────────────────────────────────────────────────────────────────────────────
@@ -189,6 +210,13 @@ export function isDiscoveryMoment(moment: Moment): boolean {
  */
 export function isReflectionMoment(moment: Moment): boolean {
     return moment.purpose === "reflection";
+}
+
+/**
+ * Check if a moment is for governance assessment.
+ */
+export function isGovernanceMoment(moment: Moment): boolean {
+    return moment.purpose === "governance";
 }
 
 /**
