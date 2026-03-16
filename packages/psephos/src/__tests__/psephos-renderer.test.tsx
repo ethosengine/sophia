@@ -107,13 +107,13 @@ describe("PsephosRenderer", () => {
     it("shows 'not yet implemented' for unsupported mechanisms", () => {
         const rankedBallot: PsephosBallot = {
             ...approvalBallot,
-            mechanism: "consent" as any,
+            mechanism: "unknown-mechanism" as any,
         };
 
         render(<PsephosRenderer ballot={rankedBallot} />);
 
         expect(
-            screen.getByText(/Mechanism 'consent' not yet implemented/),
+            screen.getByText(/Mechanism 'unknown-mechanism' not yet implemented/),
         ).toBeInTheDocument();
     });
 

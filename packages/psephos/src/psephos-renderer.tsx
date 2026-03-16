@@ -11,6 +11,7 @@ import {getScoringStrategy} from "@ethosengine/sophia-core";
 import * as React from "react";
 
 import {ApprovalWidget} from "./widgets/approval";
+import {ConsentWidget} from "./widgets/consent";
 import {DotVoteWidget} from "./widgets/dot-vote";
 import {RankedChoiceWidget} from "./widgets/ranked-choice";
 import {ScoreVoteWidget} from "./widgets/score-vote";
@@ -153,6 +154,15 @@ export function PsephosRenderer(
                         options={ballot.options as any}
                         hygiene={ballot.hygiene}
                         config={ballot.config}
+                        onChange={handleChange}
+                        initialState={initialState}
+                    />
+                );
+            case "consent":
+                return (
+                    <ConsentWidget
+                        options={ballot.options as any}
+                        hygiene={ballot.hygiene}
                         onChange={handleChange}
                         initialState={initialState}
                     />
