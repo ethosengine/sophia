@@ -11,7 +11,9 @@ import {getScoringStrategy} from "@ethosengine/sophia-core";
 import * as React from "react";
 
 import {ApprovalWidget} from "./widgets/approval";
+import {DotVoteWidget} from "./widgets/dot-vote";
 import {RankedChoiceWidget} from "./widgets/ranked-choice";
+import {ScoreVoteWidget} from "./widgets/score-vote";
 
 import type {BallotUserInput, PsephosBallot} from "./types";
 import type {BallotEntry, Recognition} from "@ethosengine/sophia-core";
@@ -131,6 +133,26 @@ export function PsephosRenderer(
                     <RankedChoiceWidget
                         options={ballot.options as any}
                         hygiene={ballot.hygiene}
+                        onChange={handleChange}
+                        initialState={initialState}
+                    />
+                );
+            case "score-vote":
+                return (
+                    <ScoreVoteWidget
+                        options={ballot.options as any}
+                        hygiene={ballot.hygiene}
+                        config={ballot.config}
+                        onChange={handleChange}
+                        initialState={initialState}
+                    />
+                );
+            case "dot-vote":
+                return (
+                    <DotVoteWidget
+                        options={ballot.options as any}
+                        hygiene={ballot.hygiene}
+                        config={ballot.config}
                         onChange={handleChange}
                         initialState={initialState}
                     />
