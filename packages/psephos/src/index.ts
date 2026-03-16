@@ -1,3 +1,13 @@
+import {registerScoringStrategy} from "@ethosengine/sophia-core";
+
+import {GovernanceScoringStrategy} from "./governance-strategy";
+
+// Auto-register on import (same pattern as psyche-survey)
+registerScoringStrategy(GovernanceScoringStrategy);
+
+export {GovernanceScoringStrategy} from "./governance-strategy";
+export {buildBallotEntries, getEmptyOptionIds} from "./governance-strategy";
+
 // Types
 export type {
     PsephosBallot,
