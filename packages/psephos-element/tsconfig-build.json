@@ -1,0 +1,20 @@
+{
+    "extends": "../tsconfig-shared.json",
+    "compilerOptions": {
+        "outDir": "./dist",
+        "rootDir": "src",
+        "jsx": "react-jsx",
+        "paths": {
+            "@khanacademy/*": [
+                "../*/src"
+            ],
+            "@ethosengine/*": [
+                "../*/src"
+            ]
+        }
+    },
+    "references": [
+        {"path": "../psephos/tsconfig-build.json"},
+        {"path": "../sophia-core/tsconfig-build.json"}
+    ]
+}
