@@ -7,6 +7,7 @@ Sophia (Wisdom) is a TypeScript monorepo for rendering interactive educational c
 - **Mastery** (graded exercises with correct/incorrect)
 - **Discovery** (resonance mapping to reveal affinities)
 - **Reflection** (open-ended capture without grading)
+- **Governance** (formal ballot rendering with election hygiene)
 
 The library seeks to enable learning management systems to implement cooperative Socratic methods—architecturally necessary for the distributed agentic AI dialogue envisioned by the [Elohim Protocol](https://github.com/ethosengine/elohim), which aims to scale wisdom for human flourishing.
 
@@ -52,34 +53,34 @@ el.onRecognition = (recognition: Recognition) => {
 │  Factory Functions: createMoment, createRecognition             │
 └─────────────────────────────────────────────────────────────────┘
                               │
-          ┌───────────────────┼───────────────────┐
-          │                   │                   │
-┌─────────┴─────────┐ ┌───────┴───────┐ ┌────────┴────────┐
-│   perseus-score   │ │ psyche-survey │ │   psyche-core   │
-│   (Mastery)       │ │  (Discovery)  │ │  (Reflection)   │
-│                   │ │               │ │                 │
-│  Graded scoring   │ │  Resonance    │ │  Psychometric   │
-│  Correct/Wrong    │ │  Subscales    │ │  Instruments    │
-└─────────┬─────────┘ └───────┬───────┘ └────────┬────────┘
-          │                   │                   │
-          └───────────────────┼───────────────────┘
-                              │
-┌─────────────────────────────┴───────────────────────────────────┐
+     ┌────────────────────────┼────────────────────────┐
+     │                        │                        │
+┌────┴──────────┐  ┌─────────┴─────────┐  ┌───────────┴───────────┐
+│ perseus-score │  │  psyche-survey    │  │       psephos         │
+│  (Mastery)    │  │  (Discovery)      │  │    (Governance)       │
+│               │  │                   │  │                       │
+│ Graded scoring│  │ Resonance mapping │  │ Ballot rendering with │
+│ Correct/Wrong │  │ Subscale affinity │  │ election hygiene      │
+└────┬──────────┘  └─────────┬─────────┘  └───────────┬───────────┘
+     │                       │                        │
+     └────────────────────┬──┴────────────────────────┘
+                          │
+┌─────────────────────────┴───────────────────────────────────────┐
 │                          sophia                                  │
 │                    (Main Rendering)                              │
 │                                                                  │
 │  Widget components, React rendering, Renderer infrastructure    │
 └─────────────────────────────────────────────────────────────────┘
                               │
-              ┌───────────────┴───────────────┐
-              │       sophia-element          │
-              │   (Web Component + Theming)   │
-              │                               │
-              │  <sophia-question> element    │
-              │  Sophia.configure() API       │
-              │  Shadow DOM encapsulation     │
-              │  UMD/ESM/CJS bundles          │
-              └───────────────────────────────┘
+          ┌───────────────────┴───────────────────┐
+          │                                       │
+┌─────────┴───────────────┐   ┌───────────────────┴───────────┐
+│    sophia-element       │   │      psephos-element          │
+│ (Web Component+Theming) │   │   (Web Component+Theming)     │
+│                         │   │                               │
+│ <sophia-question>       │   │  <psephos-ballot>             │
+│ UMD/ESM/CJS bundles    │   │  UMD bundle (153KB)           │
+└─────────────────────────┘   └───────────────────────────────┘
 ```
 
 ### Design Principles
@@ -96,6 +97,7 @@ el.onRecognition = (recognition: Recognition) => {
 | Package | Description | Documentation |
 |---------|-------------|---------------|
 | [@ethosengine/sophia-element](packages/sophia-element) | Web Component for rendering questions | [README](packages/sophia-element/README.md) |
+| [@ethosengine/psephos-element](packages/psephos-element) | Web Component for rendering governance ballots | - |
 
 ### Foundation
 
@@ -111,6 +113,13 @@ el.onRecognition = (recognition: Recognition) => {
 | [@ethosengine/perseus-score](packages/perseus-score) | Mastery scoring (graded) | - |
 | [@ethosengine/psyche-survey](packages/psyche-survey) | Discovery & reflection scoring | [README](packages/psyche-survey/README.md) |
 | @ethosengine/psyche-core | Psychometric instruments | - |
+
+### Governance
+
+| Package | Description | Documentation |
+|---------|-------------|---------------|
+| [@ethosengine/psephos](packages/psephos) | Ballot rendering with election hygiene (5 mechanisms) | - |
+| [@ethosengine/psephos-element](packages/psephos-element) | `<psephos-ballot>` Web Component | - |
 
 ### Authoring
 
@@ -137,7 +146,7 @@ A unit of assessment content. Named "Moment" because not all are questions—som
 ```typescript
 interface Moment {
     id: string;
-    purpose: "mastery" | "discovery" | "reflection" | "invitation";
+    purpose: "mastery" | "discovery" | "reflection" | "invitation" | "governance";
     content: PerseusRenderer;
     hints?: Hint[];
     subscaleContributions?: SubscaleMappings;  // For discovery/reflection
@@ -153,9 +162,10 @@ interface Recognition {
     momentId: string;
     purpose: AssessmentPurpose;
     userInput: UserInputMap;
-    mastery?: MasteryResult;      // For graded assessment
-    resonance?: ResonanceResult;  // For discovery assessment
-    reflection?: ReflectionResult; // For reflection assessment
+    mastery?: MasteryResult;        // For graded assessment
+    resonance?: ResonanceResult;    // For discovery assessment
+    reflection?: ReflectionResult;  // For reflection assessment
+    governance?: GovernanceResult;  // For governance ballots
     timestamp?: number;
 }
 ```
@@ -167,6 +177,7 @@ interface Recognition {
 | Mastery | perseus-score | Graded exercises | Yes |
 | Discovery | psyche-survey | Resonance/affinity mapping | No |
 | Reflection | psyche-survey | Open-ended capture | No |
+| Governance | psephos | Formal ballot rendering | No (preferences) |
 
 ## Development
 
@@ -198,13 +209,47 @@ cd packages/sophia-core && npx tsc --noEmit
 npm test -- --filter sophia-core
 ```
 
+## Psephos — Governance Ballots
+
+Psephos (ψῆφος, the Athenian voting pebble) is the third rendering pillar. It renders formal governance ballots with built-in election hygiene — the voting equivalent of Perseus exercise widgets.
+
+```typescript
+import { registerPsephosElement } from "@ethosengine/psephos-element";
+import type { PsephosBallot, Recognition } from "@ethosengine/psephos-element";
+
+await registerPsephosElement();
+
+const el = document.querySelector("psephos-ballot");
+el.ballot = {
+    id: "ballot-1",
+    purpose: "governance",
+    proposal: { id: "p1", title: "Adopt new review policy", description: "...", proposalType: "consent" },
+    options: [
+        { id: "opt-1", label: "Consent", description: "Approve the proposal", position: 0 },
+    ],
+    mechanism: "consent",
+    config: {},
+    hygiene: { randomizeOrder: false, equalVisualWeight: true, requireReasoning: false,
+               reasoningMinLength: 50, showResultsAfterVote: true, confirmBeforeSubmit: true, hideVoterCount: true },
+};
+el.onRecognition = (recognition: Recognition) => {
+    console.log(recognition.governance?.mechanism); // "consent"
+    console.log(recognition.governance?.ballots);   // [{ optionId: "opt-1", approved: true }]
+};
+```
+
+**5 voting mechanisms:** approval, ranked-choice, score-vote, dot-vote, consent
+
+**Election hygiene:** seeded option randomization, equal visual weight, confirmation interstitial, result hiding before vote, reasoning requirements for blocks
+
 ## Bundle Formats
 
-| Format | Entry Point | Use Case |
-|--------|-------------|----------|
-| ESM | `dist/es/index.js` | Bundlers (Vite, Webpack, Angular CLI) |
-| CJS | `dist/index.js` | Node/CommonJS |
-| UMD | `dist/sophia-element.umd.js` | Script tag, CDN (React bundled) |
+| Bundle | Entry Point | Size | Use Case |
+|--------|-------------|------|----------|
+| sophia-element ESM | `dist/es/index.js` | - | Bundlers (Vite, Webpack, Angular CLI) |
+| sophia-element CJS | `dist/index.js` | - | Node/CommonJS |
+| sophia-element UMD | `dist/sophia-element.umd.js` | ~3.4MB | Script tag, CDN (React bundled) |
+| psephos-element UMD | `dist/psephos-element.umd.js` | 153KB | Script tag (React bundled) |
 
 ## Heritage
 
