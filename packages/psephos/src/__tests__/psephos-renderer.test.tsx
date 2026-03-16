@@ -107,13 +107,13 @@ describe("PsephosRenderer", () => {
     it("shows 'not yet implemented' for unsupported mechanisms", () => {
         const rankedBallot: PsephosBallot = {
             ...approvalBallot,
-            mechanism: "ranked-choice",
+            mechanism: "score-vote" as any,
         };
 
         render(<PsephosRenderer ballot={rankedBallot} />);
 
         expect(
-            screen.getByText(/Mechanism 'ranked-choice' not yet implemented/),
+            screen.getByText(/Mechanism 'score-vote' not yet implemented/),
         ).toBeInTheDocument();
     });
 
