@@ -23,8 +23,12 @@ export {DEFAULT_HYGIENE} from "./types";
 
 // Renderer
 export {PsephosRenderer} from "./psephos-renderer";
-
 export type {PsephosRendererProps} from "./psephos-renderer";
+
+// Hygiene utilities
+export {randomizeOptions} from "./hygiene/randomize-options";
+export {ConfirmationStep} from "./hygiene/confirmation-step";
+export type {ConfirmationStepProps} from "./hygiene/confirmation-step";
 
 // Re-export governance types from sophia-core for convenience
 export type {GovernanceResult, BallotEntry} from "@ethosengine/sophia-core";

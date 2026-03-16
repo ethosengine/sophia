@@ -10,6 +10,8 @@
 import {getScoringStrategy} from "@ethosengine/sophia-core";
 import * as React from "react";
 
+import {ConfirmationStep} from "./hygiene/confirmation-step";
+import {randomizeOptions} from "./hygiene/randomize-options";
 import {ApprovalWidget} from "./widgets/approval";
 import {ConsentWidget} from "./widgets/consent";
 import {DotVoteWidget} from "./widgets/dot-vote";
@@ -63,6 +65,18 @@ export function PsephosRenderer(
     // Resolve the governance scoring strategy
     const strategy = React.useMemo(() => getScoringStrategy("governance"), []);
 
+    // Randomize option order when hygiene requires it
+    const displayOptions = React.useMemo(() => {
+        if (ballot.hygiene.randomizeOrder) {
+            return randomizeOptions(ballot.options, ballot.hygiene.randomSeed);
+        }
+        return [...ballot.options];
+    }, [
+        ballot.options,
+        ballot.hygiene.randomizeOrder,
+        ballot.hygiene.randomSeed,
+    ]);
+
     // Convert previousBallot to initial widget state
     const initialState = React.useMemo(
         () =>
@@ -76,6 +90,9 @@ export function PsephosRenderer(
     const [userInput, setUserInput] = React.useState<BallotUserInput>(
         () => initialState ?? {},
     );
+
+    // Confirmation step state
+    const [showConfirmation, setShowConfirmation] = React.useState(false);
 
     // Compute empty widget IDs to determine ballot validity
     const emptyIds = React.useMemo(() => {
@@ -100,8 +117,8 @@ export function PsephosRenderer(
         [onAnswerChange],
     );
 
-    // Handle submit
-    const handleSubmit = React.useCallback(() => {
+    // Fire the actual recognition callback
+    const fireRecognition = React.useCallback(() => {
         if (!strategy || !isComplete) {
             return;
         }
@@ -117,13 +134,31 @@ export function PsephosRenderer(
         onRecognition?.(recognition);
     }, [strategy, isComplete, ballot, userInput, onRecognition]);
 
+    // Handle submit — gate through confirmation step when hygiene requires it
+    const handleSubmit = React.useCallback(() => {
+        if (!strategy || !isComplete) {
+            return;
+        }
+
+        if (ballot.hygiene.confirmBeforeSubmit) {
+            setShowConfirmation(true);
+        } else {
+            fireRecognition();
+        }
+    }, [
+        strategy,
+        isComplete,
+        ballot.hygiene.confirmBeforeSubmit,
+        fireRecognition,
+    ]);
+
     // Render the mechanism-specific widget
     const renderWidget = (): React.ReactElement => {
         switch (ballot.mechanism) {
             case "approval":
                 return (
                     <ApprovalWidget
-                        options={ballot.options as any}
+                        options={displayOptions as any}
                         hygiene={ballot.hygiene}
                         onChange={handleChange}
                         initialState={initialState}
@@ -132,7 +167,7 @@ export function PsephosRenderer(
             case "ranked-choice":
                 return (
                     <RankedChoiceWidget
-                        options={ballot.options as any}
+                        options={displayOptions as any}
                         hygiene={ballot.hygiene}
                         onChange={handleChange}
                         initialState={initialState}
@@ -141,7 +176,7 @@ export function PsephosRenderer(
             case "score-vote":
                 return (
                     <ScoreVoteWidget
-                        options={ballot.options as any}
+                        options={displayOptions as any}
                         hygiene={ballot.hygiene}
                         config={ballot.config}
                         onChange={handleChange}
@@ -151,7 +186,7 @@ export function PsephosRenderer(
             case "dot-vote":
                 return (
                     <DotVoteWidget
-                        options={ballot.options as any}
+                        options={displayOptions as any}
                         hygiene={ballot.hygiene}
                         config={ballot.config}
                         onChange={handleChange}
@@ -161,7 +196,7 @@ export function PsephosRenderer(
             case "consent":
                 return (
                     <ConsentWidget
-                        options={ballot.options as any}
+                        options={displayOptions as any}
                         hygiene={ballot.hygiene}
                         onChange={handleChange}
                         initialState={initialState}
@@ -176,6 +211,22 @@ export function PsephosRenderer(
                 );
         }
     };
+
+    if (showConfirmation) {
+        return (
+            <div className="psephos-renderer">
+                <ConfirmationStep
+                    ballot={ballot}
+                    userInput={userInput}
+                    onConfirm={() => {
+                        setShowConfirmation(false);
+                        fireRecognition();
+                    }}
+                    onGoBack={() => setShowConfirmation(false)}
+                />
+            </div>
+        );
+    }
 
     return (
         <div className="psephos-renderer">
