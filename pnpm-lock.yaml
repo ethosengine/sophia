@@ -706,6 +706,49 @@ importers:
         specifier: catalog:devDeps
         version: 18.2.0(react@18.2.0)
 
+  packages/psephos-element:
+    dependencies:
+      '@ethosengine/psephos':
+        specifier: workspace:*
+        version: link:../psephos
+      '@ethosengine/sophia-core':
+        specifier: workspace:*
+        version: link:../sophia-core
+    devDependencies:
+      '@rollup/plugin-commonjs':
+        specifier: ^25.0.7
+        version: 25.0.8(rollup@4.55.3)
+      '@rollup/plugin-node-resolve':
+        specifier: ^15.2.3
+        version: 15.3.1(rollup@4.55.3)
+      '@rollup/plugin-replace':
+        specifier: ^5.0.5
+        version: 5.0.7(rollup@4.55.3)
+      '@rollup/plugin-swc':
+        specifier: ^0.3.0
+        version: 0.3.1(@swc/core@1.15.10(@swc/helpers@0.5.18))(rollup@4.55.3)
+      '@rollup/plugin-terser':
+        specifier: ^0.4.4
+        version: 0.4.4(rollup@4.55.3)
+      perseus-build-settings:
+        specifier: workspace:*
+        version: link:../../config/build
+      react:
+        specifier: catalog:devDeps
+        version: 18.2.0
+      react-dom:
+        specifier: catalog:devDeps
+        version: 18.2.0(react@18.2.0)
+      rollup:
+        specifier: ^4.9.6
+        version: 4.55.3
+      rollup-plugin-filesize:
+        specifier: ^10.0.0
+        version: 10.0.0
+      rollup-plugin-postcss:
+        specifier: ^4.0.2
+        version: 4.0.2(postcss@8.5.6)
+
   packages/psyche-survey:
     dependencies:
       '@ethosengine/perseus-core':
