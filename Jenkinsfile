@@ -52,6 +52,7 @@ pipeline {
 apiVersion: v1
 kind: Pod
 spec:
+  serviceAccount: jenkins-deployer
   nodeSelector:
     node-type: performance
   tolerations:
