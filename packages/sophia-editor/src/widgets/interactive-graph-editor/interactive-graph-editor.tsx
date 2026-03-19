@@ -8,6 +8,7 @@ import {
     type AxisLabelLocation,
     interactiveGraphLogic,
     type ShowAxisArrows,
+    type PerseusInteractiveGraphUserInput,
 } from "@ethosengine/perseus-core";
 import {
     containerSizeClass,
@@ -39,15 +40,14 @@ import {shouldShowStartCoordsUI} from "./start-coords/util";
 
 import type {APIOptionsWithDefaults} from "@ethosengine/sophia";
 
-// Explicit annotation needed: TS2742/TS7056 — inferred type references
-// deep internal paths and exceeds serialization limits for declaration emit.
-const InteractiveGraph: React.ComponentType<
-    React.ComponentProps<typeof InteractiveGraphWidget.widget>
-> = InteractiveGraphWidget.widget;
+const InteractiveGraph = InteractiveGraphWidget.widget;
 
-type InteractiveGraphProps = React.ComponentProps<
-    typeof InteractiveGraphWidget.widget
->;
+// Defined using perseus-core types directly rather than PropsFor<typeof InteractiveGraph>
+// to avoid TS2742/TS7056 — the inferred widget type references deep internal
+// paths of @ethosengine/sophia that aren't portable for declaration emit.
+type InteractiveGraphProps = {
+    userInput: PerseusInteractiveGraphUserInput;
+};
 
 type Range = [min: number, max: number];
 
@@ -334,7 +334,8 @@ class InteractiveGraphEditor extends React.Component<Props> {
                             <GraphTypeSelector
                                 graphType={
                                     this.props.graph?.type ??
-                                    InteractiveGraph.defaultProps.userInput.type
+                                    InteractiveGraph.defaultProps!.userInput!
+                                        .type
                                 }
                                 // TODO(LEMS-2656): remove TS suppression
                                 onChange={
