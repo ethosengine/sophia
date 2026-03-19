@@ -38,11 +38,16 @@ import StartCoordsSettings from "./start-coords/start-coords-settings";
 import {shouldShowStartCoordsUI} from "./start-coords/util";
 
 import type {APIOptionsWithDefaults} from "@ethosengine/sophia";
-import type {PropsFor} from "@khanacademy/wonder-blocks-core";
 
-const InteractiveGraph = InteractiveGraphWidget.widget;
+// Explicit annotation needed: TS2742/TS7056 — inferred type references
+// deep internal paths and exceeds serialization limits for declaration emit.
+const InteractiveGraph: React.ComponentType<
+    React.ComponentProps<typeof InteractiveGraphWidget.widget>
+> = InteractiveGraphWidget.widget;
 
-type InteractiveGraphProps = PropsFor<typeof InteractiveGraph>;
+type InteractiveGraphProps = React.ComponentProps<
+    typeof InteractiveGraphWidget.widget
+>;
 
 type Range = [min: number, max: number];
 
