@@ -5,7 +5,7 @@
         "rootDir": "src",
     },
     "references": [
-        {"path": "../perseus-utils/tsconfig-build.json"},
+        {"path": "../sophia-utils/tsconfig-build.json"},
         {"path": "../simple-markdown/tsconfig-build.json"},
     ]
 }
