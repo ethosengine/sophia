@@ -113,7 +113,9 @@ describe("PsephosRenderer", () => {
         render(<PsephosRenderer ballot={rankedBallot} />);
 
         expect(
-            screen.getByText(/Mechanism 'unknown-mechanism' not yet implemented/),
+            screen.getByText(
+                /Mechanism 'unknown-mechanism' not yet implemented/,
+            ),
         ).toBeInTheDocument();
     });
 
