@@ -1,0 +1,29 @@
+{
+  "manifestVersion": "1.0",
+  "pipeline": "elohim-sophia",
+  "description": "Sophia assessment engine — build, test, UMD bundle",
+  "steps": {
+    "build-sophia-umd": {
+      "description": "Build sophia-element UMD bundle for Angular consumption",
+      "inputs": {
+        "sources": ["sophia/**"],
+        "buildProcess": ["sophia.Jenkinsfile"]
+      },
+      "outputs": {
+        "artifacts": ["sophia-element-umd"],
+        "verify": "test -f sophia/packages/sophia-element/dist/sophia-element.umd.js"
+      },
+      "depends": [],
+      "executor": {
+        "stage": "Build Sophia",
+        "function": null
+      }
+    }
+  },
+  "gate": {
+    "projects": {
+      "sophia": { "dir": "sophia", "steps": ["build-sophia-umd"] }
+    }
+  },
+  "deployment": {}
+}
