@@ -88,6 +88,11 @@ spec:
             defaultValue: false,
             description: 'Force full rebuild even without code changes'
         )
+        booleanParam(
+            name: 'DEPLOY_ONLY',
+            defaultValue: false,
+            description: 'No-op for this pipeline. Accepted so the orchestrator can propagate the flag uniformly; orchestrator skips triggering sophia when DEPLOY_ONLY=true.'
+        )
     }
 
     options {
