@@ -76,6 +76,9 @@ spec:
           ephemeral-storage: "6Gi"
     - name: builder
       image: harbor.ethosengine.com/ethosengine/ci-builder:latest
+      # IfNotPresent: serve from node cache when the registry is unreachable
+      # (2026-06-06 Harbor volume EIO — see orchestrator Jenkinsfile note).
+      imagePullPolicy: IfNotPresent
       command: [cat]
       tty: true
 '''
