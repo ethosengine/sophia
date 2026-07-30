@@ -71,6 +71,20 @@ const baseAngleGraphState: InteractiveGraphState = {
     ],
 };
 
+const baseRayGraphState: InteractiveGraphState = {
+    hasBeenInteractedWith: false,
+    type: "ray",
+    range: [
+        [-10, 10],
+        [-10, 10],
+    ],
+    snapStep: [1, 1],
+    coords: [
+        [0, 0],
+        [5, 5],
+    ],
+};
+
 const baseCircleGraphState: InteractiveGraphState = {
     hasBeenInteractedWith: false,
     type: "circle",
@@ -315,6 +329,22 @@ describe("movePointInFigure", () => {
         expect(updated.coords[0][0]).toEqual([4.5, 7.5]);
     });
 
+    it("sets stateAnnouncement to a move-ray-point with the new position", () => {
+        const state: InteractiveGraphState = {...baseRayGraphState};
+
+        const updated = interactiveGraphReducer(
+            state,
+            actions.ray.movePoint(1, [-3, 2]),
+        );
+
+        expect(updated.stateAnnouncement).toEqual({
+            type: "move-ray-point",
+            pointIndex: 1,
+            x: -3,
+            y: 2,
+        });
+    });
+
     it("sets stateAnnouncement to a move-point with the new position on a linear graph", () => {
         const state: InteractiveGraphState = {
             hasBeenInteractedWith: false,
@@ -341,6 +371,24 @@ describe("movePointInFigure", () => {
             x: -3,
             y: 2,
         });
+    });
+});
+
+describe("moveRay on a ray graph", () => {
+    it("sets stateAnnouncement to a move-ray-line with the new endpoints", () => {
+        // baseRayGraphState has endpoints at (0, 0) and (5, 5).
+        const state: InteractiveGraphState = {...baseRayGraphState};
+
+        const updated = interactiveGraphReducer(
+            state,
+            actions.ray.moveRay([-3, 3]),
+        );
+
+        invariant(updated.stateAnnouncement?.type === "move-ray-line");
+        expect(updated.stateAnnouncement.coords).toEqual([
+            [-3, 3],
+            [2, 8],
+        ]);
     });
 });
 

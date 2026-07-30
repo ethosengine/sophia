@@ -59,6 +59,7 @@ import type {Coord} from "../../../interactive2/types";
 import type {
     AngleGraphState,
     InteractiveGraphState,
+    InteractiveGraphStateAnnouncement,
     PairOfPoints,
 } from "../types";
 import type {QuadraticCoords} from "@khanacademy/kmath";
@@ -288,9 +289,10 @@ function doMovePointInFigure(
                 coords: newCoords,
             };
         }
+        case "ray":
         case "linear": {
-            // TODO(LEMS-4189): Temporary duplication of the ray logic
-            // until we move all graphs to use WB Announcer.
+            // Ray and linear share identical endpoint-move logic; only the
+            // screen reader announcement differs.
             const newValue = boundAndSnapToGrid(action.destination, state);
             const newCoords = setAtIndex({
                 array: state.coords,
@@ -298,29 +300,28 @@ function doMovePointInFigure(
                 newValue,
             });
 
-            return {
-                ...state,
-                hasBeenInteractedWith: true,
-                coords: newCoords,
-                stateAnnouncement: {
-                    type: "move-point",
-                    pointIndex: action.pointIndex,
-                    x: newValue[X],
-                    y: newValue[Y],
-                },
-            };
-        }
-        case "ray": {
-            const newCoords = setAtIndex({
-                array: state.coords,
-                index: action.pointIndex,
-                newValue: boundAndSnapToGrid(action.destination, state),
-            });
+            // Determine the correct state announcement
+            // by the graph type.
+            const stateAnnouncement: InteractiveGraphStateAnnouncement =
+                state.type === "ray"
+                    ? {
+                          type: "move-ray-point",
+                          pointIndex: action.pointIndex,
+                          x: newValue[X],
+                          y: newValue[Y],
+                      }
+                    : {
+                          type: "move-point",
+                          pointIndex: action.pointIndex,
+                          x: newValue[X],
+                          y: newValue[Y],
+                      };
 
             return {
                 ...state,
                 hasBeenInteractedWith: true,
                 coords: newCoords,
+                stateAnnouncement,
             };
         }
         case "circle":
@@ -382,9 +383,10 @@ function doMoveLine(
                 coords: newCoords,
             };
         }
+        case "ray":
         case "linear": {
-            // TODO(LEMS-4189): Temporary duplication of the ray logic
-            // until we move all graphs to use WB Announcer.
+            // Ray and linear share identical whole-line move logic; only the
+            // screen reader announcement differs.
             const currentLine = state.coords;
             const change = getChange(currentLine, action.delta, {
                 snapStep,
@@ -396,34 +398,17 @@ function doMoveLine(
                 snap(snapStep, vec.add(currentLine[1], change)),
             ];
 
-            return {
-                ...state,
-                type: state.type,
-                hasBeenInteractedWith: true,
-                coords: newLine,
-                stateAnnouncement: {
-                    type: "move-linear-line",
-                    coords: newLine,
-                },
-            };
-        }
-        case "ray": {
-            const currentLine = state.coords;
-            const change = getChange(currentLine, action.delta, {
-                snapStep,
-                range,
-            });
-
-            const newLine: PairOfPoints = [
-                snap(snapStep, vec.add(currentLine[0], change)),
-                snap(snapStep, vec.add(currentLine[1], change)),
-            ];
+            const stateAnnouncement: InteractiveGraphStateAnnouncement =
+                state.type === "ray"
+                    ? {type: "move-ray-line", coords: newLine}
+                    : {type: "move-linear-line", coords: newLine};
 
             return {
                 ...state,
                 type: state.type,
                 hasBeenInteractedWith: true,
                 coords: newLine,
+                stateAnnouncement,
             };
         }
         default:
