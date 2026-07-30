@@ -58,6 +58,13 @@ patchedDependencies:
 # Security remediation overrides (2026-07-30) — pins/dedupes transitive
 # resolutions the mirror previously blocked; see decision sheet #2.
 overrides:
+    # Node DEP0040: tr46@3 bare-requires the builtin `punycode`, which is
+    # runtime-deprecated since Node 21. tr46@4.1.1 switched to the userland
+    # specifier `require("punycode/")` and declares punycode ^2.3.0 as a real
+    # dependency; its toASCII/toUnicode option surface is unchanged, so
+    # whatwg-url@11 (reached via jsdom@20 / data-urls@3 in the jest env) is
+    # unaffected. Retires itself when the test stack moves to jest 30 / jsdom 26.
+    whatwg-url@11>tr46: ^4.1.1
     qs: ^6.15.3
     flatted: ^3.4.3
     picomatch@2: ^2.3.2
