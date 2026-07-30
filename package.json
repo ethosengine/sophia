@@ -103,7 +103,7 @@
     "knip": "^5.33.3",
     "nyc": "^15.1.0",
     "pnpm": "^9.15.4",
-    "postcss": "^8.4.49",
+    "postcss": "^8.5.23",
     "postcss-import": "^16.1.0",
     "postcss-url": "^10.1.3",
     "prettier": "^3",
@@ -166,15 +166,5 @@
   "nyc": {
     "report-dir": "coverage/cypress/"
   },
-  "packageManager": "pnpm@10.30.3+sha512.c961d1e0a2d8e354ecaa5166b822516668b7f44cb5bd95122d590dd81922f606f5473b6d23ec4a5be05e7fcd18e8488d47d978bbe981872f1145d06e9a740017",
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "cypress@13.6.5",
-      "esbuild@0.24.0",
-      "@swc/core@1.11.13"
-    ],
-    "patchedDependencies": {
-      "postcss-url": "patches/postcss-url.patch"
-    }
-  }
+  "packageManager": "pnpm@10.30.3+sha512.c961d1e0a2d8e354ecaa5166b822516668b7f44cb5bd95122d590dd81922f606f5473b6d23ec4a5be05e7fcd18e8488d47d978bbe981872f1145d06e9a740017"
 }

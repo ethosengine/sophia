@@ -45,6 +45,27 @@ packages:
     - dev
     - packages/*
     - vendor/*
+# pnpm 10 no longer reads root-level build/override settings from the
+# "pnpm" key in package.json — they must live here instead (verified via
+# the `pnpm install` warning: "The pnpm field in package.json is no
+# longer read by pnpm"). Moved from package.json 2026-07-30.
+onlyBuiltDependencies:
+    - cypress@13.6.5
+    - esbuild@0.24.0
+    - "@swc/core@1.11.13"
+patchedDependencies:
+    postcss-url: patches/postcss-url.patch
+# Security remediation overrides (2026-07-30) — pins/dedupes transitive
+# resolutions the mirror previously blocked; see decision sheet #2.
+overrides:
+    qs: ^6.15.3
+    flatted: ^3.4.3
+    picomatch@2: ^2.3.2
+    picomatch@4: ^4.0.5
+    minimatch@3: ^3.1.5
+    minimatch@5: ^5.1.9
+    minimatch@9: ^9.0.9
+    minimatch@10: ^10.2.5
 catalogs:
     peerDeps:
         react: ^18.2.0
@@ -94,7 +115,7 @@ catalogs:
         prop-types: 15.8.1
         tiny-invariant: 1.3.1
         underscore: 1.4.4
-        vite: 5.4.11
+        vite: 5.4.21
         "@phosphor-icons/core": 2.0.2
         "@popperjs/core": 2.10.2
         "@khanacademy/mathjax-renderer": 3.0.0

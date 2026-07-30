@@ -54,7 +54,7 @@
         "@use-gesture/react": "^10.2.27",
         "mafs": "0.19.0",
         "tiny-invariant": "catalog:prodDeps",
-        "uuid": "^10.0.0"
+        "uuid": "^11.1.1"
     },
     "devDependencies": {
         "@khanacademy/wonder-blocks-announcer": "catalog:devDeps",
