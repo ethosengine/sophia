@@ -36,8 +36,15 @@ import $ from "jquery";
         touchEventProps = "clientX clientY pageX pageY screenX screenY".split(
             " ",
         ),
+        // jQuery >= 3.0 removed `$.event.props` and `$.event.mouseHooks`.
+        // There, `jQuery.Event` instances expose the standard event
+        // properties as prototype getters that delegate to `originalEvent`,
+        // so there is nothing left for us to copy by hand. Fall back to an
+        // empty prop list rather than exploding at import time.
         mouseHookProps = $.event.mouseHooks ? $.event.mouseHooks.props : [],
-        mouseEventProps = $.event.props.concat(mouseHookProps),
+        mouseEventProps = $.event.props
+            ? $.event.props.concat(mouseHookProps)
+            : mouseHookProps,
         activeDocHandlers = {},
         resetTimerID = 0,
         startX = 0,
@@ -91,7 +98,11 @@ import $ from "jquery";
         // copy original event properties over to the new event
         // this would happen if we could call $.event.fix instead of $.Event
         // but we don't have a way to force an event to be fixed multiple times
-        if (oe) {
+        //
+        // On jQuery >= 3.0 `props` is undefined (see above): the new
+        // $.Event wraps the incoming event as its `originalEvent`, and
+        // jQuery's own prototype getters already read through to it.
+        if (oe && props) {
             for (i = props.length, prop; i; ) {
                 prop = props[--i];
                 event[prop] = oe[prop];

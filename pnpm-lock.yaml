@@ -100,8 +100,8 @@ catalogs:
       specifier: 1.1.4
       version: 1.1.4
     jquery:
-      specifier: 2.1.1
-      version: 2.1.1
+      specifier: 3.7.1
+      version: 3.7.1
     prop-types:
       specifier: 15.8.1
       version: 15.8.1
@@ -575,7 +575,7 @@ importers:
     devDependencies:
       jquery:
         specifier: catalog:devDeps
-        version: 2.1.1
+        version: 3.7.1
       perseus-build-settings:
         specifier: workspace:*
         version: link:../../config/build
@@ -630,7 +630,7 @@ importers:
         version: 1.2.5
       jquery:
         specifier: catalog:devDeps
-        version: 2.1.1
+        version: 3.7.1
       mathquill:
         specifier: github:Khan/mathquill#v1.0.3
         version: https://codeload.github.com/Khan/mathquill/tar.gz/c9e4329b0bc5d9b4c21d765b5768e4e7693515b3
@@ -935,7 +935,7 @@ importers:
         version: 0.12.2
       jquery:
         specifier: catalog:devDeps
-        version: 2.1.1
+        version: 3.7.1
       lodash.debounce:
         specifier: ^4.0.8
         version: 4.0.8
@@ -1084,7 +1084,7 @@ importers:
         version: 1.1.4
       jquery:
         specifier: catalog:devDeps
-        version: 2.1.1
+        version: 3.7.1
       jsdiff:
         specifier: workspace:*
         version: link:../../vendor/jsdiff
@@ -6614,10 +6614,6 @@ packages:
   jiti@2.6.1:
     resolution: {integrity: sha512-ekilCSN1jwRvIbgeg/57YFh8qQDNbwDb9xT/qu2DAHbFFZUicIl4ygVaAvzveMhMVr3LnpSKTNnwt8PoOfmKhQ==}
     hasBin: true
-
-  jquery@2.1.1:
-    resolution: {integrity: sha512-y+iOyLV9My82vtN1cc96DLlklSv15h5Jjug52TK+vXmgtN/dE89WvmP1W/g7lL+RWFzdsTmBwJgX/yf4RY9mPA==}
-    deprecated: This version is deprecated. Please upgrade to the latest version or find support at https://www.herodevs.com/support/jquery-nes.
 
   jquery@3.7.1:
     resolution: {integrity: sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==}
@@ -15815,8 +15811,6 @@ snapshots:
       nomnom: 1.5.2
 
   jiti@2.6.1: {}
-
-  jquery@2.1.1: {}
 
   jquery@3.7.1: {}
 

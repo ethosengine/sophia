@@ -26,6 +26,32 @@ describe("passage widget", () => {
             "get",
         ).mockReturnValue(200.0);
 
+        // jQuery <= 2 read element dimensions straight off `offsetHeight`, so
+        // mocking it above was enough. jQuery 3 reads them from
+        // `getComputedStyle()` instead, and JSDOM performs no layout so it
+        // always reports an empty height. Extend the same layout simulation to
+        // the computed style, otherwise `$(el).height()` reports 0 and the
+        // passage renders no line numbers.
+        const realGetComputedStyle = window.getComputedStyle.bind(window);
+        jest.spyOn(window, "getComputedStyle").mockImplementation(((
+            elem: Element,
+            pseudoElt?: string | null,
+        ) => {
+            const style = realGetComputedStyle(elem, pseudoElt);
+            if (pseudoElt == null && elem instanceof HTMLDivElement) {
+                const realGetPropertyValue = style.getPropertyValue.bind(style);
+                Object.defineProperty(style, "height", {
+                    configurable: true,
+                    get: () => `${elem.offsetHeight}px`,
+                });
+                style.getPropertyValue = (name: string) =>
+                    name === "height"
+                        ? `${elem.offsetHeight}px`
+                        : realGetPropertyValue(name);
+            }
+            return style;
+        }) as typeof window.getComputedStyle);
+
         jest.spyOn(
             LineHeightMeasurer.prototype,
             "measureLineHeight",

@@ -77,6 +77,43 @@ const attachShims = (targetWindow) => {
 
     // JSDOM doesn't implement scrollTo
     targetWindow.scrollTo = () => {};
+
+    // JSDOM doesn't implement the CSSOM-View `pageX`/`pageY` properties on
+    // MouseEvent, even though every real browser does. jQuery <= 2 papered
+    // over this for us: `$.event.mouseHooks.filter` computed pageX/pageY
+    // from clientX/clientY whenever they were missing. jQuery 3 removed
+    // mouseHooks entirely and reads the native properties directly, so
+    // without this shim every mouse event in JSDOM reports `undefined`
+    // coordinates. Mirror what a browser would report.
+    if (
+        targetWindow.MouseEvent &&
+        !targetWindow.MouseEvent.prototype.hasOwnProperty("pageX")
+    ) {
+        const definePageCoord = (name, clientName, scrollName) => {
+            Object.defineProperty(targetWindow.MouseEvent.prototype, name, {
+                configurable: true,
+                get: function () {
+                    return (
+                        (this[clientName] || 0) +
+                        (targetWindow[scrollName] || 0)
+                    );
+                },
+                // Keep the property assignable, matching the behaviour of
+                // jQuery's own event props (jQuery.event.addProp installs a
+                // setter so callers can overwrite coordinates).
+                set: function (value) {
+                    Object.defineProperty(this, name, {
+                        configurable: true,
+                        enumerable: true,
+                        writable: true,
+                        value,
+                    });
+                },
+            });
+        };
+        definePageCoord("pageX", "clientX", "pageXOffset");
+        definePageCoord("pageY", "clientY", "pageYOffset");
+    }
 };
 
 module.exports = attachShims;
