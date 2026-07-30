@@ -3,7 +3,7 @@
     "description": "Web Component distribution for sophia rendering engine",
     "author": "Ethos Engine",
     "license": "MIT",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "publishConfig": {
         "access": "public"
     },
