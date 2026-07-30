@@ -19,6 +19,16 @@ export function getAnnouncementText(
             return `${srCircleRadiusPointLabel(state.x, state.y, state.centerX, strings, locale)} ${strings.srCircleRadius({radius: state.radius})}`;
         case "move-center":
             return srCircleCenterLabel(state.x, state.y, strings, locale);
+        case "move-linear-system-point":
+            return srLinearSystemPointLabel(state, strings, locale);
+        case "move-linear-system-line":
+            return strings.srLinearSystemGrabHandle({
+                lineNumber: state.lineIndex + 1,
+                point1X: srFormatNumber(state.coords[0][0], locale),
+                point1Y: srFormatNumber(state.coords[0][1], locale),
+                point2X: srFormatNumber(state.coords[1][0], locale),
+                point2Y: srFormatNumber(state.coords[1][1], locale),
+            });
         case "move-ray-point":
             return srRayPointLabel(state, strings, locale);
         case "move-ray-line":
@@ -105,6 +115,24 @@ function srAnglePointLabel(
         default:
             return strings.srAngleStartingSide({x, y});
     }
+}
+
+function srLinearSystemPointLabel(
+    state: {
+        lineIndex: number;
+        pointIndex: number;
+        x: number;
+        y: number;
+    },
+    strings: PerseusStrings,
+    locale: string,
+): string {
+    return strings.srLinearSystemPoint({
+        lineNumber: state.lineIndex + 1,
+        pointSequence: state.pointIndex + 1,
+        x: srFormatNumber(state.x, locale),
+        y: srFormatNumber(state.y, locale),
+    });
 }
 
 function srRayPointLabel(

@@ -268,6 +268,45 @@ describe("getAnnouncementText", () => {
         );
     });
 
+    describe("move-linear-system-point", () => {
+        it("includes the line number", () => {
+            const result = getAnnouncementText(
+                {
+                    type: "move-linear-system-point",
+                    lineIndex: 1,
+                    pointIndex: 0,
+                    x: -3,
+                    y: 2,
+                },
+                mockStrings,
+                "en",
+            );
+
+            expect(result).toBe("Point 1 on line 2 at -3 comma 2.");
+        });
+    });
+
+    describe("move-linear-system-line", () => {
+        it("returns the grab-handle label", () => {
+            const result = getAnnouncementText(
+                {
+                    type: "move-linear-system-line",
+                    lineIndex: 1,
+                    coords: [
+                        [-3, -4],
+                        [7, -4],
+                    ],
+                },
+                mockStrings,
+                "en",
+            );
+
+            expect(result).toBe(
+                "Line 2 going through point -3 comma -4 and point 7 comma -4.",
+            );
+        });
+    });
+
     it("throws an UnreachableCaseError for an unhandled announcement type", () => {
         expect(() =>
             getAnnouncementText(
