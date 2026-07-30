@@ -314,6 +314,63 @@ describe("movePointInFigure", () => {
         invariant(updated.type === "segment");
         expect(updated.coords[0][0]).toEqual([4.5, 7.5]);
     });
+
+    it("sets stateAnnouncement to a move-point with the new position on a linear graph", () => {
+        const state: InteractiveGraphState = {
+            hasBeenInteractedWith: false,
+            type: "linear",
+            range: [
+                [-10, 10],
+                [-10, 10],
+            ],
+            snapStep: [1, 1],
+            coords: [
+                [0, 0],
+                [1, 1],
+            ],
+        };
+
+        const updated = interactiveGraphReducer(
+            state,
+            actions.linear.movePoint(0, [-3, 2]),
+        );
+
+        expect(updated.stateAnnouncement).toEqual({
+            type: "move-point",
+            pointIndex: 0,
+            x: -3,
+            y: 2,
+        });
+    });
+});
+
+describe("moveLine on a linear graph", () => {
+    it("sets stateAnnouncement to a move-linear-line with the new endpoints", () => {
+        const state: InteractiveGraphState = {
+            hasBeenInteractedWith: false,
+            type: "linear",
+            range: [
+                [-10, 10],
+                [-10, 10],
+            ],
+            snapStep: [1, 1],
+            coords: [
+                [1, 2],
+                [3, 4],
+            ],
+        };
+
+        const updated = interactiveGraphReducer(
+            state,
+            actions.linear.moveLine([-4, 1]),
+        );
+
+        invariant(updated.stateAnnouncement?.type === "move-linear-line");
+        expect(updated.stateAnnouncement.coords).toEqual([
+            [-3, 3],
+            [-1, 5],
+        ]);
+    });
 });
 
 describe("moveSegment", () => {

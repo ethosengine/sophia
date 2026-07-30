@@ -288,7 +288,28 @@ function doMovePointInFigure(
                 coords: newCoords,
             };
         }
-        case "linear":
+        case "linear": {
+            // TODO(LEMS-4189): Temporary duplication of the ray logic
+            // until we move all graphs to use WB Announcer.
+            const newValue = boundAndSnapToGrid(action.destination, state);
+            const newCoords = setAtIndex({
+                array: state.coords,
+                index: action.pointIndex,
+                newValue,
+            });
+
+            return {
+                ...state,
+                hasBeenInteractedWith: true,
+                coords: newCoords,
+                stateAnnouncement: {
+                    type: "move-point",
+                    pointIndex: action.pointIndex,
+                    x: newValue[X],
+                    y: newValue[Y],
+                },
+            };
+        }
         case "ray": {
             const newCoords = setAtIndex({
                 array: state.coords,
@@ -361,7 +382,31 @@ function doMoveLine(
                 coords: newCoords,
             };
         }
-        case "linear":
+        case "linear": {
+            // TODO(LEMS-4189): Temporary duplication of the ray logic
+            // until we move all graphs to use WB Announcer.
+            const currentLine = state.coords;
+            const change = getChange(currentLine, action.delta, {
+                snapStep,
+                range,
+            });
+
+            const newLine: PairOfPoints = [
+                snap(snapStep, vec.add(currentLine[0], change)),
+                snap(snapStep, vec.add(currentLine[1], change)),
+            ];
+
+            return {
+                ...state,
+                type: state.type,
+                hasBeenInteractedWith: true,
+                coords: newLine,
+                stateAnnouncement: {
+                    type: "move-linear-line",
+                    coords: newLine,
+                },
+            };
+        }
         case "ray": {
             const currentLine = state.coords;
             const change = getChange(currentLine, action.delta, {

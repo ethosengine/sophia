@@ -65,6 +65,13 @@ type MoveCenterAnnouncement = {
     y: number;
 };
 
+// Whole-line keyboard drag for the linear graph. Carries both
+// endpoints so the announcement can describe the line they run through.
+type MoveLinearLineAnnouncement = {
+    type: "move-linear-line";
+    coords: PairOfPoints;
+};
+
 // Sinusoid graph: peak (index 1) reads as max/min/flat depending on
 // its y vs the root's y. We pass otherY so the screen reader text can
 // pick the right label without recomputing it from the reducer.
@@ -98,6 +105,7 @@ export type InteractiveGraphStateAnnouncement =
     | MovePointAnnouncement
     | MoveRadiusPointAnnouncement
     | MoveCenterAnnouncement
+    | MoveLinearLineAnnouncement
     | MoveSinusoidPointAnnouncement
     | MoveAnglePointAnnouncement
     | MovePolygonAnnouncement;
