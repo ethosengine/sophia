@@ -266,9 +266,8 @@ function doMovePointInFigure(
     action: MovePointInFigure,
 ): InteractiveGraphState {
     switch (state.type) {
+        case "segment":
         case "linear-system": {
-            // TODO(LEMS-4189): Temporary duplication of the segment logic
-            // until we move all graphs to use WB Announcer.
             const newValue = boundAndSnapToGrid(action.destination, state);
             const newCoords = updateAtIndex({
                 array: state.coords,
@@ -285,39 +284,31 @@ function doMovePointInFigure(
             if (coordsOverlap(coordsToCheck)) {
                 return state;
             }
-            return {
-                ...state,
-                hasBeenInteractedWith: true,
-                coords: newCoords,
-                stateAnnouncement: {
-                    type: "move-linear-system-point",
-                    lineIndex: action.figureIndex,
-                    pointIndex: action.pointIndex,
-                    x: newValue[X],
-                    y: newValue[Y],
-                },
-            };
-        }
-        case "segment": {
-            const newCoords = updateAtIndex({
-                array: state.coords,
-                index: action.figureIndex,
-                update: (tuple) =>
-                    setAtIndex({
-                        array: tuple,
-                        index: action.pointIndex,
-                        newValue: boundAndSnapToGrid(action.destination, state),
-                    }),
-            });
 
-            const coordsToCheck = newCoords[action.figureIndex];
-            if (coordsOverlap(coordsToCheck)) {
-                return state;
-            }
+            const sharedAnnouncement = {
+                pointIndex: action.pointIndex,
+                x: newValue[X],
+                y: newValue[Y],
+            };
+            const stateAnnouncement: InteractiveGraphStateAnnouncement =
+                state.type === "segment"
+                    ? {
+                          type: "move-segment-point",
+                          segmentIndex: action.figureIndex,
+                          totalSegments: state.coords.length,
+                          ...sharedAnnouncement,
+                      }
+                    : {
+                          type: "move-linear-system-point",
+                          lineIndex: action.figureIndex,
+                          ...sharedAnnouncement,
+                      };
+
             return {
                 ...state,
                 hasBeenInteractedWith: true,
                 coords: newCoords,
+                stateAnnouncement,
             };
         }
         case "ray":
@@ -381,9 +372,8 @@ function doMoveLine(
 ): InteractiveGraphState {
     const {snapStep, range} = state;
     switch (state.type) {
+        case "segment":
         case "linear-system": {
-            // TODO(LEMS-4189): Temporary duplication of the segment logic
-            // until we move all graphs to use WB Announcer.
             if (action.itemIndex === undefined) {
                 throw new Error("Please provide index of line to move");
             }
@@ -408,48 +398,24 @@ function doMoveLine(
                 newValue: newLine,
             });
 
-            return {
-                ...state,
-                type: state.type,
-                hasBeenInteractedWith: true,
-                coords: newCoords,
-                stateAnnouncement: {
-                    type: "move-linear-system-line",
-                    lineIndex: action.itemIndex,
-                    coords: newLine,
-                },
-            };
-        }
-        case "segment": {
-            if (action.itemIndex === undefined) {
-                throw new Error("Please provide index of line to move");
-            }
-            const currentLine = state.coords[action.itemIndex];
-            // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-            if (!currentLine) {
-                throw new Error("No line to move");
-            }
-            const change = getChange(currentLine, action.delta, {
-                snapStep,
-                range,
-            });
-
-            const newLine: PairOfPoints = [
-                snap(snapStep, vec.add(currentLine[0], change)),
-                snap(snapStep, vec.add(currentLine[1], change)),
-            ];
-
-            const newCoords = setAtIndex({
-                array: state.coords,
-                index: action.itemIndex,
-                newValue: newLine,
-            });
+            const stateAnnouncement: InteractiveGraphStateAnnouncement =
+                state.type === "segment"
+                    ? {
+                          type: "move-segment-line",
+                          coords: newLine,
+                      }
+                    : {
+                          type: "move-linear-system-line",
+                          lineIndex: action.itemIndex,
+                          coords: newLine,
+                      };
 
             return {
                 ...state,
                 type: state.type,
                 hasBeenInteractedWith: true,
                 coords: newCoords,
+                stateAnnouncement,
             };
         }
         case "ray":

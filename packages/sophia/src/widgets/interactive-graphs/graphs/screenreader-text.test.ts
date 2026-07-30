@@ -307,6 +307,60 @@ describe("getAnnouncementText", () => {
         });
     });
 
+    describe("move-segment-point", () => {
+        it("uses the single-segment endpoint label when there is one segment", () => {
+            const result = getAnnouncementText(
+                {
+                    type: "move-segment-point",
+                    segmentIndex: 0,
+                    pointIndex: 0,
+                    x: -3,
+                    y: 2,
+                    totalSegments: 1,
+                },
+                mockStrings,
+                "en",
+            );
+
+            expect(result).toBe("Endpoint 1 at -3 comma 2.");
+        });
+
+        it("includes the segment number when there are multiple segments", () => {
+            const result = getAnnouncementText(
+                {
+                    type: "move-segment-point",
+                    segmentIndex: 1,
+                    pointIndex: 0,
+                    x: -3,
+                    y: 2,
+                    totalSegments: 2,
+                },
+                mockStrings,
+                "en",
+            );
+
+            expect(result).toBe("Endpoint 1 on segment 2 at -3 comma 2.");
+        });
+    });
+
+    describe("move-segment-line", () => {
+        it("returns the grab-handle label", () => {
+            const result = getAnnouncementText(
+                {
+                    type: "move-segment-line",
+                    coords: [
+                        [6, -1],
+                        [8, 1],
+                    ],
+                },
+                mockStrings,
+                "en",
+            );
+
+            expect(result).toBe("Segment from 6 comma -1 to 8 comma 1.");
+        });
+    });
+
     it("throws an UnreachableCaseError for an unhandled announcement type", () => {
         expect(() =>
             getAnnouncementText(
