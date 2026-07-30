@@ -282,6 +282,4 @@ export type GraphDimensions = {
     height: number; // pixels
 };
 
-export type AriaLive = "off" | "assertive" | "polite" | undefined;
-
 export type SnapTo = "grid" | "angles" | "sides";
