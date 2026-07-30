@@ -1,6 +1,9 @@
 import getGrapherPublicWidgetOptions from "./grapher-util";
 
-import type {PerseusGrapherWidgetOptions} from "../../data-schema";
+import type {
+    PerseusGrapherWidgetOptions,
+    PerseusWidgetOptions,
+} from "../../data-schema";
 import type {WidgetLogicWithDefaults} from "../logic-export.types";
 
 export type GrapherDefaultWidgetOptions = Pick<
@@ -37,7 +40,18 @@ const grapherWidgetLogic: WidgetLogicWithDefaults<GrapherDefaultWidgetOptions> =
         name: "grapher",
         defaultWidgetOptions,
         getPublicWidgetOptions: getGrapherPublicWidgetOptions,
-        accessible: false,
+        accessible: (widgetOptions: PerseusWidgetOptions): boolean => {
+            // PerseusGrapherWidgetOptions is not a member of the
+            // PerseusWidgetOptions union (pre-existing schema gap), so a
+            // direct assertion has no structural overlap guarantee here.
+            const options =
+                widgetOptions as unknown as PerseusGrapherWidgetOptions;
+            return (
+                !options.graph.backgroundImage.url &&
+                options.availableTypes.length === 1 &&
+                options.availableTypes[0] !== "quadratic"
+            );
+        },
     };
 
 export default grapherWidgetLogic;
