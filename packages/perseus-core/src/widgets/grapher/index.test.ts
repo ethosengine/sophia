@@ -10,8 +10,15 @@ import type {PerseusGrapherWidgetOptions} from "../../data-schema";
 import grapherWidgetLogic from "./index";
 
 describe("grapherWidgetLogic.accessible()", () => {
-    const accessible = grapherWidgetLogic.accessible;
-    invariant(accessible instanceof Function);
+    const accessibleFn = grapherWidgetLogic.accessible;
+    invariant(accessibleFn instanceof Function);
+    // This fork's WidgetLogicWithDefaults types `accessible` against the
+    // broad PerseusWidgetOptions union, which does not include
+    // PerseusGrapherWidgetOptions as a member (see grapher/index.ts).
+    // Re-cast to the specific signature this test actually exercises.
+    const accessible = accessibleFn as unknown as (
+        options: PerseusGrapherWidgetOptions,
+    ) => boolean;
 
     // A Grapher widget is accessible iff it has no background image and
     // a single non-quadratic function type.
