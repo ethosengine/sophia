@@ -3489,7 +3489,7 @@ exports[`Interactive Graph question Should render user input predictably: with u
                         <g
                           aria-disabled="false"
                           aria-label="Point 1 at 0 comma 0."
-                          aria-live="polite"
+                          aria-live="off"
                           class="movable-point__focusable-handle"
                           data-testid="movable-point__focusable-handle"
                           role="button"
@@ -3533,7 +3533,7 @@ exports[`Interactive Graph question Should render user input predictably: with u
                         <g
                           aria-disabled="false"
                           aria-label="Point 2 at -2.5 comma 0."
-                          aria-live="polite"
+                          aria-live="off"
                           class="movable-point__focusable-handle"
                           data-testid="movable-point__focusable-handle"
                           role="button"
@@ -3577,7 +3577,7 @@ exports[`Interactive Graph question Should render user input predictably: with u
                         <g
                           aria-disabled="false"
                           aria-label="Point 3 at -1 comma 0."
-                          aria-live="polite"
+                          aria-live="off"
                           class="movable-point__focusable-handle"
                           data-testid="movable-point__focusable-handle"
                           role="button"

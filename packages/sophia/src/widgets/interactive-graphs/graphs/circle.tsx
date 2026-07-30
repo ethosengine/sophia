@@ -136,7 +136,6 @@ function MovableCircle(props: {
         <g
             aria-label={ariaLabel}
             aria-describedby={ariaDescribedBy}
-            aria-live="polite"
             aria-disabled={disableKeyboardInteraction}
             ref={draggableRef}
             role="button"
