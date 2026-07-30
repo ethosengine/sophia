@@ -148,4 +148,21 @@ describe("InteractiveGraphSettings", () => {
             fullGraphAriaDescription: undefined,
         });
     });
+
+    test("has a message about description and locked labels", () => {
+        render(
+            <InteractiveGraphDescription
+                ariaLabelValue=""
+                ariaDescriptionValue=""
+                onChange={jest.fn()}
+            />,
+            {wrapper: RenderStateRoot},
+        );
+
+        const message = screen.getByText(
+            "Aria description required when using locked figures. Locked figures aren't automatically described.",
+        );
+
+        expect(message).toBeInTheDocument();
+    });
 });
