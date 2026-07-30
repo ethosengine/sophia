@@ -2,6 +2,7 @@ import {mockStrings} from "../../../strings";
 
 import {
     getAnnouncementText,
+    getCoordQuadrant,
     getPiMultiple,
     srCircleCenterLabel,
     srCircleRadiusPointLabel,
@@ -361,6 +362,83 @@ describe("getAnnouncementText", () => {
         });
     });
 
+    describe("move-quadratic-point", () => {
+        // Composes the point label (quadrant-aware) with the vertex
+        // string when a vertex exists; vertex is undefined when the
+        // parabola degenerates to a line.
+        it("uses the point-quadrant label and appends the vertex string for a quadrant vertex", () => {
+            const result = getAnnouncementText(
+                {
+                    type: "move-quadratic-point",
+                    pointIndex: 0,
+                    x: -2,
+                    y: 4,
+                    vertex: [1, -1],
+                },
+                mockStrings,
+                "en",
+            );
+
+            expect(result).toBe(
+                "Point 1 on parabola in quadrant 2 at -2 comma 4. Vertex is in quadrant 4.",
+            );
+        });
+
+        it("uses the point-axis label when the moved point lies on an axis", () => {
+            const result = getAnnouncementText(
+                {
+                    type: "move-quadratic-point",
+                    pointIndex: 1,
+                    x: 3,
+                    y: 0,
+                    vertex: [0, 0],
+                },
+                mockStrings,
+                "en",
+            );
+
+            expect(result).toBe(
+                "Point 2 on parabola at 3 comma 0. Vertex is at the origin.",
+            );
+        });
+
+        it("uses the point-origin label when the moved point is at the origin", () => {
+            const result = getAnnouncementText(
+                {
+                    type: "move-quadratic-point",
+                    pointIndex: 2,
+                    x: 0,
+                    y: 0,
+                    vertex: [0, 2],
+                },
+                mockStrings,
+                "en",
+            );
+
+            expect(result).toBe(
+                "Point 3 on parabola at the origin. Vertex is on the Y-axis.",
+            );
+        });
+
+        it("omits the vertex string when the parabola degenerates to a line", () => {
+            const result = getAnnouncementText(
+                {
+                    type: "move-quadratic-point",
+                    pointIndex: 0,
+                    x: -2,
+                    y: -2,
+                    vertex: undefined,
+                },
+                mockStrings,
+                "en",
+            );
+
+            expect(result).toBe(
+                "Point 1 on parabola in quadrant 3 at -2 comma -2.",
+            );
+        });
+    });
+
     it("throws an UnreachableCaseError for an unhandled announcement type", () => {
         expect(() =>
             getAnnouncementText(
@@ -501,4 +579,19 @@ describe("getPiMultiple", () => {
             expect(getPiMultiple(num)).toBe(expectedString);
         },
     );
+});
+
+describe("getCoordQuadrant", () => {
+    test.each`
+        coord       | expected
+        ${[0, 0]}   | ${"origin"}
+        ${[3, 0]}   | ${"x-axis"}
+        ${[0, 3]}   | ${"y-axis"}
+        ${[2, 4]}   | ${1}
+        ${[-2, 4]}  | ${2}
+        ${[-2, -4]} | ${3}
+        ${[2, -4]}  | ${4}
+    `("returns $expected for coord $coord", ({coord, expected}) => {
+        expect(getCoordQuadrant(coord)).toBe(expected);
+    });
 });

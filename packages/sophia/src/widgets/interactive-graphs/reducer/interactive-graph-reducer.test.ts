@@ -1187,6 +1187,55 @@ describe("movePoint on a quadratic graph", () => {
     });
 });
 
+describe("movePoint on a quadratic graph announcements", () => {
+    it("sets stateAnnouncement to a move-quadratic-point with the new vertex", () => {
+        // Use a symmetric upward parabola: vertex sits at (0, 0).
+        const state: InteractiveGraphState = {
+            ...baseQuadraticGraphState,
+            coords: [
+                [-1, 1],
+                [0, 0],
+                [1, 1],
+            ],
+        };
+
+        const updated = interactiveGraphReducer(
+            state,
+            actions.quadratic.movePoint(0, [-2, 4]),
+        );
+
+        invariant(updated.stateAnnouncement?.type === "move-quadratic-point");
+        expect(updated.stateAnnouncement.pointIndex).toBe(0);
+        expect(updated.stateAnnouncement.x).toBe(-2);
+        expect(updated.stateAnnouncement.y).toBe(4);
+        // After this move the parabola still has vertex at (0, 0).
+        expect(updated.stateAnnouncement.vertex).not.toBeUndefined();
+        invariant(updated.stateAnnouncement.vertex !== undefined);
+        expect(updated.stateAnnouncement.vertex[0]).toBeCloseTo(0);
+        expect(updated.stateAnnouncement.vertex[1]).toBeCloseTo(0);
+    });
+
+    it("sets stateAnnouncement vertex to undefined when the parabola degenerates to a line", () => {
+        // All three points collinear → a === 0 → no vertex.
+        const state: InteractiveGraphState = {
+            ...baseQuadraticGraphState,
+            coords: [
+                [-1, -1],
+                [0, 0],
+                [1, 1],
+            ],
+        };
+
+        const updated = interactiveGraphReducer(
+            state,
+            actions.quadratic.movePoint(0, [-2, -2]),
+        );
+
+        invariant(updated.stateAnnouncement?.type === "move-quadratic-point");
+        expect(updated.stateAnnouncement.vertex).toBeUndefined();
+    });
+});
+
 describe("doChangeSnapStep", () => {
     it("doesn't update if there are no changes", () => {
         const state: InteractiveGraphState = {

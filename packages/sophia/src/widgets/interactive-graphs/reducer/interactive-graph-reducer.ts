@@ -10,7 +10,7 @@ import {UnreachableCaseError} from "@khanacademy/wonder-stuff-core";
 import {vec} from "mafs";
 import _ from "underscore";
 
-import {getArrayWithoutDuplicates} from "../graphs/utils";
+import {getArrayWithoutDuplicates, getQuadraticVertex} from "../graphs/utils";
 import {clamp, clampToBox, inset, snap, X, Y} from "../math";
 import {bound, boundToEdge, isUnlimitedGraphState} from "../utils";
 
@@ -663,6 +663,8 @@ function doMovePoint(
                 return state;
             }
 
+            const vertex = getQuadraticVertex(QuadraticCoefficients);
+
             return {
                 ...state,
                 hasBeenInteractedWith: true,
@@ -671,6 +673,13 @@ function doMovePoint(
                     index: action.index,
                     newValue: boundDestination,
                 }),
+                stateAnnouncement: {
+                    type: "move-quadratic-point",
+                    pointIndex: action.index,
+                    x: boundDestination[X],
+                    y: boundDestination[Y],
+                    vertex,
+                },
             };
         }
         default:
