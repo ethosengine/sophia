@@ -1,6 +1,7 @@
 {
   "manifestVersion": "1.0",
   "pipeline": "elohim-sophia",
+  "jenkinsPath": "sophia/Jenkinsfile",
   "description": "Sophia assessment engine — build, test, UMD bundle",
   "steps": {
     "build-sophia-umd": {
