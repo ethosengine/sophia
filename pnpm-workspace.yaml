@@ -53,6 +53,10 @@ onlyBuiltDependencies:
     - cypress@13.6.5
     - esbuild@0.24.0
     - "@swc/core@1.11.13"
+    # git dependency — needs its prepare/build script to produce dist;
+    # fell off in the 2026-07-30 package.json→workspace migration
+    # (CI: ERR_PNPM_GIT_DEP_PREPARE_NOT_ALLOWED, elohim-sophia #145)
+    - mathquill
 patchedDependencies:
     postcss-url: patches/postcss-url.patch
 # Security remediation overrides (2026-07-30) — pins/dedupes transitive
