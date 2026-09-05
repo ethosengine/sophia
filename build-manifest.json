@@ -23,7 +23,11 @@
   },
   "gate": {
     "projects": {
-      "sophia": { "dir": "sophia", "steps": ["build-sophia-umd"] }
+      "sophia": {
+        "dir": "sophia",
+        "steps": ["build-sophia-umd"],
+        "run": { "kind": "just", "recipe": "gate" }
+      }
     }
   },
   "deployment": {}
